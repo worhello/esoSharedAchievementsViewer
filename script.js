@@ -139,14 +139,40 @@ function buildViews() {
     buildTrialsView();
 }
 
+function isValidCharacter(c) {
+    return c == '0' || c == '1';
+}
+
 function validateInputData(input) {
     if (input == "") {
         return false;
     }
 
-    // TODO check that input is of a correct size and only contains 1s and 0s
+    var validInputSizes = [
+        DlcDungeonData.length * (DlcDungeonCols.length - 1),
+        BaseDungeonData.length * (BaseDungeonCols.length - 1),
+        TrialData.length * (TrialCols.length - 1)
+    ];
+
+    if (!validInputSizes.includes(input.length)) {
+        return false;
+    }
+
+    for (var i = 0; i < input.length; i++) {
+        if (!isValidCharacter(input[i])) {
+            return false;
+        }
+    }
 
     return true;
+}
+
+function validateGatheredData(allData) {
+    var allOk = true;
+    for (var i = 0; i < allData.length; i++) {
+        allOk = allOk && allData[0].length == allData[i].length;
+    }
+    return allOk;
 }
 
 function gatherInputData() {
@@ -155,6 +181,9 @@ function gatherInputData() {
         if ($("#dataInput" + i).css('display') != "none" && validateInputData($("#dataInput" + i).val())) {
             data.push($("#dataInput" + i).val());
         }
+    }
+    if (!validateGatheredData(data)) {
+        return [];
     }
     return data;
 }
@@ -189,7 +218,6 @@ function populateTable(numCols, parentElementId, inputData, numRows, cols) {
     var numPlayers = inputData.length;
     var perEncounterArrays = splitCombinedEncounterDataForAllPlayers(inputData, numCols);
 
-    console.log(perEncounterArrays);
     for (var row = 0; row < numRows; row++) {
         for (var col = 1; col <= numCols; col++) {
             var totalCountForCell = 0;
@@ -197,7 +225,8 @@ function populateTable(numCols, parentElementId, inputData, numRows, cols) {
                 totalCountForCell += parseInt(perEncounterArrays[p][row][col - 1]);
             }
             let cellId = "#" + parentElementId + cols[col] + row;
-            setCellColorBasedOnPercentComplete(cellId, (totalCountForCell / numPlayers) * 100);
+            let percent = Math.trunc((totalCountForCell / numPlayers) * 100);
+            setCellColorBasedOnPercentComplete(cellId, percent);
         }
     }
 }
@@ -249,13 +278,14 @@ $(document).ready(function() {
     $("button[name$='generateViewButtons']").click(function() {
         var inputData = gatherInputData();
         if (inputData.length == 0) {
-            window.alert("Please input at least one user's data");
+            window.alert("Please input valid data for at least one user");
             return;
         }
 
         var v = $(this).val();
 
         $("div.view").hide();
+        $("button.desc").hide();
         $("#inputsContainer").hide();
         $("#viewsContainer").show();
 
