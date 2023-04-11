@@ -77,6 +77,13 @@ const TrialData = [
     {NAME:"Dreadsail Reef",         PHM1NAME:"Twins",    PHM2NAME:"Reef",    HMNAME:"Taleria",         TRINAME:"Soul of the Squall",  EXTNAME:"Swashbuckler Supreme" }
 ];
 
+class Player {
+    constructor() {
+        this.name = "";
+        this.achievements = new Array();
+    }
+}
+
 function createTableRow(num, dataRow, cols, parentElementId) {
     var row = document.createElement("tr");
     cols.forEach((c) => {
@@ -160,29 +167,41 @@ function validateInputData(input) {
         TrialData.length * (TrialCols.length - 1)
     ];
 
-    if (!validInputSizes.includes(input.length)) {
+    var playerInfoAsArray = parsePlayerInfoIntoArray(input);
+    if (playerInfoAsArray.length > 2) {
         return false;
     }
 
-    for (var i = 0; i < input.length; i++) {
-        if (!isValidCharacter(input[i])) {
+    var rawAchievementData = parseRawAchievementData(playerInfoAsArray);
+
+    if (!validInputSizes.includes(rawAchievementData.length)) {
+        return false;
+    }
+
+    for (var i = 0; i < rawAchievementData.length; i++) {
+        if (!isValidCharacter(rawAchievementData[i])) {
             return false;
         }
     }
 
+    currentInputLengths.push(rawAchievementData.length);
+
     return true;
 }
 
-function validateGatheredData(allData) {
+var currentInputLengths = [];
+
+function validateGatheredData() {
     var allOk = true;
-    for (var i = 0; i < allData.length; i++) {
-        allOk = allOk && allData[0].length == allData[i].length;
+    for (var i = 0; i < currentInputLengths.length; i++) {
+        allOk = currentInputLengths && currentInputLengths[0] == currentInputLengths[i];
     }
     return allOk;
 }
 
 function gatherInputData() {
-    var data = []
+    var data = [];
+    currentInputLengths = [];
     for (var i = 0; i < 12; i++) {
         if ($("#dataInput" + i).css('display') != "none" && validateInputData($("#dataInput" + i).val())) {
             data.push($("#dataInput" + i).val());
@@ -194,21 +213,49 @@ function gatherInputData() {
     return data;
 }
 
-function splitCombinedEncounterDataForAllPlayers(fullArray, subArraySize) {
-    var fullResult = new Array();
-    for (var playerNum = 0; playerNum < fullArray.length; playerNum++) {
-        var numSubArrays = fullArray[playerNum].length / subArraySize;
-        fullResult[playerNum] = new Array();
-        var fullArrayPointer = 0;
-        for (var i = 0; i < numSubArrays; i++) {
-            fullResult[playerNum][i] = new Array();
-            for (var j = 0; j < subArraySize; j++) {
-                fullResult[playerNum][i].push(fullArray[playerNum][fullArrayPointer]);
-                fullArrayPointer++;
-            }
+function parsePlayerInfoIntoArray(unparsedString) {
+    return unparsedString.split(":");
+}
+
+function parseUsername(playerInfoAsArray, playerNum) {
+    if (playerInfoAsArray.length > 1) {
+        return playerInfoAsArray[0];
+    }
+    return "Player " + (playerNum + 1);
+}
+
+function parseRawAchievementData(playerInfoAsArray) {
+    if (playerInfoAsArray.length > 1) {
+        return playerInfoAsArray[1];
+    }
+    return playerInfoAsArray[0];
+}
+
+function parseDataForOnePlayer(unparsedString, totalNumEncounters, subArraySize, playerNum) {
+    var player = new Player();
+    var currPlayerDataPtr = 0;
+
+    var playerInfoAsArray = parsePlayerInfoIntoArray(unparsedString);
+    player.name = parseUsername(playerInfoAsArray, playerNum);
+    var rawAchievementData = parseRawAchievementData(playerInfoAsArray);
+
+    for (var currEncounter = 0; currEncounter < totalNumEncounters; currEncounter++) {
+        player.achievements[currEncounter] = new Array();
+        for (var j = 0; j < subArraySize; j++) {
+            player.achievements[currEncounter].push(rawAchievementData[currPlayerDataPtr]);
+            currPlayerDataPtr++;
         }
     }
-    return fullResult;
+    return player;
+}
+
+function splitCombinedEncounterDataForAllPlayers(fullArray, subArraySize) {
+    var allPlayersData = new Array();
+    for (var playerNum = 0; playerNum < fullArray.length; playerNum++) {
+        var totalNumEncounters = fullArray[playerNum].length / subArraySize;
+        allPlayersData[playerNum] = parseDataForOnePlayer(fullArray[playerNum], totalNumEncounters, subArraySize, playerNum);
+    }
+    return allPlayersData;
 }
 
 const BucketColors = [
@@ -238,6 +285,19 @@ function setCellColorBasedOnPercentComplete(cellId, percentValue) {
     $(cellId).css({background: `${getColorBucketFromPercent(percentValue)}`})
 }
 
+function setListOfPlayersWithAchieveInTooltip(cellId, playersWhoHaveAchieve) {
+    var tooltipText = "";
+    
+    if ($(cellId).attr("achievementText") !== undefined) {
+        tooltipText += $(cellId).attr("achievementText") + "\n";
+    }
+
+    for (var i = 0; i < playersWhoHaveAchieve.length; i++) {
+        tooltipText += playersWhoHaveAchieve[i] + "\n";
+    }
+    $(cellId).attr("title", tooltipText);
+}
+
 function populateTable(numCols, parentElementId, inputData, numRows, cols) {
     var numPlayers = inputData.length;
     var perEncounterArrays = splitCombinedEncounterDataForAllPlayers(inputData, numCols);
@@ -250,11 +310,17 @@ function populateTable(numCols, parentElementId, inputData, numRows, cols) {
             }
             else {
                 var totalCountForCell = 0;
+                var playersWhoHaveAchieve = [];
                 for (var p = 0; p < numPlayers; p++) {
-                    totalCountForCell += parseInt(perEncounterArrays[p][row][col - 1]);
+                    let val = parseInt(perEncounterArrays[p].achievements[row][col - 1])
+                    totalCountForCell += val;
+                    if (val == 1) {
+                        playersWhoHaveAchieve.push(perEncounterArrays[p].name);
+                    }
                 }
                 let percent = Math.trunc((totalCountForCell / numPlayers) * 100);
                 $(cellId).html(totalCountForCell + "/" + numPlayers);
+                setListOfPlayersWithAchieveInTooltip(cellId, playersWhoHaveAchieve);
                 setCellColorBasedOnPercentComplete(cellId, percent);
             }
         }
