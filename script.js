@@ -1,12 +1,12 @@
 
 const DlcDungeonCols = ["name", "vet", "hm", "sr", "nd", "cha", "tri", "ext"];
 const DlcDungeonData = [
-    {NAME:"White Gold Tower",     TRINAME: null,                        EXTNAME: "Out of the Frying Pan", },
-    {NAME:"Imperial City Prison", TRINAME: null,                        EXTNAME: "Out of Sight",          },
-    {NAME:"Ruins of Mazzatun",    TRINAME: null,                        EXTNAME: "Obedience Training",    },
-    {NAME:"Cradle of Shadows",    TRINAME: null,                        EXTNAME: "Embrace the Shadow",    },
-    {NAME:"Falkreath Hold",       TRINAME: null,                        EXTNAME: "Epic Undertaking",      },
-    {NAME:"Bloodroot Forge",      TRINAME: null,                        EXTNAME: "Wildlife Sanctuary",    },
+    {NAME:"White Gold Tower",     TRINAME: "n/a",                       EXTNAME: "Out of the Frying Pan", },
+    {NAME:"Imperial City Prison", TRINAME: "n/a",                       EXTNAME: "Out of Sight",          },
+    {NAME:"Ruins of Mazzatun",    TRINAME: "n/a",                       EXTNAME: "Obedience Training",    },
+    {NAME:"Cradle of Shadows",    TRINAME: "n/a",                       EXTNAME: "Embrace the Shadow",    },
+    {NAME:"Falkreath Hold",       TRINAME: "n/a",                       EXTNAME: "Epic Undertaking",      },
+    {NAME:"Bloodroot Forge",      TRINAME: "n/a",                       EXTNAME: "Wildlife Sanctuary",    },
     {NAME:"Fang Lair",            TRINAME: "Leave No Bone Unbroken",    EXTNAME: "Minimal Animosity",     },
     {NAME:"Scalecaller Peak",     TRINAME: "Mountain God",              EXTNAME: "Daedric Deflector",     },
     {NAME:"Moon Hunter Keep",     TRINAME: "Pure Lunacy",               EXTNAME: "Strangling Cowardice",  },
@@ -64,11 +64,11 @@ const BaseDungeonData = [
 
 const TrialCols = ["name", "vet", "phm1", "phm2", "hm", "tri", "ext"];
 const TrialData = [
-    {NAME:"Hel Ra Citadel",         PHM1NAME:"",         PHM2NAME:"",        HMNAME:"Celest. Warrior", TRINAME:"",                    EXTNAME:""                     },
-    {NAME:"Aetherian Archive",      PHM1NAME:"",         PHM2NAME:"",        HMNAME:"Celest. Mage",    TRINAME:"",                    EXTNAME:""                     },
-    {NAME:"Sanctum Ophidia",        PHM1NAME:"",         PHM2NAME:"",        HMNAME:"Celest. Serpent", TRINAME:"",                    EXTNAME:""                     },
-    {NAME:"Maw of Lorkhaj",         PHM1NAME:"",         PHM2NAME:"",        HMNAME:"Rakkhat",         TRINAME:"",                    EXTNAME:"Dro-m'Athra Destroyer"},
-    {NAME:"Halls of Fabrication",   PHM1NAME:"",         PHM2NAME:"",        HMNAME:"Assembly Gen.",   TRINAME:"Tick-Tock Tormentor", EXTNAME:"The Dynamo"           },
+    {NAME:"Hel Ra Citadel",         PHM1NAME:"n/a",      PHM2NAME:"n/a",     HMNAME:"Celest. Warrior", TRINAME:"n/a",                 EXTNAME:"n/a"                     },
+    {NAME:"Aetherian Archive",      PHM1NAME:"n/a",      PHM2NAME:"n/a",     HMNAME:"Celest. Mage",    TRINAME:"n/a",                 EXTNAME:"n/a"                     },
+    {NAME:"Sanctum Ophidia",        PHM1NAME:"n/a",      PHM2NAME:"n/a",     HMNAME:"Celest. Serpent", TRINAME:"n/a",                 EXTNAME:"n/a"                     },
+    {NAME:"Maw of Lorkhaj",         PHM1NAME:"n/a",      PHM2NAME:"n/a",     HMNAME:"Rakkhat",         TRINAME:"n/a",                 EXTNAME:"Dro-m'Athra Destroyer"},
+    {NAME:"Halls of Fabrication",   PHM1NAME:"n/a",      PHM2NAME:"n/a",     HMNAME:"Assembly Gen.",   TRINAME:"Tick-Tock Tormentor", EXTNAME:"The Dynamo"           },
     {NAME:"Asylum Sanctorium",      PHM1NAME:"+Llothis", PHM2NAME:"+Felms",  HMNAME:"vAS +2",          TRINAME:"Saintly Savior",      EXTNAME:"Immortal Redeemer"    },
     {NAME:"Cloudrest",              PHM1NAME:"vCR +1",   PHM2NAME:"vCR +2",  HMNAME:"vCR +3",          TRINAME:"Gryphon Heart",       EXTNAME:"Welkynar Liberator"   },
     {NAME:"Sunspire",               PHM1NAME:"Yolna",    PHM2NAME:"Lokke",   HMNAME:"Nahvi",           TRINAME:"Godslayer",           EXTNAME:"Hand of Alkosh"       },
@@ -83,23 +83,29 @@ function createTableRow(num, dataRow, cols, parentElementId) {
         var cell = document.createElement("td");
         cell.id = parentElementId + c + num;
         if (c == "name") {
-            cell.setAttribute("scope", "row");
             cell.textContent = dataRow.NAME;
+            cell.setAttribute("scope", "row");
+            cell.classList.add("dungeonNameCol")
         }
         if (c == "tri" && dataRow.TRINAME != null) {
-            cell.textContent = dataRow.TRINAME;
+            cell.setAttribute("achievementText", dataRow.TRINAME);
+            cell.setAttribute("title", dataRow.TRINAME);
         }
         if (c == "ext" && dataRow.EXTNAME != null) {
-            cell.textContent = dataRow.EXTNAME;
+            cell.setAttribute("achievementText", dataRow.EXTNAME);
+            cell.setAttribute("title", dataRow.EXTNAME);
         }
         if (c == "phm1" && dataRow.PHM1NAME != null) {
-            cell.textContent = dataRow.PHM1NAME;
+            cell.setAttribute("achievementText", dataRow.PHM1NAME);
+            cell.setAttribute("title", dataRow.PHM1NAME);
         }
         if (c == "phm2" && dataRow.PHM2NAME != null) {
-            cell.textContent = dataRow.PHM2NAME;
+            cell.setAttribute("achievementText", dataRow.PHM2NAME);
+            cell.setAttribute("title", dataRow.PHM2NAME);
         }
         if (c == "hm" && dataRow.HMNAME != null) {
-            cell.textContent = dataRow.HMNAME;
+            cell.setAttribute("achievementText", dataRow.HMNAME);
+            cell.setAttribute("title", dataRow.HMNAME);
         }
         row.appendChild(cell);
     });
@@ -205,14 +211,32 @@ function splitCombinedEncounterDataForAllPlayers(fullArray, subArraySize) {
     return fullResult;
 }
 
+const BucketColors = [
+    "#DA4453",
+    "#ED5565",
+    "#FC6E51",
+    "#FFCE54",
+    "#A0D468",
+    "#D3D3D3"
+];
+
+function getColorBucketFromPercent(percentValue) {
+    if (percentValue < 0) return BucketColors[5];
+    if (percentValue == 0) return BucketColors[0];
+    if (percentValue == 100) return BucketColors[4];
+    if (percentValue < 34) return BucketColors[1];
+    if (percentValue > 67) return BucketColors[3];
+    return BucketColors[2];
+}
+
+function getTextColorFromPercent(percentValue) {
+    if (percentValue < 0) return BucketColors[5];
+    return "black";
+}
+
 function setCellColorBasedOnPercentComplete(cellId, percentValue) {
-    $(cellId)
-      // print the value
-      .html(percentValue)
-      // colorize the text, more red if it's close to 0
-      // and more green as it approach 100
-      .css({background: `rgb(${(100 - percentValue) *2.56}, ${percentValue *2.56},0)`})
-  }
+    $(cellId).css({background: `${getColorBucketFromPercent(percentValue)}`})
+}
 
 function populateTable(numCols, parentElementId, inputData, numRows, cols) {
     var numPlayers = inputData.length;
@@ -220,13 +244,19 @@ function populateTable(numCols, parentElementId, inputData, numRows, cols) {
 
     for (var row = 0; row < numRows; row++) {
         for (var col = 1; col <= numCols; col++) {
-            var totalCountForCell = 0;
-            for (var p = 0; p < numPlayers; p++) {
-                totalCountForCell += parseInt(perEncounterArrays[p][row][col - 1]);
-            }
             let cellId = "#" + parentElementId + cols[col] + row;
-            let percent = Math.trunc((totalCountForCell / numPlayers) * 100);
-            setCellColorBasedOnPercentComplete(cellId, percent);
+            if ($(cellId).attr("achievementText") == "n/a") {
+                setCellColorBasedOnPercentComplete(cellId, -1);
+            }
+            else {
+                var totalCountForCell = 0;
+                for (var p = 0; p < numPlayers; p++) {
+                    totalCountForCell += parseInt(perEncounterArrays[p][row][col - 1]);
+                }
+                let percent = Math.trunc((totalCountForCell / numPlayers) * 100);
+                $(cellId).html(totalCountForCell + "/" + numPlayers);
+                setCellColorBasedOnPercentComplete(cellId, percent);
+            }
         }
     }
 }

@@ -1,0 +1,11 @@
+#dlcDungeonsTableBody tr td, #baseDungeonsTableBody tr td, #trialsTableBody tr td {
+    text-align: center;
+}
+
+.fixedWidthCol {
+    width: 12%;
+}
+
+.dungeonNameCol {
+    text-align: left !important;
+}
