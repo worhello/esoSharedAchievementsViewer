@@ -152,41 +152,51 @@ function buildViews() {
     buildTrialsView();
 }
 
-function isValidCharacter(c) {
-    return c == '0' || c == '1';
+function isAllValidCharacters(data, validChars) {
+    let validCharsAsArray = validChars.split('');
+    return data.split('').every(c => validCharsAsArray.includes(c));
 }
+
+function isAllValidBinaryCharacters(data) {
+    var binaryChars = "01";
+    return isAllValidCharacters(data, binaryChars);
+}
+
+const Base64Lexicon = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+function isAllValidBase64Characters(data) {
+    return isAllValidCharacters(data, Base64Lexicon);
+}
+
+const ValidInputSizes = [
+    DlcDungeonData.length * (DlcDungeonCols.length - 1),
+    BaseDungeonData.length * (BaseDungeonCols.length - 1),
+    TrialData.length * (TrialCols.length - 1)
+];
 
 function validateInputData(input) {
     if (input == "") {
-        return false;
+        return null;
     }
-
-    var validInputSizes = [
-        DlcDungeonData.length * (DlcDungeonCols.length - 1),
-        BaseDungeonData.length * (BaseDungeonCols.length - 1),
-        TrialData.length * (TrialCols.length - 1)
-    ];
 
     var playerInfoAsArray = parsePlayerInfoIntoArray(input);
     if (playerInfoAsArray.length > 2) {
-        return false;
+        return null;
     }
 
-    var rawAchievementData = parseRawAchievementData(playerInfoAsArray);
+    var rawAchievementData = parseRawAchievementDataFromInput(playerInfoAsArray);
 
-    if (!validInputSizes.includes(rawAchievementData.length)) {
-        return false;
+    if (!ValidInputSizes.includes(rawAchievementData.length)) {
+        return null;
     }
 
-    for (var i = 0; i < rawAchievementData.length; i++) {
-        if (!isValidCharacter(rawAchievementData[i])) {
-            return false;
-        }
-    }
+    isAllValidBinaryCharacters(rawAchievementData);
 
     currentInputLengths.push(rawAchievementData.length);
 
-    return true;
+    // this will ensure we use the underlying binary data from now on
+    playerInfoAsArray[playerInfoAsArray.length - 1] = rawAchievementData;
+
+    return playerInfoAsArray.join(":");
 }
 
 var currentInputLengths = [];
@@ -203,8 +213,11 @@ function gatherInputData() {
     var data = [];
     currentInputLengths = [];
     for (var i = 0; i < 12; i++) {
-        if ($("#dataInput" + i).css('display') != "none" && validateInputData($("#dataInput" + i).val())) {
-            data.push($("#dataInput" + i).val());
+        if ($("#dataInput" + i).css('display') != "none") {
+            var validated = validateInputData($("#dataInput" + i).val());
+            if (validated != null) {
+                data.push(validated);
+            }
         }
     }
     if (!validateGatheredData(data)) {
@@ -231,31 +244,45 @@ function parseRawAchievementData(playerInfoAsArray) {
     return playerInfoAsArray[0];
 }
 
-function parseDataForOnePlayer(unparsedString, totalNumEncounters, subArraySize, playerNum) {
-    var player = new Player();
-    var currPlayerDataPtr = 0;
-
-    var playerInfoAsArray = parsePlayerInfoIntoArray(unparsedString);
-    player.name = parseUsername(playerInfoAsArray, playerNum);
-    var rawAchievementData = parseRawAchievementData(playerInfoAsArray);
-
-    for (var currEncounter = 0; currEncounter < totalNumEncounters; currEncounter++) {
-        player.achievements[currEncounter] = new Array();
-        for (var j = 0; j < subArraySize; j++) {
-            player.achievements[currEncounter].push(rawAchievementData[currPlayerDataPtr]);
-            currPlayerDataPtr++;
+function base64ToBinary(c) {
+    var remaining = Base64Lexicon.indexOf(c);
+    var result = "";
+    for (var i = 5; i >= 0; i--) {
+        var currPower = Math.pow(2, i);
+        var currBit = "0";
+        if (remaining > currPower) {
+            currBit = "1";
+            remaining -= currPower;
         }
+        result = result.concat(currBit);
     }
-    return player;
+    return result;
 }
 
-function splitCombinedEncounterDataForAllPlayers(fullArray, subArraySize) {
-    var allPlayersData = new Array();
-    for (var playerNum = 0; playerNum < fullArray.length; playerNum++) {
-        var totalNumEncounters = fullArray[playerNum].length / subArraySize;
-        allPlayersData[playerNum] = parseDataForOnePlayer(fullArray[playerNum], totalNumEncounters, subArraySize, playerNum);
+function parseRawAchievementDataFromInput(playerInfoAsArray) {
+    let rawAchievementData = parseRawAchievementData(playerInfoAsArray);
+    if (isAllValidBinaryCharacters(rawAchievementData)) {
+        return rawAchievementData;
     }
-    return allPlayersData;
+
+    if (!isAllValidBase64Characters(rawAchievementData)) {
+        return "";
+    }
+
+    var decoded = "";
+    for (var i = 0; i < rawAchievementData.length; i++) {
+        let binary = base64ToBinary(rawAchievementData[i]);
+        decoded = decoded.concat(binary);
+    }
+
+    for (var i = 0; i < ValidInputSizes.length; i++) {
+        if (decoded.length > ValidInputSizes[i] && decoded.length - ValidInputSizes[i] < 6) {
+            decoded = decoded.substring(0, decoded.length - (decoded.length - ValidInputSizes[i]));
+            break;
+        }
+    }
+
+    return decoded;
 }
 
 const BucketColors = [
@@ -296,6 +323,33 @@ function setListOfPlayersWithAchieveInTooltip(cellId, playersWhoHaveAchieve) {
         tooltipText += playersWhoHaveAchieve[i] + "\n";
     }
     $(cellId).attr("title", tooltipText);
+}
+
+function parseDataForOnePlayer(unparsedString, totalNumEncounters, subArraySize, playerNum) {
+    var player = new Player();
+    var currPlayerDataPtr = 0;
+
+    var playerInfoAsArray = parsePlayerInfoIntoArray(unparsedString);
+    player.name = parseUsername(playerInfoAsArray, playerNum);
+    var rawAchievementData = parseRawAchievementData(playerInfoAsArray);
+
+    for (var currEncounter = 0; currEncounter < totalNumEncounters; currEncounter++) {
+        player.achievements[currEncounter] = new Array();
+        for (var j = 0; j < subArraySize; j++) {
+            player.achievements[currEncounter].push(rawAchievementData[currPlayerDataPtr]);
+            currPlayerDataPtr++;
+        }
+    }
+    return player;
+}
+
+function splitCombinedEncounterDataForAllPlayers(fullArray, subArraySize) {
+    var allPlayersData = new Array();
+    for (var playerNum = 0; playerNum < fullArray.length; playerNum++) {
+        var totalNumEncounters = fullArray[playerNum].length / subArraySize;
+        allPlayersData[playerNum] = parseDataForOnePlayer(fullArray[playerNum], totalNumEncounters, subArraySize, playerNum);
+    }
+    return allPlayersData;
 }
 
 function populateTable(numCols, parentElementId, inputData, numRows, cols) {
