@@ -19,58 +19,36 @@
   </head>
   <body>
     <h1>ESO Shared Pithka Viewer</h1>
-    <a href="https://github.com/worhello/esoSharedPithkaViewer" class="link-primary">Github Repository</a>
-    <br>
     <div class="container">
         <br>
-        <div class="btn-group" data-toggle="buttons">
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
             <label class="btn btn-primary active">
-                <input type="radio" name="options" id="option1" value="DlcDungeons" autocomplete="off" checked>DLC Dungeons
+                <input type="radio" name="options" id="option1" value="dlcDungeons" autocomplete="off" checked>DLC Dungeons
             </label>
             <label class="btn btn-primary">
-                <input type="radio" name="options" id="option2" value="BaseGameDungeons" autocomplete="off">Base Game Dungeons
+                <input type="radio" name="options" id="option2" value="baseDungeons" autocomplete="off">Base Game Dungeons
             </label>
             <label class="btn btn-primary">
-                <input type="radio" name="options" id="option3" value="Trials" autocomplete="off">Trials
+                <input type="radio" name="options" id="option3" value="trials" autocomplete="off">Trials
             </label>
         </div>
         <br>
-        <button type="button" class="desc btn btn-primary" name="generateViewButtons" id="val_DlcDungeons" value="dlcDungeons" >
+        <br>
+        <button type="button" class="desc btn btn-primary" name="generateViewButtons" id="val_dlcDungeons" value="dlcDungeons" >
             Generate DLC Dungeons Shared View
         </button>
-        <button type="button" class="desc btn btn-primary" name="generateViewButtons" id="val_BaseGameDungeons" value="baseDungeons" style="display: none;">
+        <button type="button" class="desc btn btn-primary" name="generateViewButtons" id="val_baseDungeons" value="baseDungeons" style="display: none;">
             Generate Base Game Dungeons Shared View
         </button>
-        <button type="button" class="desc btn btn-primary" name="generateViewButtons" id="val_Trials" value="trials" style="display: none;">
+        <button type="button" class="desc btn btn-primary" name="generateViewButtons" id="val_trials" value="trials" style="display: none;">
             Generate Trials Shared View
         </button>
         <br>
         <br>
         <div id="inputsContainer">
-            <textarea class="form-control" id="dataInput0" rows="3" placeholder="Paste a player's exported Pithka data here"></textarea>
-            <br>
-            <textarea class="form-control" id="dataInput1" rows="3" placeholder="Paste a player's exported Pithka data here"></textarea>
-            <br>
-            <textarea class="form-control" id="dataInput2" rows="3" placeholder="Paste a player's exported Pithka data here"></textarea>
-            <br>
-            <textarea class="form-control" id="dataInput3" rows="3" placeholder="Paste a player's exported Pithka data here"></textarea>
-            <br>
-            <textarea class="form-control" id="dataInput4" rows="2" placeholder="Paste a player's exported Pithka data here" style="display: none;"></textarea>
-            <br>
-            <textarea class="form-control" id="dataInput5" rows="2" placeholder="Paste a player's exported Pithka data here" style="display: none;"></textarea>
-            <br>
-            <textarea class="form-control" id="dataInput6" rows="2" placeholder="Paste a player's exported Pithka data here" style="display: none;"></textarea>
-            <br>
-            <textarea class="form-control" id="dataInput7" rows="2" placeholder="Paste a player's exported Pithka data here" style="display: none;"></textarea>
-            <br>
-            <textarea class="form-control" id="dataInput8" rows="2" placeholder="Paste a player's exported Pithka data here" style="display: none;"></textarea>
-            <br>
-            <textarea class="form-control" id="dataInput9" rows="2" placeholder="Paste a player's exported Pithka data here" style="display: none;"></textarea>
-            <br>
-            <textarea class="form-control" id="dataInput10" rows="2" placeholder="Paste a player's exported Pithka data here" style="display: none;"></textarea>
-            <br>
-            <textarea class="form-control" id="dataInput11" rows="2" placeholder="Paste a player's exported Pithka data here" style="display: none;"></textarea>
-            <br>
+            <textarea class="form-control" id="dataInput_dlcDungeons" rows="14" placeholder="Paste all players' exported Pithka DLC Dungeon data here, separated by commas (,) or new lines (Enter Key)"></textarea>
+            <textarea class="form-control" id="dataInput_baseDungeons" rows="14" style="display: none;" placeholder="Paste all players' exported Pithka Base Dungeon data here, separated by commas (,) or new lines (Enter Key)"></textarea>
+            <textarea class="form-control" id="dataInput_trials" rows="14" style="display: none;" placeholder="Paste all players' exported Pithka Trial data here, separated by commas (,) or new lines (Enter Key)"></textarea>
         </div>
         <div id="viewsContainer">
             <div class="view" id="dlcDungeonsView" style="display: none;">
@@ -125,5 +103,14 @@
             </div>
         </div>
     </div>
+    <div class="container">
+      <br>
+      <a href="https://github.com/worhello/esoSharedPithkaViewer" class="link-primary">Github Repository</a>
+      <br>
+      <button type="button" class="btn btn-secondary" name="resetLocalStorageButton" id="resetLocalStorageButton" value="resetLocalStorageButton" 
+        data-toggle="tooltip" data-placement="top" title="Valid input data is stored in the browser to preload information on subsequent loads">
+        Clear stored data
+      </button>
+  </div>
   </body>
 </html>

@@ -209,20 +209,34 @@ function validateGatheredData() {
     return allOk;
 }
 
-function gatherInputData() {
+function gatherInputData(inputName) {
     var data = [];
     currentInputLengths = [];
-    for (var i = 0; i < 12; i++) {
-        if ($("#dataInput" + i).css('display') != "none") {
-            var validated = validateInputData($("#dataInput" + i).val());
-            if (validated != null) {
-                data.push(validated);
-            }
-        }
+
+    var inputDataAll = [];
+    try {
+        inputDataAll = $("#dataInput_" + inputName).val()
+            .split("\n")
+            .join(",")
+            .split("\r")
+            .join(",")
+            .split(",");
+    } catch(err) {
+        console.error("invalid input from dataInput_" + inputName + ", " + err);
     }
+    inputDataAll.forEach(d => {
+        var validated = validateInputData(d);
+        if (validated != null) {
+            data.push(validated);
+        }
+    });
+
     if (!validateGatheredData(data)) {
         return [];
     }
+    
+    storeInputDataToLocalStorage();
+
     return data;
 }
 
@@ -408,6 +422,45 @@ function populateTrialssFromData(inputData) {
     populateTable(numCols, parentElementId, inputData, numRows, cols);
 }
 
+const InputCategories = [
+    "dlcDungeons",
+    "baseDungeons",
+    "trials"
+]
+
+function loadDataFromLocalStorage() {
+    InputCategories.forEach(category => {
+        var stored = localStorage.getItem("dataInput_" + category);
+        if (stored) {
+            $("#dataInput_" + category).html(stored);
+        }
+    });
+}
+
+function storeInputDataToLocalStorage() {
+    InputCategories.forEach(category => {
+        var v = $("#dataInput_" + category).val();
+        if (v) {
+            localStorage.setItem("dataInput_" + category, v);
+        }
+    });
+}
+
+function clearInputDataFromLocalStorage() {
+    InputCategories.forEach(category => {
+        var v = $("#dataInput_" + category).val();
+        if (v) {
+            localStorage.removeItem("dataInput_" + category, v);
+        }
+    });
+}
+
+function clearInputs() {
+    InputCategories.forEach(category => {
+        $("#dataInput_" + category).html("");
+    });
+}
+
 
 $(document).ready(function() {
     $("input[name$='options']").click(function() {
@@ -415,24 +468,20 @@ $(document).ready(function() {
 
         $("button.desc").hide();
         $("#val_" + test).show();
-
+        
         $("#inputsContainer").show();
+        $("#inputsContainer textarea").hide();
+        $("#dataInput_" + test).show();
         $("#viewsContainer").hide();
-
-        var isTrial = (test == 'Trials');
-        for (var i = 4; i < 12; i++) {
-            isTrial ? $("#dataInput" + i).show() : $("#dataInput" + i).hide();
-        }
     });
 
     $("button[name$='generateViewButtons']").click(function() {
-        var inputData = gatherInputData();
+        var v = $(this).val();
+        var inputData = gatherInputData(v);
         if (inputData.length == 0) {
             window.alert("Please input valid data for at least one user");
             return;
         }
-
-        var v = $(this).val();
 
         $("div.view").hide();
         $("button.desc").hide();
@@ -450,5 +499,17 @@ $(document).ready(function() {
         $("#" + v + "View").show();
     });
 
+    $("button[name$='resetLocalStorageButton']").click(function() {
+        if (window.confirm("Do you really want to clear the local cache? This will also remove the input boxes' current values!")) {
+            clearInputDataFromLocalStorage();
+            clearInputs();
+        }
+    });
+
     buildViews();
+    loadDataFromLocalStorage();
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
 });
