@@ -28,7 +28,7 @@
                 <div class="col">
                     <div class="btn-group btn-group-toggle col-sm" data-toggle="buttons">
                         <input type="radio" class="btn-check" name="options" id="option1" value="dlcDungeons" autocomplete="off" checked>
-                        <label class="btn btn-primary active" for="option1">DLC Dungeons</label>
+                        <label class="btn btn-primary" for="option1">DLC Dungeons</label>
                         <input type="radio" class="btn-check" name="options" id="option2" value="baseDungeons" autocomplete="off">
                         <label class="btn btn-primary" for="option2">Base Game Dungeons</label>
                         <input type="radio" class="btn-check" name="options" id="option3" value="trials" autocomplete="off">
@@ -46,7 +46,9 @@
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="copyUrlModalLabel">Copy URL to this View</h5>
                                     </div>
-                                    <div class="modal-body" id="copyUrlModalBody"></div>
+                                    <div class="modal-body">
+                                        <textarea rows="8" readonly id="copyUrlModalBody"></textarea>
+                                    </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                         <button type="button" class="btn btn-primary" id="copyUrlModalButton">Copy to clipboard</button>
