@@ -481,8 +481,17 @@ function clearInputs() {
     });
 }
 
+function getBaseUrl() {
+    if (window.location.origin.includes("localhost") || window.location.origin.includes("127.0.0.1")) {
+        return window.location.origin;
+    }
+
+    // Just hardcoding for now to get this feature working properly
+    return "https://worhello.github.io/esoSharedPithkaViewer/";
+}
+
 function populateShareUrl(v) {
-    var baseUrl = window.location.origin;
+    var baseUrl = getBaseUrl();
     var url = new URL(baseUrl);
     url.searchParams.append("type", v);
     url.searchParams.append("data", $("#dataInput_" + v).val());
@@ -570,7 +579,7 @@ $(document).ready(function() {
     });
 
     // Doing this dynamically allows for different URLs when run locally
-    $("#navbarTitleLink").attr("href", window.location.origin);
+    $("#navbarTitleLink").attr("href", getBaseUrl());
 
     buildViews();
 
