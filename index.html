@@ -20,20 +20,17 @@
     <title>ESO Shared Pithka Viewer</title>
 
   </head>
-  <body>
+  <body data-bs-theme="dark">
     <h1>ESO Shared Pithka Viewer</h1>
     <div class="container">
         <br>
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-primary active">
-                <input type="radio" name="options" id="option1" value="dlcDungeons" autocomplete="off" checked>DLC Dungeons
-            </label>
-            <label class="btn btn-primary">
-                <input type="radio" name="options" id="option2" value="baseDungeons" autocomplete="off">Base Game Dungeons
-            </label>
-            <label class="btn btn-primary">
-                <input type="radio" name="options" id="option3" value="trials" autocomplete="off">Trials
-            </label>
+            <input type="radio" class="btn-check" name="options" id="option1" value="dlcDungeons" autocomplete="off" checked>
+            <label class="btn btn-primary active" for="option1">DLC Dungeons</label>
+            <input type="radio" class="btn-check" name="options" id="option2" value="baseDungeons" autocomplete="off">
+            <label class="btn btn-primary" for="option2">Base Game Dungeons</label>
+            <input type="radio" class="btn-check" name="options" id="option3" value="trials" autocomplete="off">
+            <label class="btn btn-primary" for="option3">Trials</label>
         </div>
         <br>
         <br>

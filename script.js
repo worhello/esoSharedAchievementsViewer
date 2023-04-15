@@ -300,12 +300,12 @@ function parseRawAchievementDataFromInput(playerInfoAsArray) {
 }
 
 const BucketColors = [
-    "#DA4453",
-    "#ED5565",
-    "#FC6E51",
-    "#FFCE54",
-    "#A0D468",
-    "#D3D3D3"
+    "#DA4453CC",
+    "#ED5565CC",
+    "#FC6E51CC",
+    "#FFCE54CC",
+    "#A0D468CC",
+    "#212529"
 ];
 
 function getColorBucketFromPercent(percentValue) {
