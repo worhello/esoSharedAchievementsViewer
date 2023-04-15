@@ -162,7 +162,7 @@ function isAllValidBinaryCharacters(data) {
     return isAllValidCharacters(data, binaryChars);
 }
 
-const Base64Lexicon = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+const Base64Lexicon = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+_";
 function isAllValidBase64Characters(data) {
     return isAllValidCharacters(data, Base64Lexicon);
 }
