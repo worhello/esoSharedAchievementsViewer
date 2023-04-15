@@ -193,7 +193,6 @@ function validateInputData(input) {
 
     currentInputLengths.push(rawAchievementData.length);
 
-    // this will ensure we use the underlying binary data from now on
     playerInfoAsArray[playerInfoAsArray.length - 1] = rawAchievementData;
 
     return playerInfoAsArray.join(":");
@@ -248,7 +247,7 @@ function parseUsername(playerInfoAsArray, playerNum) {
     if (playerInfoAsArray.length > 1) {
         return playerInfoAsArray[0];
     }
-    return "Player " + (playerNum + 1);
+    return "Player" + (playerNum + 1);
 }
 
 function parseRawAchievementData(playerInfoAsArray) {
@@ -482,19 +481,51 @@ function clearInputs() {
     });
 }
 
+function populateShareUrl(v) {
+    var baseUrl = window.location.origin;
+    var url = new URL(baseUrl);
+    url.searchParams.append("type", v);
+    url.searchParams.append("data", $("#dataInput_" + v).val());
+
+    var str = url.toString();
+    $("#copyUrlModalBody").html(str);
+    $("#copyUrlModalButton").click(function() {
+        navigator.clipboard.writeText(str);
+    });
+}
+
+function loadDataFromUrlIfPresent() {
+    var url = new URL(window.location.href);
+    var hasType = url.searchParams.has("type");
+    var hasData = url.searchParams.has("data");
+    if (!hasData || !hasType) {
+        return false;
+    }
+
+    var paramType = url.searchParams.get("type");
+    if (InputCategories.indexOf(paramType) == -1) {
+        return false;
+    }
+
+    $("input[value$='" + paramType + "']").trigger('click');
+    $("#dataInput_" + paramType).html(url.searchParams.get("data"));
+    $("#val_" + paramType).trigger('click');
+}
 
 $(document).ready(function() {
     $("input[name$='options']").click(function() {
         var test = $(this).val();
 
+        $("#generateButtonsContainer").show();
         $("button.desc").hide();
         $("#val_" + test).show();
         
         $("#inputsContainer").show();
         $("#inputsContainer textarea").hide();
-        $("#dataInput_" + test).show();
         $("#viewsContainer").hide();
         $("#playerNamesContainer").hide();
+        $("#dataInput_" + test).show();
+        $("#shareButtonContainer").hide();
     });
 
     $("button[name$='generateViewButtons']").click(function() {
@@ -506,10 +537,11 @@ $(document).ready(function() {
         }
 
         $("div.view").hide();
-        $("button.desc").hide();
+        $("#generateButtonsContainer").hide();
         $("#inputsContainer").hide();
         $("#viewsContainer").show();
         $("#playerNamesContainer").show();
+        $("#shareButtonContainer").show();
 
         if (v == "dlcDungeons") {
             populateDlcDungeonsFromData(inputData);
@@ -518,6 +550,8 @@ $(document).ready(function() {
         } else if (v == "trials") {
             populateTrialssFromData(inputData);
         }
+
+        populateShareUrl(v);
 
         $("#" + v + "View").show();
     });
@@ -530,7 +564,9 @@ $(document).ready(function() {
     });
 
     buildViews();
-    loadDataFromLocalStorage();
+    if (!loadDataFromUrlIfPresent()) {
+        loadDataFromLocalStorage();
+    }
 
     $(function () {
         $('#resetLocalStorageButton').tooltip()

@@ -21,30 +21,56 @@
 
   </head>
   <body data-bs-theme="dark">
-    <h1>ESO Shared Pithka Viewer</h1>
-    <div class="container">
-        <br>
-        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <input type="radio" class="btn-check" name="options" id="option1" value="dlcDungeons" autocomplete="off" checked>
-            <label class="btn btn-primary active" for="option1">DLC Dungeons</label>
-            <input type="radio" class="btn-check" name="options" id="option2" value="baseDungeons" autocomplete="off">
-            <label class="btn btn-primary" for="option2">Base Game Dungeons</label>
-            <input type="radio" class="btn-check" name="options" id="option3" value="trials" autocomplete="off">
-            <label class="btn btn-primary" for="option3">Trials</label>
+      <div class="container">
+        <h1>ESO Shared Pithka Viewer</h1>
+        <div class="container" id="controlsContainer">
+            <div class="row">
+                <div class="col">
+                    <div class="btn-group btn-group-toggle col-sm" data-toggle="buttons">
+                        <input type="radio" class="btn-check" name="options" id="option1" value="dlcDungeons" autocomplete="off" checked>
+                        <label class="btn btn-primary active" for="option1">DLC Dungeons</label>
+                        <input type="radio" class="btn-check" name="options" id="option2" value="baseDungeons" autocomplete="off">
+                        <label class="btn btn-primary" for="option2">Base Game Dungeons</label>
+                        <input type="radio" class="btn-check" name="options" id="option3" value="trials" autocomplete="off">
+                        <label class="btn btn-primary" for="option3">Trials</label>
+                    </div>
+                </div>
+                <div id="shareButtonContainer" style="display: none;" class="col">
+                    <div class="float-end">
+                        <button type="button" class="btn btn-info" name="shareViewButton" id="shareViewButton" data-bs-toggle="modal" data-bs-target="#copyUrlModal">
+                            Share Current View
+                        </button>
+                        <div class="modal fade" id="copyUrlModal" tabindex="-1" role="dialog" aria-labelledby="copyUrlModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="copyUrlModalLabel">Copy URL to this View</h5>
+                                    </div>
+                                    <div class="modal-body" id="copyUrlModalBody"></div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary" id="copyUrlModalButton">Copy to clipboard</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="generateButtonsContainer" class="col">
+                    <div class="float-end">
+                        <button type="button" class="desc btn btn-primary" name="generateViewButtons" id="val_dlcDungeons" value="dlcDungeons" >
+                            Generate DLC Dungeons Shared View
+                        </button>
+                        <button type="button" class="desc btn btn-primary" name="generateViewButtons" id="val_baseDungeons" value="baseDungeons" style="display: none;">
+                            Generate Base Game Dungeons Shared View
+                        </button>
+                        <button type="button" class="desc btn btn-primary" name="generateViewButtons" id="val_trials" value="trials" style="display: none;">
+                            Generate Trials Shared View
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <br>
-        <br>
-        <button type="button" class="desc btn btn-primary" name="generateViewButtons" id="val_dlcDungeons" value="dlcDungeons" >
-            Generate DLC Dungeons Shared View
-        </button>
-        <button type="button" class="desc btn btn-primary" name="generateViewButtons" id="val_baseDungeons" value="baseDungeons" style="display: none;">
-            Generate Base Game Dungeons Shared View
-        </button>
-        <button type="button" class="desc btn btn-primary" name="generateViewButtons" id="val_trials" value="trials" style="display: none;">
-            Generate Trials Shared View
-        </button>
-        <br>
-        <br>
         <div id="inputsContainer">
             <textarea class="form-control" id="dataInput_dlcDungeons" rows="14" placeholder="Paste all players' exported Pithka DLC Dungeon data here, separated by commas (,) or new lines (Enter Key)"></textarea>
             <textarea class="form-control" id="dataInput_baseDungeons" rows="14" style="display: none;" placeholder="Paste all players' exported Pithka Base Dungeon data here, separated by commas (,) or new lines (Enter Key)"></textarea>
@@ -105,14 +131,20 @@
             </div>
         </div>
     </div>
-    <div class="container">
-      <br>
-      <a href="https://github.com/worhello/esoSharedPithkaViewer" class="link-primary">Github Repository</a>
-      <br>
-      <button type="button" class="btn btn-danger" name="resetLocalStorageButton" id="resetLocalStorageButton" value="resetLocalStorageButton" 
-        data-toggle="tooltip" data-placement="top" title="Valid input data is stored in the browser to preload information on subsequent loads">
-        Clear stored data
-      </button>
+    <div class="container footerContainer">
+        <div class="row">
+            <div class="col">
+                <a href="https://github.com/worhello/esoSharedPithkaViewer" class="link-primary">Github Repository</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button type="button" class="btn btn-danger" name="resetLocalStorageButton" id="resetLocalStorageButton" value="resetLocalStorageButton" 
+                    data-toggle="tooltip" data-placement="top" title="Valid input data is stored in the browser to preload information on subsequent loads">
+                    Clear stored data
+                </button>
+            </div>
+        </div>
   </div>
   </body>
 </html>

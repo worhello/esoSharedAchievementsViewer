@@ -25,3 +25,12 @@
     font-size: 1.17em;
     font-weight: bold;
 }
+
+#controlsContainer {
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+
+.footerContainer .row {
+    margin-bottom: 1em;
+}
