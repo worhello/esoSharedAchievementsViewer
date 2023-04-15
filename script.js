@@ -264,7 +264,7 @@ function base64ToBinary(c) {
     for (var i = 5; i >= 0; i--) {
         var currPower = Math.pow(2, i);
         var currBit = "0";
-        if (remaining > currPower) {
+        if (remaining >= currPower) {
             currBit = "1";
             remaining -= currPower;
         }
