@@ -512,25 +512,21 @@ function loadDataFromUrlIfPresent() {
     $("#val_" + paramType).trigger('click');
 }
 
-$(document).ready(function() {
-    $("input[name$='options']").click(function() {
-        var test = $(this).val();
+function handleOptionsButtonClicked(buttonVal) {
+    $("#generateButtonsContainer").show();
+    $("button.desc").hide();
+    $("#val_" + buttonVal).show();
+    
+    $("#inputsContainer").show();
+    $("#inputsContainer textarea").hide();
+    $("#viewsContainer").hide();
+    $("#playerNamesContainer").hide();
+    $("#dataInput_" + buttonVal).show();
+    $("#shareButtonContainer").hide();
+}
 
-        $("#generateButtonsContainer").show();
-        $("button.desc").hide();
-        $("#val_" + test).show();
-        
-        $("#inputsContainer").show();
-        $("#inputsContainer textarea").hide();
-        $("#viewsContainer").hide();
-        $("#playerNamesContainer").hide();
-        $("#dataInput_" + test).show();
-        $("#shareButtonContainer").hide();
-    });
-
-    $("button[name$='generateViewButtons']").click(function() {
-        var v = $(this).val();
-        var inputData = gatherInputData(v);
+function handleGenerateViewButtonClicked(v) {
+    var inputData = gatherInputData(v);
         if (inputData.length == 0) {
             window.alert("Please input valid data for at least one user");
             return;
@@ -554,21 +550,38 @@ $(document).ready(function() {
         populateShareUrl(v);
 
         $("#" + v + "View").show();
+}
+
+$(document).ready(function() {
+    $("input[name$='options']").click(function() {
+        handleOptionsButtonClicked($(this).val());
+    });
+
+    $("button[name$='generateViewButtons']").click(function() {
+        handleGenerateViewButtonClicked($(this).val());
     });
 
     $("button[name$='resetLocalStorageButton']").click(function() {
-        if (window.confirm("Do you really want to clear the local cache? This will also remove the input boxes' current values!")) {
+        if (window.confirm("Do you really want to clear the local cache? This will also clear all input boxes' current values!")) {
             clearInputDataFromLocalStorage();
             clearInputs();
+            handleOptionsButtonClicked("dlcDungeons");
         }
     });
 
+    // Doing this dynamically allows for different URLs when run locally
+    $("#navbarTitleLink").attr("href", window.location.origin);
+
     buildViews();
+
     if (!loadDataFromUrlIfPresent()) {
         loadDataFromLocalStorage();
     }
 
     $(function () {
+        $('#resetLocalStorageButton').hover(function(){
+            $(this).tooltip('hide');
+        })
         $('#resetLocalStorageButton').tooltip()
     })
 });
