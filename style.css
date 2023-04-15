@@ -34,3 +34,7 @@
 .footerContainer .row {
     margin-bottom: 1em;
 }
+
+#copyUrlModalBody {
+    width: 100%
+}
