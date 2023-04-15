@@ -2,6 +2,16 @@
     text-align: center;
 }
 
+.dataCell {
+    text-align: center;
+    text-decoration: underline dotted;
+    text-underline-position: under;
+}
+
+.dataCell:hover {
+    cursor: pointer
+}
+
 .fixedWidthCol {
     width: 12%;
 }

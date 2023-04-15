@@ -89,30 +89,30 @@ function createTableRow(num, dataRow, cols, parentElementId) {
     cols.forEach((c) => {
         var cell = document.createElement("td");
         cell.id = parentElementId + c + num;
+        cell.dataset.toggle = "tooltip";
         if (c == "name") {
             cell.textContent = dataRow.NAME;
             cell.setAttribute("scope", "row");
             cell.classList.add("dungeonNameCol")
         }
+        else {
+            
+            cell.classList.add("dataCell")
+        }
         if (c == "tri" && dataRow.TRINAME != null) {
             cell.setAttribute("achievementText", dataRow.TRINAME);
-            cell.setAttribute("title", dataRow.TRINAME);
         }
         if (c == "ext" && dataRow.EXTNAME != null) {
             cell.setAttribute("achievementText", dataRow.EXTNAME);
-            cell.setAttribute("title", dataRow.EXTNAME);
         }
         if (c == "phm1" && dataRow.PHM1NAME != null) {
             cell.setAttribute("achievementText", dataRow.PHM1NAME);
-            cell.setAttribute("title", dataRow.PHM1NAME);
         }
         if (c == "phm2" && dataRow.PHM2NAME != null) {
             cell.setAttribute("achievementText", dataRow.PHM2NAME);
-            cell.setAttribute("title", dataRow.PHM2NAME);
         }
         if (c == "hm" && dataRow.HMNAME != null) {
             cell.setAttribute("achievementText", dataRow.HMNAME);
-            cell.setAttribute("title", dataRow.HMNAME);
         }
         row.appendChild(cell);
     });
@@ -328,15 +328,27 @@ function setCellColorBasedOnPercentComplete(cellId, percentValue) {
 
 function setListOfPlayersWithAchieveInTooltip(cellId, playersWhoHaveAchieve) {
     var tooltipText = "";
-    
     if ($(cellId).attr("achievementText") !== undefined) {
-        tooltipText += $(cellId).attr("achievementText") + "\n";
+        tooltipText += $(cellId).attr("achievementText");
+
+        if (playersWhoHaveAchieve.length > 0) {
+            tooltipText += ": ";
+        }
     }
 
     for (var i = 0; i < playersWhoHaveAchieve.length; i++) {
-        tooltipText += playersWhoHaveAchieve[i] + "\n";
+        if (i > 0) {
+            tooltipText += ", ";
+        }
+        tooltipText += playersWhoHaveAchieve[i];
     }
+
+    $(cellId).data("bs-toggle", "tooltip");
     $(cellId).attr("title", tooltipText);
+    $(cellId).hover(function(){
+        $(this).tooltip('hide');
+    })
+    $(cellId).tooltip({trigger: "click"});
 }
 
 function parseDataForOnePlayer(unparsedString, totalNumEncounters, subArraySize, playerNum) {
@@ -521,6 +533,6 @@ $(document).ready(function() {
     loadDataFromLocalStorage();
 
     $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
+        $('#resetLocalStorageButton').tooltip()
     })
 });
