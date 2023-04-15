@@ -393,6 +393,15 @@ function populateTable(numCols, parentElementId, inputData, numRows, cols) {
             }
         }
     }
+
+    var allPlayerNames = "";
+    for (var playerNum = 0; playerNum < numPlayers; playerNum++) {
+        if (playerNum > 0) {
+            allPlayerNames = allPlayerNames.concat(", ");
+        }
+        allPlayerNames = allPlayerNames.concat(perEncounterArrays[playerNum].name);
+    }
+    $("#playerNamesContainer").html(allPlayerNames);
 }
 
 function populateDlcDungeonsFromData(inputData) {
@@ -473,6 +482,7 @@ $(document).ready(function() {
         $("#inputsContainer textarea").hide();
         $("#dataInput_" + test).show();
         $("#viewsContainer").hide();
+        $("#playerNamesContainer").hide();
     });
 
     $("button[name$='generateViewButtons']").click(function() {
@@ -487,6 +497,7 @@ $(document).ready(function() {
         $("button.desc").hide();
         $("#inputsContainer").hide();
         $("#viewsContainer").show();
+        $("#playerNamesContainer").show();
 
         if (v == "dlcDungeons") {
             populateDlcDungeonsFromData(inputData);
