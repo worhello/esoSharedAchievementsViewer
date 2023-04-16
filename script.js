@@ -377,6 +377,18 @@ function splitCombinedEncounterDataForAllPlayers(fullArray, subArraySize) {
     return allPlayersData;
 }
 
+function isNonAchievementCell(cellId) {
+    if ($(cellId).attr("achievementText") == "n/a") {
+        return true;
+    }
+
+    const permaNonAchieveCells = [
+        "#dlcDungeonsTableBodycha0",
+        "#dlcDungeonsTableBodycha28"
+    ];
+    return permaNonAchieveCells.includes(cellId);
+}
+
 function populateTable(numCols, parentElementId, inputData, numRows, cols) {
     var numPlayers = inputData.length;
     var perEncounterArrays = splitCombinedEncounterDataForAllPlayers(inputData, numCols);
@@ -384,7 +396,7 @@ function populateTable(numCols, parentElementId, inputData, numRows, cols) {
     for (var row = 0; row < numRows; row++) {
         for (var col = 1; col <= numCols; col++) {
             let cellId = "#" + parentElementId + cols[col] + row;
-            if ($(cellId).attr("achievementText") == "n/a") {
+            if (isNonAchievementCell(cellId)) {
                 setCellColorBasedOnPercentComplete(cellId, -1);
             }
             else {
