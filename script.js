@@ -64,9 +64,9 @@ const BaseDungeonData = [
 
 const TrialCols = ["name", "vet", "phm1", "phm2", "hm", "tri", "ext"];
 const TrialData = [
-    {NAME:"Hel Ra Citadel",         PHM1NAME:"n/a",      PHM2NAME:"n/a",     HMNAME:"Celest. Warrior", TRINAME:"n/a",                 EXTNAME:"n/a"                     },
-    {NAME:"Aetherian Archive",      PHM1NAME:"n/a",      PHM2NAME:"n/a",     HMNAME:"Celest. Mage",    TRINAME:"n/a",                 EXTNAME:"n/a"                     },
-    {NAME:"Sanctum Ophidia",        PHM1NAME:"n/a",      PHM2NAME:"n/a",     HMNAME:"Celest. Serpent", TRINAME:"n/a",                 EXTNAME:"n/a"                     },
+    {NAME:"Hel Ra Citadel",         PHM1NAME:"n/a",      PHM2NAME:"n/a",     HMNAME:"Celest. Warrior", TRINAME:"n/a",                 EXTNAME:"n/a"                  },
+    {NAME:"Aetherian Archive",      PHM1NAME:"n/a",      PHM2NAME:"n/a",     HMNAME:"Celest. Mage",    TRINAME:"n/a",                 EXTNAME:"n/a"                  },
+    {NAME:"Sanctum Ophidia",        PHM1NAME:"n/a",      PHM2NAME:"n/a",     HMNAME:"Celest. Serpent", TRINAME:"n/a",                 EXTNAME:"n/a"                  },
     {NAME:"Maw of Lorkhaj",         PHM1NAME:"n/a",      PHM2NAME:"n/a",     HMNAME:"Rakkhat",         TRINAME:"n/a",                 EXTNAME:"Dro-m'Athra Destroyer"},
     {NAME:"Halls of Fabrication",   PHM1NAME:"n/a",      PHM2NAME:"n/a",     HMNAME:"Assembly Gen.",   TRINAME:"Tick-Tock Tormentor", EXTNAME:"The Dynamo"           },
     {NAME:"Asylum Sanctorium",      PHM1NAME:"+Llothis", PHM2NAME:"+Felms",  HMNAME:"vAS +2",          TRINAME:"Saintly Savior",      EXTNAME:"Immortal Redeemer"    },
@@ -74,7 +74,8 @@ const TrialData = [
     {NAME:"Sunspire",               PHM1NAME:"Yolna",    PHM2NAME:"Lokke",   HMNAME:"Nahvi",           TRINAME:"Godslayer",           EXTNAME:"Hand of Alkosh"       },
     {NAME:"Kyne's Aegis",           PHM1NAME:"Yandir",   PHM2NAME:"Vrol",    HMNAME:"Falgravn",        TRINAME:"Kyne's Wrath",        EXTNAME:"Dawnbringer"          },
     {NAME:"Rockgrove",              PHM1NAME:"Oaxiltso", PHM2NAME:"Bahsei",  HMNAME:"Xalvakka",        TRINAME:"Planesbreaker",       EXTNAME:"Daedric Bane"         },
-    {NAME:"Dreadsail Reef",         PHM1NAME:"Twins",    PHM2NAME:"Reef",    HMNAME:"Taleria",         TRINAME:"Soul of the Squall",  EXTNAME:"Swashbuckler Supreme" }
+    {NAME:"Dreadsail Reef",         PHM1NAME:"Twins",    PHM2NAME:"Reef",    HMNAME:"Taleria",         TRINAME:"Soul of the Squall",  EXTNAME:"Swashbuckler Supreme" },
+    {NAME:"Sanity's Edge",          PHM1NAME:"Yaseyla",  PHM2NAME:"Twelvane",HMNAME:"Ansuul",          TRINAME:"Dream Master",        EXTNAME:"Sane and Clearheaded" }
 ];
 
 class Player {
