@@ -1,157 +1,72 @@
 
-const DlcDungeonCols = ["name", "vet", "hm", "sr", "nd", "cha", "tri", "ext"];
-const DlcDungeonData = [
-    {NAME:"White Gold Tower",     TRINAME: "n/a",                       EXTNAME: "Out of the Frying Pan", },
-    {NAME:"Imperial City Prison", TRINAME: "n/a",                       EXTNAME: "Out of Sight",          },
-    {NAME:"Ruins of Mazzatun",    TRINAME: "n/a",                       EXTNAME: "Obedience Training",    },
-    {NAME:"Cradle of Shadows",    TRINAME: "n/a",                       EXTNAME: "Embrace the Shadow",    },
-    {NAME:"Falkreath Hold",       TRINAME: "n/a",                       EXTNAME: "Epic Undertaking",      },
-    {NAME:"Bloodroot Forge",      TRINAME: "n/a",                       EXTNAME: "Wildlife Sanctuary",    },
-    {NAME:"Fang Lair",            TRINAME: "Leave No Bone Unbroken",    EXTNAME: "Minimal Animosity",     },
-    {NAME:"Scalecaller Peak",     TRINAME: "Mountain God",              EXTNAME: "Daedric Deflector",     },
-    {NAME:"Moon Hunter Keep",     TRINAME: "Pure Lunacy",               EXTNAME: "Strangling Cowardice",  },
-    {NAME:"March of Sacrifices",  TRINAME: "Apex Predator",             EXTNAME: "Mist Walker",           },
-    {NAME:"Frostvault",           TRINAME: "Relentless Raider",         EXTNAME: "Cold Potato",           },
-    {NAME:"Depths of Malatar",    TRINAME: "Depths Defier",             EXTNAME: "Lackluster",            },
-    {NAME:"Lair of Maarselok",    TRINAME: "Nature's Wrath",            EXTNAME: "Shagrath's Shield",     },
-    {NAME:"Moongrave Fane",       TRINAME: "Defanged the Devourer",     EXTNAME: "Drop the Block",        },
-    {NAME:"Icereach",             TRINAME: "Storm Foe",                 EXTNAME: "Prodigous Pacification",},
-    {NAME:"Unhallowed Grave",     TRINAME: "Bonecaller's Bane",         EXTNAME: "Relentless Dogcatcher", },
-    {NAME:"Stone Garden",         TRINAME: "True Genius",               EXTNAME: "Old Fashioned",         },
-    {NAME:"Castle Thorn",         TRINAME: "Bane of Thorns",            EXTNAME: "Guardian Preserved",    },
-    {NAME:"Black Drake Villa",    TRINAME: "Ardent Bibliophile",        EXTNAME: "Salley-oop",            },
-    {NAME:"The Cauldron",         TRINAME: "Subterranean Smasher",      EXTNAME: "Can't Catch Me",        },
-    {NAME:"Red Petal Bastion",    TRINAME: "of the Silver Rose",        EXTNAME: "Terror Billy",          },
-    {NAME:"Dread Cellar",         TRINAME: "the Dreaded",               EXTNAME: "Settling Scores",       },    
-    {NAME:"Coral Aerie",          TRINAME: "Coral Caretaker",           EXTNAME: "Tentacless Triumph",    },
-    {NAME:"Shipwright's Regret",  TRINAME: "Privateer",                 EXTNAME: "Sans Spirit Support",   },
-    {NAME:"Earthen Root Enclave", TRINAME: "Invaders' Bane",            EXTNAME: "Scourge of Archdruid",  },
-    {NAME:"Graven Deep",          TRINAME: "Fist of Tava",              EXTNAME: "Pressure in the Deep",  },
-    {NAME:"Bal Sunnar",           TRINAME: "Temporal Tempest",          EXTNAME: "Infectious Beliefs",    },
-    {NAME:"Scrivener's Hall",     TRINAME: "Magnastylus in the Making", EXTNAME: "Harsh Edit",            },
-
-    {NAME: "Blackrose Prison ",   TRINAME: "Unchained", EXTNAME: "A Thrilling Trifecta"}
-];
-
-const BaseDungeonCols = ["name", "vet", "hm", "sr", "nd"];
-const BaseDungeonData = [
-    {NAME: "Fungal Grotto I",     },
-    {NAME: "Fungal Grotto II",    },
-    {NAME: "Banished Cells I",    },
-    {NAME: "Banished Cells II",   },
-    {NAME: "Elden Hollow I",      },
-    {NAME: "Elden Hollow II",     },
-    {NAME: "City of Ash I",       },
-    {NAME: "City of Ash II",      },
-    {NAME: "Crypt of Hearts I",   },
-    {NAME: "Crypt of Hearts II",  },
-    {NAME: "Darkshade Caverns I", },
-    {NAME: "Darkshade Caverns II",},
-    {NAME: "Spindleclutch I",     },
-    {NAME: "Spindleclutch II",    },
-    {NAME: "Wayrest Sewers I",    },
-    {NAME: "Wayrest Sewers II",   },
-    {NAME: "Arx Corinium",        },
-    {NAME: "Blackheart Haven",    },
-    {NAME: "Blessed Crucible",    },
-    {NAME: "Direfrost Keep",      },
-    {NAME: "Selene's Web",        },
-    {NAME: "Tempest Island",      },
-    {NAME: "Vaults of Madness",   },
-    {NAME: "Volenfell",           }
-];
-
-
-const TrialCols = ["name", "vet", "phm1", "phm2", "hm", "tri", "ext"];
-const TrialData = [
-    {NAME:"Hel Ra Citadel",         PHM1NAME:"n/a",      PHM2NAME:"n/a",     HMNAME:"Celest. Warrior", TRINAME:"n/a",                 EXTNAME:"n/a"                  },
-    {NAME:"Aetherian Archive",      PHM1NAME:"n/a",      PHM2NAME:"n/a",     HMNAME:"Celest. Mage",    TRINAME:"n/a",                 EXTNAME:"n/a"                  },
-    {NAME:"Sanctum Ophidia",        PHM1NAME:"n/a",      PHM2NAME:"n/a",     HMNAME:"Celest. Serpent", TRINAME:"n/a",                 EXTNAME:"n/a"                  },
-    {NAME:"Maw of Lorkhaj",         PHM1NAME:"n/a",      PHM2NAME:"n/a",     HMNAME:"Rakkhat",         TRINAME:"n/a",                 EXTNAME:"Dro-m'Athra Destroyer"},
-    {NAME:"Halls of Fabrication",   PHM1NAME:"n/a",      PHM2NAME:"n/a",     HMNAME:"Assembly Gen.",   TRINAME:"Tick-Tock Tormentor", EXTNAME:"The Dynamo"           },
-    {NAME:"Asylum Sanctorium",      PHM1NAME:"+Llothis", PHM2NAME:"+Felms",  HMNAME:"vAS +2",          TRINAME:"Saintly Savior",      EXTNAME:"Immortal Redeemer"    },
-    {NAME:"Cloudrest",              PHM1NAME:"vCR +1",   PHM2NAME:"vCR +2",  HMNAME:"vCR +3",          TRINAME:"Gryphon Heart",       EXTNAME:"Welkynar Liberator"   },
-    {NAME:"Sunspire",               PHM1NAME:"Yolna",    PHM2NAME:"Lokke",   HMNAME:"Nahvi",           TRINAME:"Godslayer",           EXTNAME:"Hand of Alkosh"       },
-    {NAME:"Kyne's Aegis",           PHM1NAME:"Yandir",   PHM2NAME:"Vrol",    HMNAME:"Falgravn",        TRINAME:"Kyne's Wrath",        EXTNAME:"Dawnbringer"          },
-    {NAME:"Rockgrove",              PHM1NAME:"Oaxiltso", PHM2NAME:"Bahsei",  HMNAME:"Xalvakka",        TRINAME:"Planesbreaker",       EXTNAME:"Daedric Bane"         },
-    {NAME:"Dreadsail Reef",         PHM1NAME:"Twins",    PHM2NAME:"Reef",    HMNAME:"Taleria",         TRINAME:"Soul of the Squall",  EXTNAME:"Swashbuckler Supreme" },
-    {NAME:"Sanity's Edge",          PHM1NAME:"Yaseyla",  PHM2NAME:"Twelvane",HMNAME:"Ansuul",          TRINAME:"Dream Master",        EXTNAME:"Sane and Clearheaded" }
-];
-
 class Player {
     constructor() {
         this.name = "";
-        this.addonVersion = 1;
         this.achievements = new Array();
     }
 }
 
-function createTableRow(num, dataRow, cols, parentElementId) {
+function createNameCell(c, parentElementId) {
+    var cell = document.createElement("td");
+    cell.id = parentElementId + c + "name";
+    cell.dataset.toggle = "tooltip";
+    cell.textContent = achievementInfos[c].dungeon;
+    cell.setAttribute("scope", "row");
+    cell.classList.add("dungeonNameCol");
+    return cell;
+}
+
+function createTableRow(dataRow, parentElementId) {
     var row = document.createElement("tr");
-    cols.forEach((c) => {
+    var nameCellCreated = false;
+    dataRow["CODES"].forEach((c) => {
+        if (nameCellCreated == false) {
+            row.appendChild(createNameCell(c, parentElementId));
+            nameCellCreated = true;
+        }
         var cell = document.createElement("td");
-        cell.id = parentElementId + c + num;
+        cell.id = parentElementId + c;
         cell.dataset.toggle = "tooltip";
-        if (c == "name") {
-            cell.textContent = dataRow.NAME;
-            cell.setAttribute("scope", "row");
-            cell.classList.add("dungeonNameCol")
-        }
-        else {
-            
-            cell.classList.add("dataCell")
-        }
-        if (c == "tri" && dataRow.TRINAME != null) {
-            cell.setAttribute("achievementText", dataRow.TRINAME);
-        }
-        if (c == "ext" && dataRow.EXTNAME != null) {
-            cell.setAttribute("achievementText", dataRow.EXTNAME);
-        }
-        if (c == "phm1" && dataRow.PHM1NAME != null) {
-            cell.setAttribute("achievementText", dataRow.PHM1NAME);
-        }
-        if (c == "phm2" && dataRow.PHM2NAME != null) {
-            cell.setAttribute("achievementText", dataRow.PHM2NAME);
-        }
-        if (c == "hm" && dataRow.HMNAME != null) {
-            cell.setAttribute("achievementText", dataRow.HMNAME);
+        cell.classList.add("dataCell")
+        if (c != "NIL") {
+            cell.setAttribute("achievementText", achievementInfos[c].name);
+        } else {
+            cell.setAttribute("achievementText", "n/a");
         }
         row.appendChild(cell);
     });
     return row;
 }
 
-function createTableRows(parentElementId, data, cols) {
+function createTableRows(parentElementId, data) {
+    $("#" + parentElementId).empty();
     for (var i = 0; i < data.length; i++) {
-        $("#" + parentElementId).append(createTableRow(i, data[i], cols, parentElementId));
+        $("#" + parentElementId).append(createTableRow(data[i], parentElementId));
     }
 }
 
-function buildDlcDungeonView() {
-    var data = DlcDungeonData;
-    var cols = DlcDungeonCols;
+function buildDlcDungeonView(schemaVersion) {
+    var data = schemas[schemaVersion].filter((instanceData) => instanceData["TYPE"] == "dungeon");
 
-    createTableRows("dlcDungeonsTableBody", data, cols);
+    createTableRows("dlcDungeonsTableBody", data);
 }
 
-function buildBaseDungeonView() {
-    var data = BaseDungeonData;
-    var cols = BaseDungeonCols;
+function buildBaseDungeonView(schemaVersion) {
+    var data = schemas[schemaVersion].filter((instanceData) => instanceData["TYPE"] == "baseDungeon");
 
-    createTableRows("baseDungeonsTableBody", data, cols);
+    createTableRows("baseDungeonsTableBody", data);
 }
 
-function buildTrialsView() {
-    var data = TrialData;
-    var cols = TrialCols;
+function buildTrialsView(schemaVersion) {
+    var data = schemas[schemaVersion].filter((instanceData) => instanceData["TYPE"] == "trial");
 
-    createTableRows("trialsTableBody", data, cols);
+    createTableRows("trialsTableBody", data);
 }
 
-function buildViews() {
-    buildDlcDungeonView();
-    buildBaseDungeonView();
-    buildTrialsView();
+function buildViews(schemaVersion) {
+    buildDlcDungeonView(schemaVersion);
+    buildBaseDungeonView(schemaVersion);
+    buildTrialsView(schemaVersion);
 }
 
 function isAllValidCharacters(data, validChars) {
@@ -169,25 +84,36 @@ function isAllValidBase64Characters(data) {
     return isAllValidCharacters(data, Base64Lexicon);
 }
 
-const ValidInputSizes = [
-    DlcDungeonData.length * (DlcDungeonCols.length - 1),
-    BaseDungeonData.length * (BaseDungeonCols.length - 1),
-    TrialData.length * (TrialCols.length - 1)
-];
-
 function validateInputData(input) {
     if (input == "") {
         return null;
     }
 
-    var playerInfoAsArray = parsePlayerInfoIntoArray(input);
-    if (playerInfoAsArray.length > 3) {
+    var playerInfoAsArrayTmp = parsePlayerInfoIntoArray(input);
+    if (playerInfoAsArrayTmp.length < 2 || playerInfoAsArrayTmp.length > 3) {
         return null;
     }
 
-    var rawAchievementData = parseRawAchievementDataFromInput(playerInfoAsArray);
+    // This is needed to account for the fact that older addon versions won't include the version part, so we inject it 
+    // here if it's not present, then we know after this that we definitely have A version
+    var playerInfoAsArray = [];
+    playerInfoAsArray[0] = playerInfoAsArrayTmp[0];
+    if (playerInfoAsArrayTmp.length == 2) {
+        playerInfoAsArray[1] = 1; // Default schema version
+    } else {
+        playerInfoAsArray[1] = playerInfoAsArrayTmp[1];
+    }
+    playerInfoAsArray[2] = playerInfoAsArrayTmp[playerInfoAsArrayTmp.length - 1];
 
-    if (!ValidInputSizes.includes(rawAchievementData.length)) {
+    const schemaVersion = playerInfoAsArray[1];
+    if (!(schemaVersion in schemas)) {
+        return null;
+    }
+
+    currentSchemaVersions.add(schemaVersion)
+
+    var rawAchievementData = parseRawAchievementDataFromInput(playerInfoAsArray, schemaVersion);
+    if (!getValidInputSizes(schemaVersion).includes(rawAchievementData.length)) {
         return null;
     }
 
@@ -200,13 +126,29 @@ function validateInputData(input) {
     return playerInfoAsArray.join(":");
 }
 
+function getValidInputSizes(schemaVersion) {
+    const supportedTypes = ["dungeon", "baseDungeon", "trial"];
+    let validSizes = [];
+    for (let type of supportedTypes) {
+        var data = schemas[schemaVersion].filter((instanceData) => instanceData["TYPE"] == type);
+        var numRows = data.length;
+        var numCols = data[0]["CODES"].length;
+        validSizes.push(numRows * numCols);
+    }
+    return validSizes;
+}
+
 var currentInputLengths = [];
+var currentSchemaVersions = new Set();
 
 function validateGatheredData() {
     var allOk = true;
     for (var i = 0; i < currentInputLengths.length; i++) {
-        allOk = currentInputLengths && currentInputLengths[0] == currentInputLengths[i];
+        allOk = allOk && currentInputLengths && currentInputLengths[0] == currentInputLengths[i];
     }
+
+    allOk = allOk && currentSchemaVersions.size == 1;
+
     return allOk;
 }
 
@@ -224,7 +166,10 @@ function gatherInputData(inputName) {
             .split(",");
     } catch(err) {
         console.error("invalid input from dataInput_" + inputName + ", " + err);
+        return [];
     }
+    currentInputLengths = [];
+    currentSchemaVersions = new Set();
     inputDataAll.forEach(d => {
         var validated = validateInputData(d);
         if (validated != null) {
@@ -232,7 +177,7 @@ function gatherInputData(inputName) {
         }
     });
 
-    if (!validateGatheredData(data)) {
+    if (!validateGatheredData()) {
         return [];
     }
     
@@ -250,13 +195,6 @@ function parseUsername(playerInfoAsArray, playerNum) {
         return playerInfoAsArray[0];
     }
     return "Player" + (playerNum + 1);
-}
-
-function parseAddonVersion(playerInfoAsArray) {
-    if (playerInfoAsArray.length >= 3) {
-        return playerInfoAsArray[1];
-    }
-    return 1;
 }
 
 function parseRawAchievementData(playerInfoAsArray) {
@@ -278,7 +216,7 @@ function base64ToBinary(c) {
     return result;
 }
 
-function parseRawAchievementDataFromInput(playerInfoAsArray) {
+function parseRawAchievementDataFromInput(playerInfoAsArray, schemaVersion) {
     let rawAchievementData = parseRawAchievementData(playerInfoAsArray);
     if (isAllValidBinaryCharacters(rawAchievementData)) {
         return rawAchievementData;
@@ -294,9 +232,10 @@ function parseRawAchievementDataFromInput(playerInfoAsArray) {
         decoded = decoded.concat(binary);
     }
 
-    for (var i = 0; i < ValidInputSizes.length; i++) {
-        if (decoded.length > ValidInputSizes[i] && decoded.length - ValidInputSizes[i] < 6) {
-            decoded = decoded.substring(0, decoded.length - (decoded.length - ValidInputSizes[i]));
+    const validInputSizes = getValidInputSizes(schemaVersion);
+    for (var i = 0; i < validInputSizes.length; i++) {
+        if (decoded.length > validInputSizes[i] && decoded.length - validInputSizes[i] < 6) {
+            decoded = decoded.substring(0, decoded.length - (decoded.length - validInputSizes[i]));
             break;
         }
     }
@@ -362,7 +301,6 @@ function parseDataForOnePlayer(unparsedString, totalNumEncounters, subArraySize,
 
     var playerInfoAsArray = parsePlayerInfoIntoArray(unparsedString);
     player.name = parseUsername(playerInfoAsArray, playerNum);
-    player.addonVersion = parseAddonVersion(playerInfoAsArray);
     var rawAchievementData = parseRawAchievementData(playerInfoAsArray);
 
     for (var currEncounter = 0; currEncounter < totalNumEncounters; currEncounter++) {
@@ -396,31 +334,33 @@ function isNonAchievementCell(cellId) {
     return permaNonAchieveCells.includes(cellId);
 }
 
-function populateTable(numCols, parentElementId, inputData, numRows, cols) {
+function populateTable(data, parentElementId, inputData) {
     var numPlayers = inputData.length;
-    var perEncounterArrays = splitCombinedEncounterDataForAllPlayers(inputData, numCols);
 
-    for (var row = 0; row < numRows; row++) {
-        for (var col = 1; col <= numCols; col++) {
-            let cellId = "#" + parentElementId + cols[col] + row;
+    var perEncounterArrays = splitCombinedEncounterDataForAllPlayers(inputData, data[0]["CODES"].length);
+
+    for (var row = 0; row < data.length; row++) {
+        for (var col = 0; col < data[row]["CODES"].length; col++) {
+            let code = data[row]["CODES"][col];
+            let cellId = "#" + parentElementId + code;
             if (isNonAchievementCell(cellId)) {
                 setCellColorBasedOnPercentComplete(cellId, -1);
+                continue;
             }
-            else {
-                var totalCountForCell = 0;
-                var playersWhoHaveAchieve = [];
-                for (var p = 0; p < numPlayers; p++) {
-                    let val = parseInt(perEncounterArrays[p].achievements[row][col - 1])
-                    totalCountForCell += val;
-                    if (val == 1) {
-                        playersWhoHaveAchieve.push(perEncounterArrays[p].name);
-                    }
+
+            var totalCountForCell = 0;
+            var playersWhoHaveAchieve = [];
+            for (var p = 0; p < numPlayers; p++) {
+                let val = parseInt(perEncounterArrays[p].achievements[row][col])
+                totalCountForCell += val;
+                if (val == 1) {
+                    playersWhoHaveAchieve.push(perEncounterArrays[p].name);
                 }
-                let percent = Math.trunc((totalCountForCell / numPlayers) * 100);
-                $(cellId).html(totalCountForCell + "/" + numPlayers);
-                setListOfPlayersWithAchieveInTooltip(cellId, playersWhoHaveAchieve);
-                setCellColorBasedOnPercentComplete(cellId, percent);
             }
+            let percent = Math.trunc((totalCountForCell / numPlayers) * 100);
+            $(cellId).html(totalCountForCell + "/" + numPlayers);
+            setListOfPlayersWithAchieveInTooltip(cellId, playersWhoHaveAchieve);
+            setCellColorBasedOnPercentComplete(cellId, percent);
         }
     }
 
@@ -434,31 +374,25 @@ function populateTable(numCols, parentElementId, inputData, numRows, cols) {
     $("#playerNamesContainer").html(allPlayerNames);
 }
 
-function populateDlcDungeonsFromData(inputData) {
-    var numCols = 7;
+function populateDlcDungeonsFromData(inputData, schemaVersion) {
+    var data = schemas[schemaVersion].filter((instanceData) => instanceData["TYPE"] == "dungeon");
     var parentElementId = "dlcDungeonsTableBody";
-    var numRows = DlcDungeonData.length;
-    var cols = DlcDungeonCols;
 
-    populateTable(numCols, parentElementId, inputData, numRows, cols);
+    populateTable(data, parentElementId, inputData);
 }
 
-function populateBaseDungeonsFromData(inputData) {
-    var numCols = 4;
+function populateBaseDungeonsFromData(inputData, schemaVersion) {
+    var data = schemas[schemaVersion].filter((instanceData) => instanceData["TYPE"] == "baseDungeon");
     var parentElementId = "baseDungeonsTableBody";
-    var numRows = BaseDungeonData.length;
-    var cols = BaseDungeonCols;
 
-    populateTable(numCols, parentElementId, inputData, numRows, cols);
+    populateTable(data, parentElementId, inputData);
 }
 
-function populateTrialssFromData(inputData) {
-    var numCols = 6;
+function populateTrialsFromData(inputData, schemaVersion) {
+    var data = schemas[schemaVersion].filter((instanceData) => instanceData["TYPE"] == "trial");
     var parentElementId = "trialsTableBody";
-    var numRows = TrialData.length;
-    var cols = TrialCols;
 
-    populateTable(numCols, parentElementId, inputData, numRows, cols);
+    populateTable(data, parentElementId, inputData);
 }
 
 const InputCategories = [
@@ -553,31 +487,41 @@ function handleOptionsButtonClicked(buttonVal) {
     $("#shareButtonContainer").hide();
 }
 
+function getSchemaVersion(inputData) {
+    console.log(inputData);
+    console.log(currentSchemaVersions);
+
+    return 1;
+}
+
 function handleGenerateViewButtonClicked(v) {
     var inputData = gatherInputData(v);
-        if (inputData.length == 0) {
-            window.alert("Please input valid data for at least one user");
-            return;
-        }
+    if (inputData.length == 0) {
+        window.alert("Invalid data detected");
+        return;
+    }
 
-        $("div.view").hide();
-        $("#generateButtonsContainer").hide();
-        $("#inputsContainer").hide();
-        $("#viewsContainer").show();
-        $("#playerNamesContainer").show();
-        $("#shareButtonContainer").show();
+    let schemaVersion = getSchemaVersion(inputData);
+    buildViews(schemaVersion);
 
-        if (v == "dlcDungeons") {
-            populateDlcDungeonsFromData(inputData);
-        } else if (v == "baseDungeons") {
-            populateBaseDungeonsFromData(inputData);
-        } else if (v == "trials") {
-            populateTrialssFromData(inputData);
-        }
+    $("div.view").hide();
+    $("#generateButtonsContainer").hide();
+    $("#inputsContainer").hide();
+    $("#viewsContainer").show();
+    $("#playerNamesContainer").show();
+    $("#shareButtonContainer").show();
 
-        populateShareUrl(v);
+    if (v == "dlcDungeons") {
+        populateDlcDungeonsFromData(inputData, schemaVersion);
+    } else if (v == "baseDungeons") {
+        populateBaseDungeonsFromData(inputData, schemaVersion);
+    } else if (v == "trials") {
+        populateTrialsFromData(inputData, schemaVersion);
+    }
 
-        $("#" + v + "View").show();
+    populateShareUrl(v);
+
+    $("#" + v + "View").show();
 }
 
 $(document).ready(function() {
@@ -599,8 +543,6 @@ $(document).ready(function() {
 
     // Doing this dynamically allows for different URLs when run locally
     $("#navbarTitleLink").attr("href", getBaseUrl());
-
-    buildViews();
 
     if (!loadDataFromUrlIfPresent()) {
         loadDataFromLocalStorage();
