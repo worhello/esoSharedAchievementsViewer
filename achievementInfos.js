@@ -111,6 +111,13 @@ const achievementInfos = {
         "description": "Defeat 300 Mindshriven in Veteran Imperial City Prison.",
         "points": 10
     },
+    "1132": {
+        "id": 1132,
+        "dungeon": "Imperial City Prison",
+        "name": "Imperial City Challenger",
+        "description": "Complete the listed Challenges for veteran dungeons in Imperial City.",
+        "points": 50
+    },
     "1133": {
         "id": 1133,
         "dungeon": "Imperial City Prison",
@@ -2238,6 +2245,13 @@ const achievementInfos = {
         "name": "Bastion Breaker",
         "description": "Defeat all encounters in addition to Rogerain the Sly, the Artifact Bearers, and Prior Thierric Sarazen after placing the Challenge Banners in Veteran Red Petal Bastion within 25 minutes without suffering a group member death.",
         "points": 50
+    },
+    "3035": {
+        "id": 3035,
+        "dungeon": "Red Petal Bastion",
+        "name": "Sly Terror",
+        "description": "Have a member of your group acquire 25 stacks of Buck Wild while fighting Rogerain the Sly in Veteran Red Petal Bastion.",
+        "points": 10
     },
     "3036": {
         "id": 3036,
