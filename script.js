@@ -81,6 +81,7 @@ const TrialData = [
 class Player {
     constructor() {
         this.name = "";
+        this.addonVersion = 1;
         this.achievements = new Array();
     }
 }
@@ -180,7 +181,7 @@ function validateInputData(input) {
     }
 
     var playerInfoAsArray = parsePlayerInfoIntoArray(input);
-    if (playerInfoAsArray.length > 2) {
+    if (playerInfoAsArray.length > 3) {
         return null;
     }
 
@@ -251,11 +252,15 @@ function parseUsername(playerInfoAsArray, playerNum) {
     return "Player" + (playerNum + 1);
 }
 
-function parseRawAchievementData(playerInfoAsArray) {
-    if (playerInfoAsArray.length > 1) {
+function parseAddonVersion(playerInfoAsArray) {
+    if (playerInfoAsArray.length >= 3) {
         return playerInfoAsArray[1];
     }
-    return playerInfoAsArray[0];
+    return 1;
+}
+
+function parseRawAchievementData(playerInfoAsArray) {
+    return playerInfoAsArray[playerInfoAsArray.length - 1];
 }
 
 function base64ToBinary(c) {
@@ -357,6 +362,7 @@ function parseDataForOnePlayer(unparsedString, totalNumEncounters, subArraySize,
 
     var playerInfoAsArray = parsePlayerInfoIntoArray(unparsedString);
     player.name = parseUsername(playerInfoAsArray, playerNum);
+    player.addonVersion = parseAddonVersion(playerInfoAsArray);
     var rawAchievementData = parseRawAchievementData(playerInfoAsArray);
 
     for (var currEncounter = 0; currEncounter < totalNumEncounters; currEncounter++) {
