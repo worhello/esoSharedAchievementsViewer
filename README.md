@@ -5,3 +5,5 @@ This allows multiple people to combine an exported version of their Pithka Achie
 
 ## Acknowledgements
 Big thanks especially to @Shinzz who's helped a lot with making the web app a lot more visually pleasing and better to use!
+
+Thank you as well to @Saltarii and @Naltoid
