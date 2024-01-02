@@ -3351,5 +3351,1097 @@ const achievementInfos = {
         "name": "Rise of the Fallen",
         "description": "Use a Sigil of Resurrection in any arena to revive three other group members at once in Blackrose Prison.",
         "points": 10
+    },
+    "1136": {
+        "id": 1136,
+        "dungeon": "Hel Ra Citadel",
+        "name": "Hel Ra Citadel Difficult Mode",
+        "description": "Defeat the Celestial Warrior after enraging him through the destruction of his statue army.",
+        "points": 50
+    },
+    "1474": {
+        "id": 1474,
+        "dungeon": "Hel Ra Citadel",
+        "name": "Hel Ra Citadel Conqueror",
+        "description": "Defeat the Celestial Warrior in Veteran Hel Ra Citadel.",
+        "points": 50
+    },
+    "1137": {
+        "id": 1137,
+        "dungeon": "Aetherian Archive",
+        "name": "Aetherian Archive Difficult Mode",
+        "description": "Defeat the Celestial Mage after taunting her by smashing the Aetherial Orbs.",
+        "points": 50
+    },
+    "1503": {
+        "id": 1503,
+        "dungeon": "Aetherian Archive",
+        "name": "Aetherian Archive Conqueror",
+        "description": "Defeat the Celestial Mage in Veteran Aetherian Archive.",
+        "points": 50
+    },
+    "1138": {
+        "id": 1138,
+        "dungeon": "Sanctum Ophidia",
+        "name": "Sanctum Ophidia Difficult Mode",
+        "description": "Defeat the Celestial Serpent after desecrating the sacred banners of the Scaled Court.",
+        "points": 50
+    },
+    "1462": {
+        "id": 1462,
+        "dungeon": "Sanctum Ophidia",
+        "name": "Sanctum Ophidia Conqueror",
+        "description": "Defeat the Celestial Serpent in Veteran Sanctum Ophidia.",
+        "points": 50
+    },
+    "1344": {
+        "id": 1344,
+        "dungeon": "Maw of Lorkhaj",
+        "name": "Maw of Lorkhaj Difficult Mode",
+        "description": "Defeat Rakkhat after empowering him at the lunar shrines in Veteran Maw of Lorkhaj.",
+        "points": 50
+    },
+    "1368": {
+        "id": 1368,
+        "dungeon": "Maw of Lorkhaj",
+        "name": "Maw of Lorkhaj Conqueror",
+        "description": "Defeat Rakkhat, Fang of Lorkhaj and his legions of dro-m'Athra in Veteran Maw of Lorkhaj.",
+        "points": 50
+    },
+    "1391": {
+        "id": 1391,
+        "dungeon": "Maw of Lorkhaj",
+        "name": "Maw of Lorkhaj: Moons' Champion",
+        "description": "Complete all achievements related to defeating Rakkhat, Fang of Lorkhaj in Veteran Maw of Lorkhaj.",
+        "points": 50
+    },
+    "1810": {
+        "id": 1810,
+        "dungeon": "Halls of Fabrication",
+        "name": "Halls of Fabrication Conqueror",
+        "description": "Defeat the Assembly General in Veteran Halls of Fabrication.",
+        "points": 50
+    },
+    "1829": {
+        "id": 1829,
+        "dungeon": "Halls of Fabrication",
+        "name": "Halls of Fabrication Vanquisher",
+        "description": "Defeat the Assembly General after empowering it by resetting the circuit breaker in Veteran Halls of Fabrication.",
+        "points": 50
+    },
+    "1836": {
+        "id": 1836,
+        "dungeon": "Halls of Fabrication",
+        "name": "Dynamo",
+        "description": "Complete each of the following achievements related to defeating the Assembly General:",
+        "points": 50
+    },
+    "1838": {
+        "id": 1838,
+        "dungeon": "Halls of Fabrication",
+        "name": "Like Clockwork",
+        "description": "Complete Veteran Halls of Fabrication after resetting the circuit breaker and empowering the Assembly General, all within 40 minutes of entering Abanabi Cave and without suffering a group member death.",
+        "points": 50
+    },
+    "2075": {
+        "id": 2075,
+        "dungeon": "Asylum Sanctorium",
+        "name": "Asylum Sanctorium Redeemer",
+        "description": "Complete the listed achievements for Asylum Sanctorium.",
+        "points": 50
+    },
+    "2077": {
+        "id": 2077,
+        "dungeon": "Asylum Sanctorium",
+        "name": "Asylum Sanctorium Conqueror",
+        "description": "Defeat Saint Olms the Just, Saint Llothis the Pious, and Saint Felms the Bold in Veteran Asylum Sanctorium.",
+        "points": 50
+    },
+    "2079": {
+        "id": 2079,
+        "dungeon": "Asylum Sanctorium",
+        "name": "Asylum Sanctorium Vanquisher",
+        "description": "Defeat Saint Olms the Just, Saint Llothis the Pious, and Saint Felms the Bold in the same fight in Veteran Asylum Sanctorium.",
+        "points": 50
+    },
+    "2085": {
+        "id": 2085,
+        "dungeon": "Asylum Sanctorium",
+        "name": "Righteous Condemnation",
+        "description": "Defeat Saint Olms the Just and Saint Llothis the Pious in the same battle in Veteran Asylum Sanctorium.",
+        "points": 10
+    },
+    "2086": {
+        "id": 2086,
+        "dungeon": "Asylum Sanctorium",
+        "name": "Executioners' Judgment",
+        "description": "Defeat Saint Olms the Just and Saint Felms the Bold in the same battle in Veteran Asylum Sanctorium.",
+        "points": 10
+    },
+    "2087": {
+        "id": 2087,
+        "dungeon": "Asylum Sanctorium",
+        "name": "Perfect Purification",
+        "description": "Defeat Saint Olms the Just, Saint Llothis the Pious, and Saint Felms the Bold in the same battle without suffering a group member death within 15 minutes of entering the Sanctuary Atrium in Veteran Asylum Sanctorium.",
+        "points": 10
+    },
+    "2133": {
+        "id": 2133,
+        "dungeon": "Cloudrest",
+        "name": "Cloudrest Conqueror",
+        "description": "Defeat Z'Maja, Siroria, Relequen, and Galenwe in Veteran Cloudrest.",
+        "points": 50
+    },
+    "2134": {
+        "id": 2134,
+        "dungeon": "Cloudrest",
+        "name": "A Sload and Her Shadow",
+        "description": "Defeat Z'Maja with one Welkynar shade fighting by her side in Veteran Cloudrest.",
+        "points": 50
+    },
+    "2135": {
+        "id": 2135,
+        "dungeon": "Cloudrest",
+        "name": "Three's Deadly Company",
+        "description": "Defeat Z'Maja with two Welkynar shades fighting by her side in Veteran Cloudrest.",
+        "points": 50
+    },
+    "2136": {
+        "id": 2136,
+        "dungeon": "Cloudrest",
+        "name": "Cloudrest Vanquisher",
+        "description": "Defeat Z'Maja, Siroria, Relequen, and Galenwe in the same fight in Veteran Cloudrest.",
+        "points": 50
+    },
+    "2139": {
+        "id": 2139,
+        "dungeon": "Cloudrest",
+        "name": "The Path to Alaxon",
+        "description": "Defeat Z'Maja, Siroria, Relequen, and Galenwe in the same battle without suffering a group member death within 15 minutes of entering the Cloudrest Aerie in Veteran Cloudrest.",
+        "points": 50
+    },
+    "2140": {
+        "id": 2140,
+        "dungeon": "Cloudrest",
+        "name": "Cloudrest Savior",
+        "description": "Complete the listed achievements for Cloudrest.",
+        "points": 50
+    },
+    "2435": {
+        "id": 2435,
+        "dungeon": "Sunspire",
+        "name": "Sunspire Conqueror",
+        "description": "Defeat Yolnahkriin, Lokkestiiz, and Nahviintaas in Veteran Sunspire.",
+        "points": 10
+    },
+    "2466": {
+        "id": 2466,
+        "dungeon": "Sunspire",
+        "name": "Sunspire Vanquisher",
+        "description": "Defeat Yolnahkriin, Lokkestiiz, and Nahviintaas after extinguishing all of their offering braziers in Veteran Sunspire.",
+        "points": 50
+    },
+    "2467": {
+        "id": 2467,
+        "dungeon": "Sunspire",
+        "name": "Godslayer of Sunspire",
+        "description": "Defeat Yolnahkriin, Lokkestiiz, and Nahviintaas along with all their hostile followers after extinguishing all their offering braziers, without suffering a group member death, within 30 minutes of entering the corridor between the Sunspire Temple Vestibule and the Courtyard in Veteran Sunspire.",
+        "points": 50
+    },
+    "2468": {
+        "id": 2468,
+        "dungeon": "Sunspire",
+        "name": "Sunspire Dragonbreak",
+        "description": "Complete the listed achievements for Sunspire.",
+        "points": 50
+    },
+    "2469": {
+        "id": 2469,
+        "dungeon": "Sunspire",
+        "name": "Stoking the Fire",
+        "description": "Defeat Yolnahkriin after extinguishing his offering braziers in Veteran Sunspire.",
+        "points": 15
+    },
+    "2470": {
+        "id": 2470,
+        "dungeon": "Sunspire",
+        "name": "Stormchaser",
+        "description": "Defeat Lokkestiiz after extinguishing his offering braziers in Veteran Sunspire.",
+        "points": 15
+    },
+    "2734": {
+        "id": 2734,
+        "dungeon": "Kyne's Aegis",
+        "name": "Kyne's Aegis Conqueror",
+        "description": "Defeat Yandir the Butcher, Captain Vrol, and Lord Falgravn in Veteran Kyne's Aegis.",
+        "points": 10
+    },
+    "2736": {
+        "id": 2736,
+        "dungeon": "Kyne's Aegis",
+        "name": "Meatgrinder",
+        "description": "Defeat Yandir the Butcher after raising the challenge banner in Veteran Kyne's Aegis.",
+        "points": 15
+    },
+    "2737": {
+        "id": 2737,
+        "dungeon": "Kyne's Aegis",
+        "name": "Down with the Ship",
+        "description": "Defeat Captain Vrol after raising the challenge banner in Veteran Kyne's Aegis.",
+        "points": 15
+    },
+    "2739": {
+        "id": 2739,
+        "dungeon": "Kyne's Aegis",
+        "name": "Savior of the Bastion",
+        "description": "Defeat Yandir the Butcher, Captain Vrol, and Lord Falgravn after raising the challenge banner in Veteran Kyne's Aegis, in one run.",
+        "points": 50
+    },
+    "2740": {
+        "id": 2740,
+        "dungeon": "Kyne's Aegis",
+        "name": "Stainless Siege-breaker",
+        "description": "Defeat Yandir the Butcher, Captain Vrol, and Lord Falgravn along with all their hostile followers after raising the challenge banner for all of them, without suffering a group member death, within 35 minutes of entering Kyne's Perch village in Veteran Kyne's Aegis.",
+        "points": 50
+    },
+    "2746": {
+        "id": 2746,
+        "dungeon": "Kyne's Aegis",
+        "name": "Kyne's Deliverance",
+        "description": "Complete the listed achievements for Kyne's Aegis.",
+        "points": 50
+    },
+    "2987": {
+        "id": 2987,
+        "dungeon": "Rockgrove",
+        "name": "Rockgrove Conqueror",
+        "description": "Defeat Oaxiltso, Flame-Herald Bahsei, and Xalvakka in Veteran Rockgrove.",
+        "points": 10
+    },
+    "3003": {
+        "id": 3003,
+        "dungeon": "Rockgrove",
+        "name": "Soul Savior",
+        "description": "Defeat Oaxiltso, Flame-Herald Bahsei, and Xalvakka along with all their hostile followers after raising the challenge banner for each of them, without suffering a group member death, within 30 minutes of entering Veteran Rockgrove. Defeating Bask-In-Snakes and the injured Sul-Xan Militants is not required for completion.",
+        "points": 50
+    },
+    "3004": {
+        "id": 3004,
+        "dungeon": "Rockgrove",
+        "name": "Xalvakka's Bane",
+        "description": "Complete the listed achievements for Rockgrove.",
+        "points": 50
+    },
+    "3005": {
+        "id": 3005,
+        "dungeon": "Rockgrove",
+        "name": "Behemoth Beleaguerer",
+        "description": "Defeat Oaxiltso after raising the challenge banner in Veteran Rockgrove.",
+        "points": 15
+    },
+    "3006": {
+        "id": 3006,
+        "dungeon": "Rockgrove",
+        "name": "Slay the Messenger",
+        "description": "Defeat Flame-Herald Bahsei after raising the challenge banner in Veteran Rockgrove.",
+        "points": 15
+    },
+    "3007": {
+        "id": 3007,
+        "dungeon": "Rockgrove",
+        "name": "Xanmeer's Protector",
+        "description": "Defeat Oaxiltso, Flame-Herald Bahsei, and Xalvakka after raising the challenge banner in Veteran Rockgrove, in one run.",
+        "points": 50
+    },
+    "3244": {
+        "id": 3244,
+        "dungeon": "Dreadsail Reef",
+        "name": "Dreadsail Reef Conqueror",
+        "description": "Defeat Lylanar and Turlassil, the Reef Guardian, and Tideborn Taleria in Veteran Dreadsail Reef.",
+        "points": 10
+    },
+    "3248": {
+        "id": 3248,
+        "dungeon": "Dreadsail Reef",
+        "name": "Fleet Queen's Foil",
+        "description": "Defeat Lylanar and Turlassil, the Reef Guardian, and Tideborn Taleria, along with all their hostile followers, after raising the challenge banner for each of them and without gaining the benefits of any Prismatic Resonances, without suffering a group member death, and within 30 minutes of entering Veteran Dreadsail Reef.",
+        "points": 50
+    },
+    "3249": {
+        "id": 3249,
+        "dungeon": "Dreadsail Reef",
+        "name": "Swashbuckler Supreme",
+        "description": "Complete the following list of achievements for Dreadsail Reef.",
+        "points": 50
+    },
+    "3250": {
+        "id": 3250,
+        "dungeon": "Dreadsail Reef",
+        "name": "Peak Pit-Fighter Performance",
+        "description": "Defeat Lylanar and Turlassil after raising the challenge banner in Veteran Dreadsail Reef.",
+        "points": 15
+    },
+    "3251": {
+        "id": 3251,
+        "dungeon": "Dreadsail Reef",
+        "name": "Reef Wrecker",
+        "description": "Defeat the Reef Guardian after raising the challenge banner and without gaining the benefits of any Prismatic Resonances in Veteran Dreadsail Reef.",
+        "points": 15
+    },
+    "3252": {
+        "id": 3252,
+        "dungeon": "Dreadsail Reef",
+        "name": "Master Marine",
+        "description": "Defeat Lylanar and Turlassil, the Reef Guardian, and Tideborn Taleria, after raising the challenge banner in Veteran Dreadsail Reef in one run.",
+        "points": 50
+    },
+    "3560": {
+        "id": 3560,
+        "dungeon": "Sanity's Edge",
+        "name": "Sanity's Edge Conqueror",
+        "description": "Defeat Exarchanic Yaseyla, Archwizard Twelvane, and Ansuul the Tormentor in Veteran Sanity's Edge.",
+        "points": 10
+    },
+    "3564": {
+        "id": 3564,
+        "dungeon": "Sanity's Edge",
+        "name": "Master of the Mind",
+        "description": "Defeat Exarchanic Yaseyla, Archwizard Twelvane, and Ansuul the Tormentor along with all their hostile followers after raising the challenge banner for each of them, without suffering a group member death, within 30 minutes of entering Veteran Sanity's Edge.",
+        "points": 50
+    },
+    "3565": {
+        "id": 3565,
+        "dungeon": "Sanity's Edge",
+        "name": "Sane and Clearheaded",
+        "description": "Complete all the listed achievements for Sanity's Edge.",
+        "points": 50
+    },
+    "3566": {
+        "id": 3566,
+        "dungeon": "Sanity's Edge",
+        "name": "Mage Protector",
+        "description": "Defeat Exarchanic Yaseyla after raising the challenge banner in Veteran Sanity's Edge.",
+        "points": 15
+    },
+    "3567": {
+        "id": 3567,
+        "dungeon": "Sanity's Edge",
+        "name": "Dream Destroyer",
+        "description": "Defeat Archwizard Twelvane after raising the challenge banner in Veteran Sanity's Edge.",
+        "points": 15
+    },
+    "3568": {
+        "id": 3568,
+        "dungeon": "Sanity's Edge",
+        "name": "Tenacious Dreamer",
+        "description": "Defeat Exarchanic Yaseyla, Archwizard Twelvane, and Ansuul the Tormentor after raising the challenge banner in Veteran Sanity's Edge in one run.",
+        "points": 50
+    },
+    "1140": {
+        "id": 1140,
+        "dungeon": "Dragonstar Arena",
+        "name": "Dragonstar Arena Conqueror",
+        "description": "Conquer all challengers on the increased difficulty version of Dragonstar Arena.",
+        "points": 50
+    },
+    "1305": {
+        "id": 1305,
+        "dungeon": "Maelstrom Arena",
+        "name": "Maelstrom Arena Conqueror",
+        "description": "Conquer all challengers in Veteran Maelstrom Arena.",
+        "points": 50
+    },
+    "2908": {
+        "id": 2908,
+        "dungeon": "Vateshran Arena",
+        "name": "Vateshran Hollows Conqueror",
+        "description": "Defeat all challengers in Veteran Vateshran Hollows.",
+        "points": 50
+    },
+    "2912": {
+        "id": 2912,
+        "dungeon": "Vateshran Arena",
+        "name": "The Vateshran's Chosen",
+        "description": "Complete Veteran Vateshran Hollows within 45 minutes without using a single Sigil and without dying. The timer starts when entering any wing for the first time.",
+        "points": 50
+    },
+    "2913": {
+        "id": 2913,
+        "dungeon": "Vateshran Arena",
+        "name": "Hero of the Unending Song",
+        "description": "Complete the listed achievements for Vateshran Hollows.",
+        "points": 50
+    },
+    "1556": {
+        "id": 1556,
+        "dungeon": "Fungal Grotto 1",
+        "name": "Fungal Grotto I Conqueror",
+        "description": "Defeat Tazkad the Packmaster, War Chief Ozozai, Broodbirther, Clatterclaw, and Kra'gh the Dreugh King in Veteran Fungal Grotto I.",
+        "points": 10
+    },
+    "1559": {
+        "id": 1559,
+        "dungeon": "Fungal Grotto 1",
+        "name": "Fungal Grotto I Assassin",
+        "description": "Defeat Tazkad the Packmaster, War Chief Ozozai, Broodbirther, Clatterclaw and Kra'gh the Dreugh King in Veteran Fungal Grotto I, all within 15 minutes. Timer starts when any player enters the tunnel after the first group of Goblins.",
+        "points": 50
+    },
+    "1560": {
+        "id": 1560,
+        "dungeon": "Fungal Grotto 1",
+        "name": "Fungal Grotto I Survivor",
+        "description": "Defeat Tazkad the Packmaster, War Chief Ozozai, Broodbirther, Clatterclaw and Kra'gh the Dreugh King in Veteran Fungal Grotto I, without suffering a group member death.",
+        "points": 50
+    },
+    "1561": {
+        "id": 1561,
+        "dungeon": "Fungal Grotto 1",
+        "name": "Catch of the Day",
+        "description": "Defeat the Dreugh King in Veteran Fungal Grotto I, after invoking the Scroll of Glorious Battle.",
+        "points": 50
+    },
+    "340": {
+        "id": 340,
+        "dungeon": "Fungal Grotto 2",
+        "name": "Fungal Grotto II Assassin",
+        "description": "Defeat Mephala's Fang, Gamyne Bandu, Ciirenas the Sheperd, Spawn of Mephala, Reggr Dark-Dawn, and Vila Theran in Veteran Fungal Grotto II within twenty minutes of starting the dungeon. Timer starts when players engage the first group of Spider Cultists.",
+        "points": 50
+    },
+    "342": {
+        "id": 342,
+        "dungeon": "Fungal Grotto 2",
+        "name": "Fearless Assaulter",
+        "description": "Defeat Vila Theran in Veteran Fungal Grotto II without any member of your party using the protection of the Obsidian Husk.",
+        "points": 50
+    },
+    "343": {
+        "id": 343,
+        "dungeon": "Fungal Grotto 2",
+        "name": "Fungal Grotto II Conqueror",
+        "description": "Defeat Gamyne Bandu, the Spawn of Mephala, and Vila Theran in Veteran Fungal Grotto II.",
+        "points": 10
+    },
+    "1563": {
+        "id": 1563,
+        "dungeon": "Fungal Grotto 2",
+        "name": "Fungal Grotto II Survivor",
+        "description": "Defeat Mephala's Fang, Gamyne Bandu, Ciirenas the Sheperd, Spawn of Mephala, Reggr Dark-Dawn, and Vila Theran in Veteran Fungal Grotto II, without suffering a group member death.",
+        "points": 50
+    },
+    "1549": {
+        "id": 1549,
+        "dungeon": "Banished Cell 1",
+        "name": "Banished Cells I Conqueror",
+        "description": "Defeat Cell Haunter, Shadowrend, Angata the Clannfear Handler, the Skeletal Destroyer, and High Kinlord Rilis in Veteran Banished Cells I.",
+        "points": 10
+    },
+    "1552": {
+        "id": 1552,
+        "dungeon": "Banished Cell 1",
+        "name": "Banished Cells I Assassin",
+        "description": "Defeat Cell Haunter, Shadowrend, Angata the Clannfear Handler, the Skeletal Destroyer, and High Kinlord Rilis in Veteran Banished Cells I, all within twenty minutes. Timer starts when a group member enters the first hallway.",
+        "points": 50
+    },
+    "1553": {
+        "id": 1553,
+        "dungeon": "Banished Cell 1",
+        "name": "Banished Cells I Survivor",
+        "description": "Defeat Cell Haunter, Shadowrend, Angata the Clannfear Handler, the Skeletal Destroyer, and High Kinlord Rilis in Veteran Banished Cells I, without suffering a group member death.",
+        "points": 50
+    },
+    "1554": {
+        "id": 1554,
+        "dungeon": "Banished Cell 1",
+        "name": "Soul Splitter",
+        "description": "Defeat High Kinlord Rilis in Veteran Banished Cells I, after invoking the Scroll of Glorious Battle.",
+        "points": 50
+    },
+    "449": {
+        "id": 449,
+        "dungeon": "Banished Cell 2",
+        "name": "Banished Cells II Assassin",
+        "description": "In Veteran Banished Cells II, defeat Keepers Imiril, Areldur, and Voranil, as well as the Maw of the Infernal and the Sisters Sihna and Vera, before defeating High Kinlord Rilis, all within twenty minutes. Timer starts upon engaging the first group of Banished skeletons.",
+        "points": 50
+    },
+    "451": {
+        "id": 451,
+        "dungeon": "Banished Cell 2",
+        "name": "Cursed Hero",
+        "description": "In Veteran Banished Cells II, defeat High Kinlord Rilis while three or more Daedroth still live.",
+        "points": 50
+    },
+    "545": {
+        "id": 545,
+        "dungeon": "Banished Cell 2",
+        "name": "Banished Cells II Conqueror",
+        "description": "Defeat the Maw of the Infernal, Keeper Imiril, and High Kinlord Rilis in Veteran Banished Cells II.",
+        "points": 10
+    },
+    "1564": {
+        "id": 1564,
+        "dungeon": "Banished Cell 2",
+        "name": "Banished Cells II Survivor",
+        "description": "Defeat Keepers Imiril, Areldur, and Voranil, as well as the Maw of the Infernal and the Sisters Sihna and Vera, before defeating High Kinlord Rilis in Veteran Banished Cells II, without suffering a group member death.",
+        "points": 50
+    },
+    "1573": {
+        "id": 1573,
+        "dungeon": "Elden Hollow 1",
+        "name": "Elden Hollow I Conqueror",
+        "description": "Defeat Akash gra-Mal, the Ancient Spriggan, Chokethorn, Nenesh gro-Mal, Leafseether, and Canonreeve Oraneth in Veteran Elden Hollow I.",
+        "points": 10
+    },
+    "1576": {
+        "id": 1576,
+        "dungeon": "Elden Hollow 1",
+        "name": "Elden Hollow I Assassin",
+        "description": "Defeat Akash gra-Mal, the Ancient Spriggan, Chokethorn, Nenesh gro-Mal, Leafseether, and Canonreeve Oraneth in Veteran Elden Hollow I within twenty minutes of starting the dungeon. Timer starts when players engage the first group of Thalmor.",
+        "points": 50
+    },
+    "1577": {
+        "id": 1577,
+        "dungeon": "Elden Hollow 1",
+        "name": "Elden Hollow I Survivor",
+        "description": "Defeat Akash gra-Mal, the Ancient Spriggan, Chokethorn, Nenesh gro-Mal, Leafseether, and Canonreeve Oraneth in Veteran Elden Hollow I, without suffering a group member death.",
+        "points": 50
+    },
+    "1578": {
+        "id": 1578,
+        "dungeon": "Elden Hollow 1",
+        "name": "Canonreeve Reaver",
+        "description": "Defeat Canonreeve Oraneth in Veteran Elden Hollow I, after invoking the Scroll of Glorious Battle.",
+        "points": 50
+    },
+    "459": {
+        "id": 459,
+        "dungeon": "Elden Hollow 2",
+        "name": "Elden Hollow II Conqueror",
+        "description": "Defeat Dark Root, Murklight, and Bogdan the Nightflame in Veteran Elden Hollow II.",
+        "points": 10
+    },
+    "461": {
+        "id": 461,
+        "dungeon": "Elden Hollow 2",
+        "name": "Elden Hollow II Assassin",
+        "description": "Defeat Dubroze the Infestor, Dark Root, Azara the Frightener, Murklight, the Shadow Guard, and Bogdan the Nightflame in Veteran Elden Hollow II within twenty minutes of starting the dungeon. Timer starts when players engage the first group of Daedra.",
+        "points": 50
+    },
+    "463": {
+        "id": 463,
+        "dungeon": "Elden Hollow 2",
+        "name": "Closing the Book",
+        "description": "Defeat Bogdan the Nightflame after reading the Opus of Torment in Veteran Elden Hollow II.",
+        "points": 50
+    },
+    "1580": {
+        "id": 1580,
+        "dungeon": "Elden Hollow 2",
+        "name": "Elden Hollow II Survivor",
+        "description": "Defeat Dubroze the Infestor, Dark Root, Azara the Frightener, Murklight, the Shadow Guard, and Bogdan the Nightflame, without suffering a group member death.",
+        "points": 50
+    },
+    "1597": {
+        "id": 1597,
+        "dungeon": "City of Ash 1",
+        "name": "City of Ash I Conqueror",
+        "description": "Defeat the Infernal Guardian, Golor the Banekin Handler, the Warden of the Shrine, the Dark Ember, Rothariel Flameheart, and Razor Master Erthas in Veteran City of Ash I.",
+        "points": 15
+    },
+    "1600": {
+        "id": 1600,
+        "dungeon": "City of Ash 1",
+        "name": "City of Ash I Assassin",
+        "description": "Defeat the Infernal Guardian, the Warden of the Shrine, and Razor Master Erthas in Veteran City of Ash I within twenty minutes of starting the dungeon. Timer starts when players engage the first group of Daedra.",
+        "points": 50
+    },
+    "1601": {
+        "id": 1601,
+        "dungeon": "City of Ash 1",
+        "name": "City of Ash I Survivor",
+        "description": "Defeat the Infernal Guardian, the Warden of the Shrine, and Razor Master Erthas in Veteran City of Ash I, without suffering a group member death.",
+        "points": 50
+    },
+    "1602": {
+        "id": 1602,
+        "dungeon": "City of Ash 1",
+        "name": "Fire Brigade",
+        "description": "Defeat Razor Master Erthas in Veteran City of Ash I, after invoking the Scroll of Glorious Battle.",
+        "points": 50
+    },
+    "878": {
+        "id": 878,
+        "dungeon": "City of Ash 2",
+        "name": "City of Ash II Conqueror",
+        "description": "Complete Veteran City of Ash II by defeating Horvantud the Fire Maw, the Ash Titan, and Valkyn Skoria.",
+        "points": 15
+    },
+    "1107": {
+        "id": 1107,
+        "dungeon": "City of Ash 2",
+        "name": "Deadly Deadlands Survivor",
+        "description": "Defeat Rukhan, Marruz, Akezel, Urata the Legion, Horvantud the Fire Maw, the Ash Titan, and the Daedra at the bridge to Valkyn Skoria, before defeating Valkyn Skoria himself in Veteran City of Ash II without suffering a group member death.",
+        "points": 50
+    },
+    "1108": {
+        "id": 1108,
+        "dungeon": "City of Ash 2",
+        "name": "City of Ash II Assassin",
+        "description": "Defeat Rukhan, Marruz, Akezel, Urata the Legion, Horvantud the Fire Maw, and the Ash Titan; reassemble the bridge; and defeat Valkyn Skoria himself in Veteran City of Ash II, all within thirty minutes. Timer starts when players enter the Inner Grove.",
+        "points": 50
+    },
+    "1114": {
+        "id": 1114,
+        "dungeon": "City of Ash 2",
+        "name": "A World On Fire",
+        "description": "In Veteran City of Ash II, make a pact with the Frigid Tome, then defeat Valkyn Skoria.",
+        "points": 50
+    },
+    "1610": {
+        "id": 1610,
+        "dungeon": "Crypt of Hearts 1",
+        "name": "Crypt of Hearts I Conqueror",
+        "description": "Defeat the Mage Master, Archmaster Siniel, Death's Leviathan, Uulkar Bonehand, Dogas the Berserker, and the Ilambris Twins in Veteran Crypt of Hearts I.",
+        "points": 10
+    },
+    "1613": {
+        "id": 1613,
+        "dungeon": "Crypt of Hearts 1",
+        "name": "Crypt of Hearts I Assassin",
+        "description": "Defeat the Mage Master, Archmaster Siniel, Death's Leviathan, Uulkar Bonehand, Dogas the Berserker, and the Ilambris Twins in Veteran Crypt of Hearts I within twenty minutes of starting the dungeon. Timer starts when players engage the first group of undead.",
+        "points": 50
+    },
+    "1614": {
+        "id": 1614,
+        "dungeon": "Crypt of Hearts 1",
+        "name": "Crypt of Hearts I Survivor",
+        "description": "Defeat the Mage Master, Archmaster Siniel, Death's Leviathan, Uulkar Bonehand, Dogas the Berserker, and the Ilambris Twins in Veteran Crypt of Hearts I, without suffering a group member death.",
+        "points": 50
+    },
+    "1615": {
+        "id": 1615,
+        "dungeon": "Crypt of Hearts 1",
+        "name": "A Crypt for Two",
+        "description": "Defeat the Ilambris Twins in Veteran Crypt of Hearts I, after invoking the Scroll of Glorious Battle.",
+        "points": 50
+    },
+    "876": {
+        "id": 876,
+        "dungeon": "Crypt of Hearts 2",
+        "name": "Crypt of Hearts II Conqueror",
+        "description": "Defeat Ruzozuzalpamaz, the Brothers Ilambris and the Ilambris Amalgam, and Nerien'eth in Veteran Crypt of Hearts II.",
+        "points": 10
+    },
+    "941": {
+        "id": 941,
+        "dungeon": "Crypt of Hearts 2",
+        "name": "Crypt of Hearts II Assassin",
+        "description": "Defeat Ibelgast, Ruzozuzalpamaz, Chamber Guardian, Ilambris Amalgam, and Mezeluth, before defeating Nerien'eth in Veteran Crypt of Hearts II within thirty minutes of starting the dungeon. Timer starts when the entrance gate opens.",
+        "points": 50
+    },
+    "942": {
+        "id": 942,
+        "dungeon": "Crypt of Hearts 2",
+        "name": "Deadly Crypt Survivor",
+        "description": "Defeat Ibelgast, Ruzozuzalpamaz, Chamber Guardian, Ilambris Amalgam, and Mezeluth, before defeating Nerien'eth in Veteran Crypt of Hearts II without suffering a group member death.",
+        "points": 50
+    },
+    "1084": {
+        "id": 1084,
+        "dungeon": "Crypt of Hearts 2",
+        "name": "The Blade's Edge",
+        "description": "In Veteran Crypt of Hearts II, allow four of Nerien'eth's Students to survive until he takes the Ebony Blade before defeating them all.",
+        "points": 50
+    },
+    "1581": {
+        "id": 1581,
+        "dungeon": "Darkshade Caverns 1",
+        "name": "Darkshade Caverns I Conqueror",
+        "description": "Defeat Head Shepard Neloren, Foreman Llothan, the Hive Lord, the Cavern Patriarch, the Sentinel of Rkugamz, and the Cutting Sphere in Veteran Darkshade Caverns I.",
+        "points": 10
+    },
+    "1584": {
+        "id": 1584,
+        "dungeon": "Darkshade Caverns 1",
+        "name": "Darkshade Caverns I Assassin",
+        "description": "Defeat Head Shepard Neloren, Foreman Llothan, the Hive Lord, the Cavern Patriarch, the Sentinel of Rkugamz, and the Cutting Sphere  in Veteran Darkshade Caverns I within twenty minutes of starting the dungeon. Timer starts when a group member descends into the caverns.",
+        "points": 50
+    },
+    "1585": {
+        "id": 1585,
+        "dungeon": "Darkshade Caverns 1",
+        "name": "Darkshade Caverns I Survivor",
+        "description": "Defeat Head Shepard Neloren, Foreman Llothan, the Hive Lord, the Cavern Patriarch, the Sentinel of Rkugamz, and the Cutting Sphere in Veteran Darkshade Caverns I, without suffering a group member death.",
+        "points": 50
+    },
+    "1586": {
+        "id": 1586,
+        "dungeon": "Darkshade Caverns 1",
+        "name": "Well Out of Warranty",
+        "description": "Defeat the Sentinel of Rkugamz in Veteran Darkshade Caverns I,  after invoking the Scroll of Glorious Battle.",
+        "points": 50
+    },
+    "464": {
+        "id": 464,
+        "dungeon": "Darkshade Caverns 2",
+        "name": "Darkshade Caverns II Conqueror",
+        "description": "Defeat the Transmuted Hive Lord, Grobull the Transmuted, and the Engine Guardian in Veteran Darkshade Caverns II.",
+        "points": 10
+    },
+    "465": {
+        "id": 465,
+        "dungeon": "Darkshade Caverns 2",
+        "name": "Darkshade Caverns II Assassin",
+        "description": "Defeat the Fallen Foreman, the Hive Lord and its Scribs, the Transmuted Alit, Grobull the Transmuted, the Engine Garrison, and the Engine Guardian in Veteran Darkshade Caverns II, all within twenty minutes. Timer starts upon engaging the first group of kwama.",
+        "points": 50
+    },
+    "467": {
+        "id": 467,
+        "dungeon": "Darkshade Caverns 2",
+        "name": "Deadly Engineer",
+        "description": "Defeat the Engine Guardian in Veteran Darkshade Caverns II without anyone in your group activating an Engine Lever.",
+        "points": 50
+    },
+    "1588": {
+        "id": 1588,
+        "dungeon": "Darkshade Caverns 2",
+        "name": "Darkshade Caverns II Survivor",
+        "description": "Defeat the Fallen Foreman, Transmuted Hive Lord, Transmuted Alit, Grobull the Transmuted, the Engine Garrison, and the Engine Guardian in Veteran Darkshade Caverns II, without suffering a group member death.",
+        "points": 50
+    },
+    "1565": {
+        "id": 1565,
+        "dungeon": "Spindleclutch 1",
+        "name": "Spindleclutch I Conqueror",
+        "description": "Defeat Spindlekin, the Swarm Mother, Cerise the Widow-Maker, Big Rabbu, and the Whisperer in Veteran Spindleclutch I.",
+        "points": 10
+    },
+    "1568": {
+        "id": 1568,
+        "dungeon": "Spindleclutch 1",
+        "name": "Spindleclutch I Assassin",
+        "description": "Defeat the Swarm Mother and the Whisperer in Veteran Spindleclutch I within twenty minutes of starting the dungeon. Timer starts when players engage the first group of spiders.",
+        "points": 50
+    },
+    "1569": {
+        "id": 1569,
+        "dungeon": "Spindleclutch 1",
+        "name": "Spindleclutch I Survivor",
+        "description": "Defeat the Swarm Mother and the Whisperer in Veteran Spindleclutch I, without suffering a group member death.",
+        "points": 50
+    },
+    "1570": {
+        "id": 1570,
+        "dungeon": "Spindleclutch 1",
+        "name": "Quiet at Last",
+        "description": "Defeat the Whisperer in Veteran Spindleclutch I, after invoking the Scroll of Glorious Battle.",
+        "points": 50
+    },
+    "421": {
+        "id": 421,
+        "dungeon": "Spindleclutch 2",
+        "name": "Spindleclutch II Conqueror",
+        "description": "Defeat the Blood Golem, Praxin's Ghost, and Vorenor Winterbourne in Veteran Spindleclutch II.",
+        "points": 10
+    },
+    "446": {
+        "id": 446,
+        "dungeon": "Spindleclutch 2",
+        "name": "Spindleclutch II Assassin",
+        "description": "Defeat Mad Mortine, Bloodspawn, Praxin Douare, the Flesh Atronach trio, Urvan Veleth, and Vorenor Winterbourne in Veteran Spindleclutch II within twenty minutes of starting the dungeon. Timer starts when players engage the first group of Thralled warriors.",
+        "points": 50
+    },
+    "448": {
+        "id": 448,
+        "dungeon": "Spindleclutch 2",
+        "name": "Compassionate Hero",
+        "description": "Defeat Vorenor Winterbourne in Veteran Spindleclutch II without killing any of the innocent victims held captive in his lair.",
+        "points": 50
+    },
+    "1572": {
+        "id": 1572,
+        "dungeon": "Spindleclutch 2",
+        "name": "Spindleclutch II Survivor",
+        "description": "Defeat Mad Mortine, Bloodspawn, Praxin Douare, the Flesh Atronach trio, Urvan Veleth, and Vorenor Winterbourne in Veteran Spindleclutch II, without suffering a group member death.",
+        "points": 50
+    },
+    "1589": {
+        "id": 1589,
+        "dungeon": "Wayrest Sewers 1",
+        "name": "Wayrest Sewers I Conqueror",
+        "description": "Defeat Slimecraw, Investigator Garron, the Rat Whisperer, Uulgarg the Hungry, Varain Pellingare, and Allene Pellingare in Veteran Wayrest Sewers I.",
+        "points": 10
+    },
+    "1592": {
+        "id": 1592,
+        "dungeon": "Wayrest Sewers 1",
+        "name": "Wayrest Sewers I Assassin",
+        "description": "Defeat Slimecraw, Investigator Garron, the Rat Whisperer, Uulgarg the Hungry, Varaine Pellingare, and Allene Pellingare in Veteran Wayrest Sewers I, all within fifteen minutes of starting the dungeon. Timer starts when any player enters the first tunnel to the right of the entrance chamber.",
+        "points": 50
+    },
+    "1593": {
+        "id": 1593,
+        "dungeon": "Wayrest Sewers 1",
+        "name": "Wayrest Sewers I Survivor",
+        "description": "Defeat Slimecraw, Investigator Garron, the Rat Whisperer, Uulgarg the Hungry, Varaine Pellingare, and Allene in Veteran Wayrest Sewers I, without suffering a group member death.",
+        "points": 50
+    },
+    "1594": {
+        "id": 1594,
+        "dungeon": "Wayrest Sewers 1",
+        "name": "Down the Gutter",
+        "description": "Defeat Allene Pellingare in Veteran Wayrest Sewers I, after invoking the Scroll of Glorious Battle.",
+        "points": 50
+    },
+    "678": {
+        "id": 678,
+        "dungeon": "Wayrest Sewers 2",
+        "name": "Wayrest Sewers II Conqueror",
+        "description": "Defeat Malubeth the Scourger, Garron the Returned, and Varaine and Allene Pellingare in Veteran Wayrest Sewers II.",
+        "points": 10
+    },
+    "679": {
+        "id": 679,
+        "dungeon": "Wayrest Sewers 2",
+        "name": "Wayrest Sewers II Assassin",
+        "description": "Defeat Malubeth the Scourger, Skull Reaper, Uulgarg the Risen, Garron the Returned, the Forgotten One, and the Pellingare Twins in Veteran Wayrest Sewers II, all within twenty minutes. Timer starts upon engaging the first necromancer and his minions.",
+        "points": 50
+    },
+    "681": {
+        "id": 681,
+        "dungeon": "Wayrest Sewers 2",
+        "name": "Pellingare Ghoul Slayer",
+        "description": "Defeat 15 Zombies during the battle with Allene Pellingare and Varaine Pellingare before defeating the twins themselves in Veteran Wayrest Sewers II.",
+        "points": 50
+    },
+    "1596": {
+        "id": 1596,
+        "dungeon": "Wayrest Sewers 2",
+        "name": "Wayrest Sewers II Survivor",
+        "description": "Defeat Malubeth the Scourger, Garron the Returned, and Varaine and Allene Pellingare in Veteran Wayrest Sewers II, without suffering a group member death.",
+        "points": 50
+    },
+    "1604": {
+        "id": 1604,
+        "dungeon": "Arx Corinium",
+        "name": "Arx Corinium Conqueror",
+        "description": "Complete Veteran Arx Corinium by defeating the Fanged Menace, Ganakton the Tempest, Sliklenia the Songstress, Matron Ixniaa, the Ancient Lurcher, and Sellistrix the Lamia Queen.",
+        "points": 15
+    },
+    "1607": {
+        "id": 1607,
+        "dungeon": "Arx Corinium",
+        "name": "Arx Corinium Assassin",
+        "description": "Defeat the Fanged Menace, Ganakton the Tempest, Sliklenia the Songstress, Matron Ixniaa, the Ancient Lurcher, and Sellistrix the Lamia Queen in Veteran Arx Corinium within twenty minutes of starting the dungeon. Timer starts when players engage the first group of nesting serpents.",
+        "points": 50
+    },
+    "1608": {
+        "id": 1608,
+        "dungeon": "Arx Corinium",
+        "name": "Arx Corinium Survivor",
+        "description": "Defeat the Fanged Menace, Ganakton the Tempest, Sliklenia the Songstress, Matron Ixniaa, the Ancient Lurcher, and Sellistrix the Lamia Queen in Veteran Arx Corinium, without suffering a group member death.",
+        "points": 50
+    },
+    "1609": {
+        "id": 1609,
+        "dungeon": "Arx Corinium",
+        "name": "Snake Skinner",
+        "description": "Defeat Sellistrix the Lamia Queen in Veteran Arx Corinium, after invoking the Scroll of Glorious Battle.",
+        "points": 50
+    },
+    "1647": {
+        "id": 1647,
+        "dungeon": "Blackheart Haven",
+        "name": "Blackheart Haven Conqueror",
+        "description": "Complete Veteran Blackheart Haven by defeating Iron-Heel, Atarus, First Mate Wavecutter, the Roost Mother, Hollow Heart, and Captain Blackheart.",
+        "points": 15
+    },
+    "1650": {
+        "id": 1650,
+        "dungeon": "Blackheart Haven",
+        "name": "Blackheart Haven Assassin",
+        "description": "Defeat Iron-Heel, Atarus, First Mate Wavecutter, the Roost Mother, Hollow Heart, and Captain Blackheart in Veteran Blackheart Haven within twenty minutes of starting the dungeon. Timer starts when the first player leaves the starting docks.",
+        "points": 50
+    },
+    "1651": {
+        "id": 1651,
+        "dungeon": "Blackheart Haven",
+        "name": "Blackheart Haven Survivor",
+        "description": "Defeat Iron-Heel, Atarus, First Mate Wavecutter, the Roost Mother, Hollow Heart, and Captain Blackheart in Veteran Blackheart Haven, without suffering a group member death.",
+        "points": 50
+    },
+    "1652": {
+        "id": 1652,
+        "dungeon": "Blackheart Haven",
+        "name": "Thoroughly Plundered",
+        "description": "Defeat Captain Blackheart in Veteran Blackheart Haven, after invoking the Scroll of Glorious Battle.",
+        "points": 50
+    },
+    "1641": {
+        "id": 1641,
+        "dungeon": "Blessed Crucible",
+        "name": "Blessed Crucible Conqueror",
+        "description": "Complete Veteran Blessed Crucible by defeating Grunt the Clever, the Pack, Teranya the Faceless, the Troll King, Captain Thoran, and the Lava Queen.",
+        "points": 15
+    },
+    "1644": {
+        "id": 1644,
+        "dungeon": "Blessed Crucible",
+        "name": "Blessed Crucible Assassin",
+        "description": "Defeat every boss in Veteran Blessed Crucible within twenty minutes of starting the dungeon. Timer starts when any group member cross the first bridge over lava.",
+        "points": 50
+    },
+    "1645": {
+        "id": 1645,
+        "dungeon": "Blessed Crucible",
+        "name": "Blessed Crucible Survivor",
+        "description": "Defeat Grunt the Clever, the Pack, Teranya the Faceless, the Troll King, Captain Thoran, and the Lava Queen in Veteran Blessed Crucible, without suffering a group member death.",
+        "points": 50
+    },
+    "1646": {
+        "id": 1646,
+        "dungeon": "Blessed Crucible",
+        "name": "Coronation by Fire",
+        "description": "Defeat the Lava Queen in Veteran Blessed Crucible, after invoking the Scroll of Glorious Battle.",
+        "points": 50
+    },
+    "1623": {
+        "id": 1623,
+        "dungeon": "Direfrost Keep",
+        "name": "Direfrost Keep Conqueror",
+        "description": "Complete Veteran Direfrost Keep by defeating Teethnasher the Frostbound, the Guardian of the Flame, Drodda's Apprentice, Drodda's Dreadlord, Iceheart, and Drodda of Icereach.",
+        "points": 15
+    },
+    "1626": {
+        "id": 1626,
+        "dungeon": "Direfrost Keep",
+        "name": "Direfrost Keep Assassin",
+        "description": "Defeat Teethnasher the Frostbound, the Guardian of the Flame, Drodda's Apprentice, Drodda's Dreadlord, Iceheart, and Drodda of Icereach in Veteran Direfrost Keep within twenty minutes of starting the dungeon. Timer starts when any player enters the first bear-filled cavern.",
+        "points": 50
+    },
+    "1627": {
+        "id": 1627,
+        "dungeon": "Direfrost Keep",
+        "name": "Direfrost Keep Survivor",
+        "description": "Defeat Teethnasher the Frostbound, the Guardian of the Flame, Drodda's Apprentice, Drodda's Dreadlord, Iceheart, and Drodda of Icereach in Veteran Direfrost Keep, without suffering a group member death.",
+        "points": 50
+    },
+    "1628": {
+        "id": 1628,
+        "dungeon": "Direfrost Keep",
+        "name": "A Dish Served Cold",
+        "description": "Defeat Drodda of Icereach in Veteran Direfrost Keep, after invoking the Scroll of Glorious Battle.",
+        "points": 50
+    },
+    "1635": {
+        "id": 1635,
+        "dungeon": "Selene's Web",
+        "name": "Selene's Web Conqueror",
+        "description": "Complete Veteran Selene's Web by defeating Treethane Kerninn, Longclaw, Queen Aklayah, Foulhide, Mennir Many-Legs, and Selene.",
+        "points": 15
+    },
+    "1638": {
+        "id": 1638,
+        "dungeon": "Selene's Web",
+        "name": "Selene's Web Assassin",
+        "description": "Defeat Treethane Kerninn, Longclaw, Queen Aklayah, Foulhide, Mennir Many-Legs, and Selene in Veteran Selene's Web within twenty minutes of starting the dungeon. Timer starts when players engage the first group of Bosmer.",
+        "points": 50
+    },
+    "1639": {
+        "id": 1639,
+        "dungeon": "Selene's Web",
+        "name": "Selene's Web Survivor",
+        "description": "Defeat Treethane Kerninn, Longclaw, Queen Aklayah, Foulhide, Mennir Many-Legs, and Selene in Veteran Selene's Web, without suffering a group member death.",
+        "points": 50
+    },
+    "1640": {
+        "id": 1640,
+        "dungeon": "Selene's Web",
+        "name": "All Wrapped Up",
+        "description": "Defeat Selene in Veteran Selene's Web, after invoking the Scroll of Glorious Battle.",
+        "points": 50
+    },
+    "1617": {
+        "id": 1617,
+        "dungeon": "Tempest Island",
+        "name": "Tempest Island Conqueror",
+        "description": "Complete Veteran Tempest Island by defeating Sonolia the Matriarch, Valaran Stormcaller, Yalorasse the Speaker, Stormfist, Commodore Ohmanil, and Stormreeve Neidir.",
+        "points": 15
+    },
+    "1620": {
+        "id": 1620,
+        "dungeon": "Tempest Island",
+        "name": "Tempest Island Assassin",
+        "description": "Defeat Sonolia the Matriarch, Valaran Stormcaller, Yalorasse the Speaker, Stormfist, Commodore Ohmanil, and Stormreeve Neidir in Veteran Tempest Island within twenty minutes of starting the dungeon. Timer starts when players engage the first group of Lamia.",
+        "points": 50
+    },
+    "1621": {
+        "id": 1621,
+        "dungeon": "Tempest Island",
+        "name": "Tempest Island Survivor",
+        "description": "Defeat Sonolia the Matriarch, Valaran Stormcaller, Yalorasse the Speaker, Stormfist, Commodore Ohmanil, and Stormreeve Neidir in Veteran Tempest Island, without suffering a group member death.",
+        "points": 50
+    },
+    "1622": {
+        "id": 1622,
+        "dungeon": "Tempest Island",
+        "name": "Burial at Sea",
+        "description": "Defeat Stormreeve Neidir in Veteran Tempest Island, after invoking the Scroll of Glorious Battle.",
+        "points": 50
+    },
+    "1653": {
+        "id": 1653,
+        "dungeon": "Vaults of Madness",
+        "name": "Vaults of Madness Conqueror",
+        "description": "Complete Veteran Vaults of Madness by defeating the Cursed One, Ulguna Soul-Reaver, Death's Head, Grothdarr, Achaeraizur, the Ancient One, Iskra the Omen, and the Mad Architect.",
+        "points": 15
+    },
+    "1656": {
+        "id": 1656,
+        "dungeon": "Vaults of Madness",
+        "name": "Vaults of Madness Assassin",
+        "description": "Defeat the Cursed One, Ulguna Soul-Reaver, Death's Head, Grothdarr, Achaeraizur, the Ancient One, Iskra the Omen, and the Mad Architect in Veteran Vaults of Madness within twenty minutes of starting the dungeon. Timer starts when players engage the first group of tormentors.",
+        "points": 50
+    },
+    "1657": {
+        "id": 1657,
+        "dungeon": "Vaults of Madness",
+        "name": "Vaults of Madness Survivor",
+        "description": "Defeat the Cursed One, Ulguna Soul-Reaver, Death's Head, Grothdarr, Achaeraizur, the Ancient One, Iskra the Omen, and the Mad Architect in Veteran Vaults of Madness, without suffering a group member death.",
+        "points": 50
+    },
+    "1658": {
+        "id": 1658,
+        "dungeon": "Vaults of Madness",
+        "name": "New Mayor of Crazy Town",
+        "description": "Defeat the Mad Architect in Veteran Vaults of Madness, after invoking the Scroll of Glorious Battle.",
+        "points": 50
+    },
+    "1629": {
+        "id": 1629,
+        "dungeon": "Volenfell",
+        "name": "Volenfell Conqueror",
+        "description": "Complete Veteran Volenfell by defeating the Desert Lion, Quintus Verres and the Monstrous Gargoyle, Boilbite, Tremorscale, the Unstable Construct, and the Guardian Council.",
+        "points": 15
+    },
+    "1632": {
+        "id": 1632,
+        "dungeon": "Volenfell",
+        "name": "Volenfell Assassin",
+        "description": "Defeat the Desert Lion, Quintus Verres and the Monstrous Gargoyle, Boilbite, Tremorscale, the Unstable Construct, and the Guardian Council in Veteran Volenfell within twenty minutes of starting the dungeon. Timer starts when players engage the first group of treasure hunters.",
+        "points": 50
+    },
+    "1633": {
+        "id": 1633,
+        "dungeon": "Volenfell",
+        "name": "Volenfell Survivor",
+        "description": "Defeat the Desert Lion, Quintus Verres and the Monstrous Gargoyle, Boilbite, Tremorscale, the Unstable Construct, and the Guardian Council in Veteran Volenfell, without suffering a group member death.",
+        "points": 50
+    },
+    "1634": {
+        "id": 1634,
+        "dungeon": "Volenfell",
+        "name": "They Were Just Rusty",
+        "description": "Defeat the Guardian Constructs in Veteran Volenfell, after invoking the Scroll of Glorious Battle.",
+        "points": 50
     }
 }
