@@ -16,51 +16,109 @@ function createNameCell(c, parentElementId) {
     return cell;
 }
 
-function createTableRow(dataRow, parentElementId) {
+function createMainViewCell(c, parentElementId) {
+    var cell = document.createElement("td");
+    cell.id = parentElementId + c;
+    cell.dataset.toggle = "tooltip";
+    cell.classList.add("dataCell")
+    if (c != "NIL") {
+        cell.setAttribute("achievementText", achievementInfos[c].name);
+        cell.setAttribute("achievementDescription", achievementInfos[c].description);
+        cell.setAttribute("achievementPoints", achievementInfos[c].points);
+    }
+    return cell;
+}
+
+function populateExtraDataModalRow(c, parentElementId, dungeonAbbv) {
+    var row = document.createElement("tr");
+    row.classList.add("extraDataModalDungeonInfoRow"); // used to hide all rows
+    row.classList.add(dungeonAbbv);
+    row.setAttribute("extraDataModalDungeonAbbv", dungeonAbbv); // used to show only this dungeon's rows
+
+    var titleCell = document.createElement("td");
+    titleCell.innerHTML = achievementInfos[c].name;
+    row.appendChild(titleCell);
+
+    var descriptionCell = document.createElement("td");
+    descriptionCell.innerHTML = achievementInfos[c].description;
+    row.appendChild(descriptionCell);
+
+    var completedByCell = createMainViewCell(c, parentElementId);
+    row.appendChild(completedByCell);
+
+    $("#extraDataTable").append(row);
+}
+
+function setupExtraDataModalButton(dungeonName, dungeonAbbv, parentElementId) {
+    var showModalButton = document.createElement("button");
+    showModalButton.id = parentElementId + dungeonAbbv + "extraAchievementsButton";
+    showModalButton.innerHTML = "Extra Achievements";
+    showModalButton.classList.add("btn");
+    showModalButton.classList.add("btn-primary");
+    showModalButton.onclick = function() {
+        $('.extraDataModalDungeonInfoRow').hide();
+        $(`.${dungeonAbbv}`).show();
+        $("#extraDataModalTitleDungeon").html(dungeonName);
+        var myModalEl = document.querySelector('#extraDataModal')
+        var modal = bootstrap.Modal.getOrCreateInstance(myModalEl) 
+        modal.show();
+    }
+    return showModalButton;
+}
+
+function createTableRow(dataRow, numDataColumnsInMainView, parentElementId) {
     var row = document.createElement("tr");
     var nameCellCreated = false;
-    dataRow["CODES"].forEach((c) => {
+    const extraDataModalNeeded = dataRow["CODES"].length > numDataColumnsInMainView;
+    const numMainViewColumnsWithData = extraDataModalNeeded ? numDataColumnsInMainView - 1 : dataRow["CODES"].length;
+    for (var i  = 0; i < numMainViewColumnsWithData; i++) {
+        const c = dataRow["CODES"][i];
         if (nameCellCreated == false) {
             row.appendChild(createNameCell(c, parentElementId));
             nameCellCreated = true;
         }
-        var cell = document.createElement("td");
-        cell.id = parentElementId + c;
-        cell.dataset.toggle = "tooltip";
-        cell.classList.add("dataCell")
-        if (c != "NIL") {
-            cell.setAttribute("achievementText", achievementInfos[c].name);
-            cell.setAttribute("achievementDescription", achievementInfos[c].description);
-            cell.setAttribute("achievementPoints", achievementInfos[c].points);
+
+        row.appendChild(createMainViewCell(c, parentElementId));
+    }
+
+    if (extraDataModalNeeded) {
+        const dungeonAbbv = dataRow["ABBV"];
+        const dungeonName = achievementInfos[dataRow["CODES"][0]].dungeon;
+        row.appendChild(setupExtraDataModalButton(dungeonName, dungeonAbbv, parentElementId));
+        for (var i = numMainViewColumnsWithData; i < dataRow["CODES"].length; i++) {
+            const c = dataRow["CODES"][i];
+            populateExtraDataModalRow(c, parentElementId, dungeonAbbv);
         }
-        row.appendChild(cell);
-    });
+    }
     return row;
 }
 
-function createTableRows(parentElementId, data) {
+function createTableRows(parentElementId, numDataColumnsInMainView, data) {
     $("#" + parentElementId).empty();
     for (var i = 0; i < data.length; i++) {
-        $("#" + parentElementId).append(createTableRow(data[i], parentElementId));
+        $("#" + parentElementId).append(createTableRow(data[i], numDataColumnsInMainView, parentElementId));
     }
 }
 
 function buildDlcDungeonView(schemaVersion) {
+    var numDataColumnsInMainView = 7;
     var data = schemas[schemaVersion].filter((instanceData) => instanceData["TYPE"] == "dungeon");
 
-    createTableRows("dlcDungeonsTableBody", data);
+    createTableRows("dlcDungeonsTableBody", numDataColumnsInMainView, data);
 }
 
 function buildBaseDungeonView(schemaVersion) {
+    var numDataColumnsInMainView = 4;
     var data = schemas[schemaVersion].filter((instanceData) => instanceData["TYPE"] == "baseDungeon");
 
-    createTableRows("baseDungeonsTableBody", data);
+    createTableRows("baseDungeonsTableBody", numDataColumnsInMainView, data);
 }
 
 function buildTrialsView(schemaVersion) {
+    var numDataColumnsInMainView = 6;
     var data = schemas[schemaVersion].filter((instanceData) => instanceData["TYPE"] == "trial");
 
-    createTableRows("trialsTableBody", data);
+    createTableRows("trialsTableBody", numDataColumnsInMainView, data);
 }
 
 function buildViews(schemaVersion) {
@@ -131,9 +189,11 @@ function getValidInputSizes(schemaVersion) {
     let validSizes = [];
     for (let type of supportedTypes) {
         var data = schemas[schemaVersion].filter((instanceData) => instanceData["TYPE"] == type);
-        var numRows = data.length;
-        var numCols = data[0]["CODES"].length;
-        validSizes.push(numRows * numCols);
+        var total = 0;
+        for (let row of data) {
+            total += row["CODES"].length;
+        }
+        validSizes.push(total);
     }
     return validSizes;
 }
@@ -305,19 +365,11 @@ function setListOfPlayersWithAchieveInTooltip(cellId, playersWhoHaveAchieve) {
 
 function parseDataForOnePlayer(unparsedString, totalNumEncounters, subArraySize, playerNum) {
     var player = new Player();
-    var currPlayerDataPtr = 0;
 
     var playerInfoAsArray = parsePlayerInfoIntoArray(unparsedString);
     player.name = parseUsername(playerInfoAsArray, playerNum);
-    var rawAchievementData = parseRawAchievementData(playerInfoAsArray);
+    player.achievements = parseRawAchievementData(playerInfoAsArray);
 
-    for (var currEncounter = 0; currEncounter < totalNumEncounters; currEncounter++) {
-        player.achievements[currEncounter] = new Array();
-        for (var j = 0; j < subArraySize; j++) {
-            player.achievements[currEncounter].push(rawAchievementData[currPlayerDataPtr]);
-            currPlayerDataPtr++;
-        }
-    }
     return player;
 }
 
@@ -325,7 +377,7 @@ function splitCombinedEncounterDataForAllPlayers(fullArray, subArraySize) {
     var allPlayersData = new Array();
     for (var playerNum = 0; playerNum < fullArray.length; playerNum++) {
         var totalNumEncounters = fullArray[playerNum].length / subArraySize;
-        allPlayersData[playerNum] = parseDataForOnePlayer(fullArray[playerNum], totalNumEncounters, subArraySize, playerNum);
+        allPlayersData.push(parseDataForOnePlayer(fullArray[playerNum], totalNumEncounters, subArraySize, playerNum));
     }
     return allPlayersData;
 }
@@ -347,10 +399,12 @@ function populateTable(data, parentElementId, inputData) {
 
     var perEncounterArrays = splitCombinedEncounterDataForAllPlayers(inputData, data[0]["CODES"].length);
 
+    var currentAchievementIndex = -1; // start on -1 so first index checked is 0, caused by the early continue
     for (var row = 0; row < data.length; row++) {
         for (var col = 0; col < data[row]["CODES"].length; col++) {
             let code = data[row]["CODES"][col];
             let cellId = "#" + parentElementId + code;
+            currentAchievementIndex++;
             if (isNonAchievementCell(cellId)) {
                 setCellColorBasedOnPercentComplete(cellId, -1);
                 continue;
@@ -359,7 +413,7 @@ function populateTable(data, parentElementId, inputData) {
             var totalCountForCell = 0;
             var playersWhoHaveAchieve = [];
             for (var p = 0; p < numPlayers; p++) {
-                let val = parseInt(perEncounterArrays[p].achievements[row][col])
+                let val = parseInt(perEncounterArrays[p].achievements[currentAchievementIndex])
                 totalCountForCell += val;
                 playersWhoHaveAchieve.push({"name": perEncounterArrays[p].name, "hasAchieve": val == 1});
             }
@@ -493,11 +547,12 @@ function handleOptionsButtonClicked(buttonVal) {
     $("#shareButtonContainer").hide();
 }
 
-function getSchemaVersion(inputData) {
-    console.log(inputData);
-    console.log(currentSchemaVersions);
+function getSchemaVersion() {
+    if (currentSchemaVersions.size > 1) {
+        return 1; // fallback to using 1
+    }
 
-    return 1;
+    return [...currentSchemaVersions][0];
 }
 
 function handleGenerateViewButtonClicked(v) {
@@ -507,7 +562,10 @@ function handleGenerateViewButtonClicked(v) {
         return;
     }
 
-    let schemaVersion = getSchemaVersion(inputData);
+    
+    $(".extraDataModalDungeonInfoRow").remove();
+
+    let schemaVersion = getSchemaVersion();
     buildViews(schemaVersion);
 
     $("div.view").hide();
