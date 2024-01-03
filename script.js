@@ -30,8 +30,8 @@ function createTableRow(dataRow, parentElementId) {
         cell.classList.add("dataCell")
         if (c != "NIL") {
             cell.setAttribute("achievementText", achievementInfos[c].name);
-        } else {
-            cell.setAttribute("achievementText", "n/a");
+            cell.setAttribute("achievementDescription", achievementInfos[c].description);
+            cell.setAttribute("achievementPoints", achievementInfos[c].points);
         }
         row.appendChild(cell);
     });
@@ -271,28 +271,39 @@ function setCellColorBasedOnPercentComplete(cellId, percentValue) {
 }
 
 function setListOfPlayersWithAchieveInTooltip(cellId, playersWhoHaveAchieve) {
-    var tooltipText = "";
-    if ($(cellId).attr("achievementText") !== undefined) {
-        tooltipText += $(cellId).attr("achievementText");
-
-        if (playersWhoHaveAchieve.length > 0) {
-            tooltipText += ": ";
-        }
+    if (!$(cellId).attr("achievementText")) {
+        return;
     }
-
+    var tooltipText = "<h2>";
+    tooltipText += $(cellId).attr("achievementText");
+    tooltipText += "</h2>";
+    tooltipText += "<br>";
+    tooltipText += "<p>";
+    tooltipText += $(cellId).attr("achievementDescription");
+    tooltipText += "</p>";
+    tooltipText += "<br>";
+    
+    
     for (var i = 0; i < playersWhoHaveAchieve.length; i++) {
-        if (i > 0) {
-            tooltipText += ", ";
+        tooltipText += "<p>";
+        tooltipText += playersWhoHaveAchieve[i].name;
+        if (playersWhoHaveAchieve[i].hasAchieve) {
+            tooltipText += " ✔️";
+        } else {
+            tooltipText += " ❌";
         }
-        tooltipText += playersWhoHaveAchieve[i];
+        tooltipText += "</p>";
     }
+
 
     $(cellId).data("bs-toggle", "tooltip");
+    $(cellId).attr("data-bs-html", "true");
     $(cellId).attr("title", tooltipText);
     $(cellId).hover(function(){
         $(this).tooltip('hide');
     })
     $(cellId).tooltip({trigger: "click"});
+    $(cellId).attr("title", tooltipText);
 }
 
 function parseDataForOnePlayer(unparsedString, totalNumEncounters, subArraySize, playerNum) {
@@ -323,7 +334,7 @@ function splitCombinedEncounterDataForAllPlayers(fullArray, subArraySize) {
 }
 
 function isNonAchievementCell(cellId) {
-    if ($(cellId).attr("achievementText") == "n/a") {
+    if (!$(cellId).attr("achievementText")) {
         return true;
     }
 
@@ -353,9 +364,7 @@ function populateTable(data, parentElementId, inputData) {
             for (var p = 0; p < numPlayers; p++) {
                 let val = parseInt(perEncounterArrays[p].achievements[row][col])
                 totalCountForCell += val;
-                if (val == 1) {
-                    playersWhoHaveAchieve.push(perEncounterArrays[p].name);
-                }
+                playersWhoHaveAchieve.push({"name": perEncounterArrays[p].name, "hasAchieve": val == 1});
             }
             let percent = Math.trunc((totalCountForCell / numPlayers) * 100);
             $(cellId).html(totalCountForCell + "/" + numPlayers);
