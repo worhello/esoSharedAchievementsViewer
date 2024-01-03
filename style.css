@@ -6,7 +6,7 @@
     text-align: center;
     text-decoration: underline dotted;
     text-underline-position: under;
-    color: black
+    color: black !important;
 }
 
 .dataCell:hover {
@@ -37,4 +37,9 @@
 
 #copyUrlModalBody {
     width: 100%
+}
+
+.tooltip-inner {
+    min-width: 300px;
+    max-width: 5em; 
 }
