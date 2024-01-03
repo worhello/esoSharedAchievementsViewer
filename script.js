@@ -303,7 +303,6 @@ function setListOfPlayersWithAchieveInTooltip(cellId, playersWhoHaveAchieve) {
         $(this).tooltip('hide');
     })
     $(cellId).tooltip({trigger: "click"});
-    $(cellId).attr("title", tooltipText);
 }
 
 function parseDataForOnePlayer(unparsedString, totalNumEncounters, subArraySize, playerNum) {
