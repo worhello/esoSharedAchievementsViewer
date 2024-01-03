@@ -190,9 +190,13 @@ function parsePlayerInfoIntoArray(unparsedString) {
     return unparsedString.split(":");
 }
 
+function escapeHTML(unsafestring) {
+    return $('<div>').text(unsafestring).html();
+}
+
 function parseUsername(playerInfoAsArray, playerNum) {
     if (playerInfoAsArray.length > 1) {
-        return playerInfoAsArray[0];
+        return escapeHTML(playerInfoAsArray[0]);
     }
     return "Player" + (playerNum + 1);
 }
@@ -274,26 +278,20 @@ function setListOfPlayersWithAchieveInTooltip(cellId, playersWhoHaveAchieve) {
     if (!$(cellId).attr("achievementText")) {
         return;
     }
-    var tooltipText = "<h2>";
-    tooltipText += $(cellId).attr("achievementText");
-    tooltipText += "</h2>";
-    tooltipText += "<br>";
-    tooltipText += "<p>";
-    tooltipText += $(cellId).attr("achievementDescription");
-    tooltipText += "</p>";
-    tooltipText += "<br>";
-    
-    
+
+    const achievementTitle = $(cellId).attr("achievementText");
+    const achievementDescription = $(cellId).attr("achievementDescription");
+
+    var playersSection = "";
     for (var i = 0; i < playersWhoHaveAchieve.length; i++) {
-        tooltipText += "<p>";
-        tooltipText += playersWhoHaveAchieve[i].name;
-        if (playersWhoHaveAchieve[i].hasAchieve) {
-            tooltipText += " ✔️";
-        } else {
-            tooltipText += " ❌";
-        }
-        tooltipText += "</p>";
+        var playerText = playersWhoHaveAchieve[i].name;
+        playerText += playersWhoHaveAchieve[i].hasAchieve ? " ✔️" : " ❌";
+        playersSection += `<p>${playerText}</p>`
     }
+
+    var tooltipText = `<h2>${achievementTitle}</h2><br>`;
+    tooltipText += `<p>${achievementDescription}</p><br>`;
+    tooltipText += `${playersSection}`;
 
 
     $(cellId).data("bs-toggle", "tooltip");
