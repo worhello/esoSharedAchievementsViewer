@@ -1,186 +1,186 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <!-- CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="style.css">
 
-    <!-- JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <!-- JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-    <script src="achievementInfos.js"></script>
-    <script src="schemas.js"></script>
-    <script src="script.js"></script>
+        <script src="achievementInfos.js"></script>
+        <script src="schemas.js"></script>
+        <script src="script.js"></script>
 
-    <title>ESO Shared Pithka Viewer</title>
+        <title>ESO Shared Pithka Viewer</title>
 
     </head>
     <body data-bs-theme="dark">
-      <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#" id="navbarTitleLink">ESO Shared Pithka Viewer</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link" href="https://www.esoui.com/downloads/info3615-PithkaAchievementExporter.html" target="_blank" rel="noopener noreferrer">ESO UI Addon Page</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="https://github.com/worhello/esoSharedPithkaViewer" target="_blank" rel="noopener noreferrer">Github Repo</a> 
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav>
-        <div class="container" id="controlsContainer">
-            <div class="row">
-                <div class="col">
-                    <div class="btn-group btn-group-toggle col-sm" data-toggle="buttons">
-                        <input type="radio" class="btn-check" name="options" id="option1" value="dlcDungeons" autocomplete="off" checked>
-                        <label class="btn btn-primary" for="option1">DLC Dungeons</label>
-                        <input type="radio" class="btn-check" name="options" id="option2" value="baseDungeons" autocomplete="off">
-                        <label class="btn btn-primary" for="option2">Base Game Dungeons</label>
-                        <input type="radio" class="btn-check" name="options" id="option3" value="trials" autocomplete="off">
-                        <label class="btn btn-primary" for="option3">Trials</label>
-                    </div>
-                </div>
-                <div id="shareButtonContainer" style="display: none;" class="col">
-                    <div class="float-end">
-                        <button type="button" class="btn btn-info" name="shareViewButton" id="shareViewButton" data-bs-toggle="modal" data-bs-target="#copyUrlModal">
-                            Share Current View
+        <div class="container">
+            <div>
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#" id="navbarTitleLink">ESO Shared Pithka Viewer</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
                         </button>
-                        <div class="modal fade" id="copyUrlModal" tabindex="-1" role="dialog" aria-labelledby="copyUrlModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="copyUrlModalLabel">Copy URL to this View</h5>
-                                    </div>
-                                    <div class="modal-body">
-                                        <textarea rows="8" readonly id="copyUrlModalBody"></textarea>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary" id="copyUrlModalButton">Copy to clipboard</button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="https://www.esoui.com/downloads/info3615-PithkaAchievementExporter.html" target="_blank" rel="noopener noreferrer">ESO UI Addon Page</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="https://github.com/worhello/esoSharedPithkaViewer" target="_blank" rel="noopener noreferrer">Github Repo</a> 
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="container" id="controlsContainer">
+                <div class="row">
+                    <div class="col">
+                        <div class="btn-group btn-group-toggle col-sm" data-toggle="buttons">
+                            <input type="radio" class="btn-check" name="options" id="option1" value="dlcDungeons" autocomplete="off" checked>
+                            <label class="btn btn-primary" for="option1">DLC Dungeons</label>
+                            <input type="radio" class="btn-check" name="options" id="option2" value="baseDungeons" autocomplete="off">
+                            <label class="btn btn-primary" for="option2">Base Game Dungeons</label>
+                            <input type="radio" class="btn-check" name="options" id="option3" value="trials" autocomplete="off">
+                            <label class="btn btn-primary" for="option3">Trials</label>
+                        </div>
+                    </div>
+                    <div id="shareButtonContainer" style="display: none;" class="col">
+                        <div class="float-end">
+                            <button type="button" class="btn btn-info" name="shareViewButton" id="shareViewButton" data-bs-toggle="modal" data-bs-target="#copyUrlModal">
+                                Share Current View
+                            </button>
+                            <div class="modal fade" id="copyUrlModal" tabindex="-1" role="dialog" aria-labelledby="copyUrlModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="copyUrlModalLabel">Copy URL to this View</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            <textarea rows="8" readonly id="copyUrlModalBody"></textarea>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary" id="copyUrlModalButton">Copy to clipboard</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div id="generateButtonsContainer" class="col">
-                    <div class="float-end">
-                        <button type="button" class="desc btn btn-primary" name="generateViewButtons" id="val_dlcDungeons" value="dlcDungeons" >
-                            Generate DLC Dungeons Shared View
-                        </button>
-                        <button type="button" class="desc btn btn-primary" name="generateViewButtons" id="val_baseDungeons" value="baseDungeons" style="display: none;">
-                            Generate Base Game Dungeons Shared View
-                        </button>
-                        <button type="button" class="desc btn btn-primary" name="generateViewButtons" id="val_trials" value="trials" style="display: none;">
-                            Generate Trials Shared View
-                        </button>
+                    <div id="generateButtonsContainer" class="col">
+                        <div class="float-end">
+                            <button type="button" class="desc btn btn-info" name="generateViewButtons" id="val_dlcDungeons" value="dlcDungeons" >
+                                Generate DLC Dungeons Shared View
+                            </button>
+                            <button type="button" class="desc btn btn-info" name="generateViewButtons" id="val_baseDungeons" value="baseDungeons" style="display: none;">
+                                Generate Base Game Dungeons Shared View
+                            </button>
+                            <button type="button" class="desc btn btn-info" name="generateViewButtons" id="val_trials" value="trials" style="display: none;">
+                                Generate Trials Shared View
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div id="inputsContainer">
-            <textarea class="form-control" id="dataInput_dlcDungeons" rows="14" placeholder="Paste all players' exported Pithka DLC Dungeon data here, separated by commas (,) or new lines (Enter Key)"></textarea>
-            <textarea class="form-control" id="dataInput_baseDungeons" rows="14" style="display: none;" placeholder="Paste all players' exported Pithka Base Dungeon data here, separated by commas (,) or new lines (Enter Key)"></textarea>
-            <textarea class="form-control" id="dataInput_trials" rows="14" style="display: none;" placeholder="Paste all players' exported Pithka Trial data here, separated by commas (,) or new lines (Enter Key)"></textarea>
-        </div>
-        <div id="viewsContainer">
-            <div id="playerNamesContainer"></div>
-            <br>
-            <div class="view" id="dlcDungeonsView" style="display: none;">
-                <table class="table">
-                    <thead>
-                        <tr>
-                        <th scope="col">Dungeon</th>
-                        <th scope="col" class="fixedWidthCol">Veteran</th>
-                        <th scope="col" class="fixedWidthCol">Hard Mode</th>
-                        <th scope="col" class="fixedWidthCol">Speed Run</th>
-                        <th scope="col" class="fixedWidthCol">No Death</th>
-                        <th scope="col" class="fixedWidthCol">Challenger</th>
-                        <th scope="col" class="fixedWidthCol">Trifecta</th>
-                        <th scope="col" class="fixedWidthCol">Extra</th>
-                        </tr>
-                    </thead>
-                    <tbody id="dlcDungeonsTableBody">
-                    </tbody>
-                </table>
+            <div id="inputsContainer">
+                <textarea class="form-control" id="dataInput_dlcDungeons" rows="14" placeholder="Paste all players' exported Pithka DLC Dungeon data here, separated by commas (,) or new lines (Enter Key)"></textarea>
+                <textarea class="form-control" id="dataInput_baseDungeons" rows="14" style="display: none;" placeholder="Paste all players' exported Pithka Base Dungeon data here, separated by commas (,) or new lines (Enter Key)"></textarea>
+                <textarea class="form-control" id="dataInput_trials" rows="14" style="display: none;" placeholder="Paste all players' exported Pithka Trial data here, separated by commas (,) or new lines (Enter Key)"></textarea>
             </div>
-            <div class="view" id="baseDungeonsView" style="display: none;">
-                <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">Dungeon</th>
-                        <th scope="col" class="fixedWidthCol">Veteran</th>
-                        <th scope="col" class="fixedWidthCol">Hard Mode</th>
-                        <th scope="col" class="fixedWidthCol">Speed Run</th>
-                        <th scope="col" class="fixedWidthCol">No Death</th>
-                      </tr>
-                    </thead>
-                    <tbody id="baseDungeonsTableBody">
-                    </tbody>
-                  </table>
-            </div>
-            <div class="view" id="trialsView" style="display: none;">
-                <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">Trial</th>
-                        <th scope="col" class="fixedWidthCol">Veteran</th>
-                        <th scope="col" class="fixedWidthCol">Partial Hard Mode</th>
-                        <th scope="col" class="fixedWidthCol">Partial Hard Mode</th>
-                        <th scope="col" class="fixedWidthCol">Hard Mode</th>
-                        <th scope="col" class="fixedWidthCol">Trifecta</th>
-                        <th scope="col" class="fixedWidthCol">Extra</th>
-                      </tr>
-                    </thead>
-                    <tbody id="trialsTableBody">
-                    </tbody>
-                  </table>
-            </div>
-        </div>
-    </div>
-    <div class="container footerContainer">
-        <div class="row">
-            <div class="col">
-                <button type="button" class="btn btn-danger" name="resetLocalStorageButton" id="resetLocalStorageButton" value="resetLocalStorageButton" 
-                    data-toggle="tooltip" data-placement="top" title="Valid input data is stored in the browser to preload information on subsequent loads">
-                    Clear stored data
-                </button>
-            </div>
-        </div>
-  </div>
-
-    <!-- Modal -->
-    <div class="modal modal-xl fade" id="extraDataModal" tabindex="-1" role="dialog" aria-labelledby="extraDataModalTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="extraDataModalTitle">Extra Achievements - <span id="extraDataModalTitleDungeon"></span></h4>
+            <div id="viewsContainer">
+                <div id="playerNamesContainer"></div>
+                <br>
+                <div class="view" id="dlcDungeonsView" style="display: none;">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                            <th scope="col">Dungeon</th>
+                            <th scope="col" class="fixedWidthCol">Veteran</th>
+                            <th scope="col" class="fixedWidthCol">Hard Mode</th>
+                            <th scope="col" class="fixedWidthCol">Speed Run</th>
+                            <th scope="col" class="fixedWidthCol">No Death</th>
+                            <th scope="col" class="fixedWidthCol">Challenger</th>
+                            <th scope="col" class="fixedWidthCol">Trifecta</th>
+                            <th scope="col" class="extraDataCol">Extra</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dlcDungeonsTableBody">
+                        </tbody>
+                    </table>
                 </div>
-                <div class="modal-body">
-                    <table class="table" id="extraDataTable">
-                        <tr id="extraDataHeaderRow">
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Completed</th>
+                <div class="view" id="baseDungeonsView" style="display: none;">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Dungeon</th>
+                            <th scope="col" class="fixedWidthCol">Veteran</th>
+                            <th scope="col" class="fixedWidthCol">Hard Mode</th>
+                            <th scope="col" class="fixedWidthCol">Speed Run</th>
+                            <th scope="col" class="fixedWidthCol">No Death</th>
                         </tr>
+                        </thead>
+                        <tbody id="baseDungeonsTableBody">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="view" id="trialsView" style="display: none;">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Trial</th>
+                            <th scope="col" class="fixedWidthCol">Veteran</th>
+                            <th scope="col" class="fixedWidthCol">Partial Hard Mode</th>
+                            <th scope="col" class="fixedWidthCol">Partial Hard Mode</th>
+                            <th scope="col" class="fixedWidthCol">Hard Mode</th>
+                            <th scope="col" class="fixedWidthCol">Trifecta</th>
+                            <th scope="col" class="extraDataCol">Extra</th>
+                        </tr>
+                        </thead>
+                        <tbody id="trialsTableBody">
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
-    </div>
-  </body>
+
+        <button type="button" class="btn btn-danger" name="resetLocalStorageButton" id="resetLocalStorageButton" value="resetLocalStorageButton" 
+            data-toggle="tooltip" data-placement="top" title="Valid input data is stored in the browser to preload information on subsequent loads">
+            Clear stored data
+        </button>
+
+        <!-- Modal -->
+        <div class="modal modal-xl fade" id="extraDataModal" tabindex="-1" role="dialog" aria-labelledby="extraDataModalTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="extraDataModalTitle">Extra Achievements - <span id="extraDataModalTitleDungeon"></span></h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table" id="extraDataTable">
+                            <tr id="extraDataHeaderRow">
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Completed</th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

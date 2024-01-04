@@ -17,6 +17,11 @@
     width: 12%;
 }
 
+.extraDataCol {
+    min-width: 12%;
+    max-width: 16%;
+}
+
 .dungeonNameCol {
     text-align: left !important;
 }
@@ -42,4 +47,10 @@
 .tooltip-inner {
     min-width: 300px;
     max-width: 5em; 
+}
+
+#resetLocalStorageButton {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
 }

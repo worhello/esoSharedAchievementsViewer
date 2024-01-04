@@ -20,8 +20,8 @@ function createMainViewCell(c, parentElementId) {
     var cell = document.createElement("td");
     cell.id = parentElementId + c;
     cell.dataset.toggle = "tooltip";
-    cell.classList.add("dataCell")
     if (c != "NIL") {
+        cell.classList.add("dataCell")
         cell.setAttribute("achievementText", achievementInfos[c].name);
         cell.setAttribute("achievementDescription", achievementInfos[c].description);
         cell.setAttribute("achievementPoints", achievementInfos[c].points);
@@ -50,10 +50,14 @@ function populateExtraDataModalRow(c, parentElementId, dungeonAbbv) {
 }
 
 function setupExtraDataModalButton(dungeonName, dungeonAbbv, parentElementId) {
+    var cell = document.createElement("td");
+    cell.classList.add("extraDataCol");
+
     var showModalButton = document.createElement("button");
     showModalButton.id = parentElementId + dungeonAbbv + "extraAchievementsButton";
     showModalButton.innerHTML = "Extra Achievements";
     showModalButton.classList.add("btn");
+    showModalButton.classList.add("btn-sm");
     showModalButton.classList.add("btn-primary");
     showModalButton.onclick = function() {
         $('.extraDataModalDungeonInfoRow').hide();
@@ -63,7 +67,9 @@ function setupExtraDataModalButton(dungeonName, dungeonAbbv, parentElementId) {
         var modal = bootstrap.Modal.getOrCreateInstance(myModalEl) 
         modal.show();
     }
-    return showModalButton;
+
+    cell.appendChild(showModalButton);
+    return cell;
 }
 
 function createTableRow(dataRow, numDataColumnsInMainView, parentElementId) {
