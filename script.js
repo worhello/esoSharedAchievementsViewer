@@ -506,7 +506,7 @@ function getBaseUrl() {
     }
 
     // Just hardcoding for now to get this feature working properly
-    return "https://worhello.github.io/esoSharedPithkaViewer/";
+    return "https://worhello.github.io/esoSharedAchievementsViewer/";
 }
 
 function populateShareUrl(v) {
