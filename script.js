@@ -1,3 +1,4 @@
+"use strict";
 
 class Player {
     constructor() {
@@ -76,12 +77,6 @@ function setupExtraDataModalButton(dungeonName, dungeonAbbv, parentElementId) {
     return cell;
 }
 
-function createSeparatorCell() {
-    var cell = document.createElement("td");
-    cell.classList.add("separatorCell");
-    return cell;
-}
-
 function getSummaryCellId(dungeonAbbv, numPlayersCompleted, numberOfPlayers) {
     return "summary_" + dungeonAbbv + "_" + numPlayersCompleted + "_" + numberOfPlayers;
 }
@@ -92,10 +87,6 @@ function createSummaryCell(dungeonAbbv, numPlayersCompleted, numberOfPlayers) {
     cell.id = getSummaryCellId(dungeonAbbv, numPlayersCompleted, numberOfPlayers);
 
     return cell;
-}
-
-function shouldShowSummaryInfoInline(numPlayers) {
-    return numPlayers < 5;
 }
 
 function setupSummaryInfoButton(parentElementId, dungeonAbbv, dungeonName) {
@@ -121,8 +112,13 @@ function setupSummaryInfoButton(parentElementId, dungeonAbbv, dungeonName) {
 }
 
 function setupSummaryInfoModalHeader(numberOfPlayers) {
+    var section = document.createElement("thead");
     var row = document.createElement("tr");
     row.classList.add("summaryInfoHeaderRow");
+
+    var cell = document.createElement("th");
+    cell.textContent = "Dungeon"
+    row.appendChild(cell);
 
     for (var i = numberOfPlayers; i >= 0; i--) {
         var headerCell = document.createElement("th");
@@ -131,20 +127,25 @@ function setupSummaryInfoModalHeader(numberOfPlayers) {
         row.appendChild(headerCell);
     }
 
-    $("#summaryInfoTable").append(row);
+    section.appendChild(row);
+    $("#summaryInfoTable").append(section);
 }
 
-function initSummaryInfoModalRow(dungeonAbbv, numberOfPlayers) {
+function initSummaryInfoModalRow(c, parentElementId, dungeonAbbv, numberOfPlayers) {
+    var section = document.createElement("tbody");
     var row = document.createElement("tr");
     row.classList.add("summaryInfoModalDungeonInfoRow"); // used to hide all rows
     row.classList.add(`${dungeonAbbv}_summary`);
     row.setAttribute("summaryInfoModalDungeonAbbv", dungeonAbbv); // used to show only this dungeon's rows
 
+    row.appendChild(createNameCell(c, parentElementId));
+
     for (let cell of createSummaryCells(dungeonAbbv, numberOfPlayers)) {
         row.appendChild(cell);
     }
 
-    $("#summaryInfoTable").append(row);
+    section.appendChild(row);
+    $("#summaryInfoTable").append(section);
 }
 
 function createSummaryCells(dungeonAbbv, numberOfPlayers) {
@@ -190,16 +191,9 @@ function createTableRow(dataRow, numDataColumnsInMainView, parentElementId, numb
         }
     }
 
-    row.appendChild(createSeparatorCell());
+    const c = dataRow["CODES"][0];
+    initSummaryInfoModalRow(c, parentElementId, dungeonAbbv, numberOfPlayers);
 
-    if (shouldShowSummaryInfoInline(numberOfPlayers)) {
-        for (let cell of createSummaryCells(dungeonAbbv, numberOfPlayers)) {
-            row.appendChild(cell);
-        }
-    } else {
-        row.appendChild(setupSummaryInfoButton(parentElementId, dungeonAbbv, dungeonName));
-        initSummaryInfoModalRow(dungeonAbbv, numberOfPlayers);
-    }
     $(`#${parentElementId}_summaryColHeader`).attr("colspan", numberOfPlayers + 1);
     return row;
 }
@@ -528,7 +522,8 @@ function updateRowSummary(dungeonAbbv, numPlayers, dungeonAchievementSummary) {
     for (var i = 0; i <= numPlayers; i++) {
         let numAchievesWithThisCompletionPercent = getNumAchievesWithThisCompletionPercent(dungeonAchievementSummary, i);
         var cellId = "#" + getSummaryCellId(dungeonAbbv, i, numPlayers);
-        $(cellId).html(numAchievesWithThisCompletionPercent);
+        let percent = Math.trunc((numAchievesWithThisCompletionPercent / dungeonAchievementSummary.size) * 100);
+        $(cellId).html(`${percent}%`);
     }
 }
 
@@ -689,7 +684,7 @@ function handleOptionsButtonClicked(buttonVal) {
     $("#viewsContainer").hide();
     $("#playerNamesContainer").hide();
     $("#dataInput_" + buttonVal).show();
-    $("#shareButtonContainer").hide();
+    $("#metadataContainer").hide();
 }
 
 function getSchemaVersion() {
@@ -716,7 +711,7 @@ function handleGenerateViewButtonClicked(v) {
     $("#inputsContainer").hide();
     $("#viewsContainer").show();
     $("#playerNamesContainer").show();
-    $("#shareButtonContainer").show();
+    $("#metadataContainer").show();
 
     let schemaVersion = getSchemaVersion();
     let numberOfPlayers = inputData.length;
