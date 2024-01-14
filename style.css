@@ -25,26 +25,22 @@
     width: 13%;
 }
 
-.separatorCell {
-    width: 1%;
-    border-left: 1px dashed;
+#metadataContainer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1%;
 }
 
 .dungeonNameCol {
     text-align: left !important;
 }
 
-.summaryCol {
-    text-align: center !important;
-}
-
 .summaryCell {
-    width: 3%;
+    text-align: center !important;
     color: black !important;
 }
 
 .summaryInfoModalDungeonInfoRow td {
-    text-align: center !important;
     padding: 0.5em;
 }
 
@@ -56,10 +52,6 @@
 #controlsContainer {
     margin-top: 1em;
     margin-bottom: 2em;
-}
-
-.footerContainer .row {
-    margin-bottom: 1em;
 }
 
 #copyUrlModalBody {
