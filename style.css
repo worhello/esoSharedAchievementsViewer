@@ -70,9 +70,3 @@
     min-width: 300px;
     max-width: 5em; 
 }
-
-#resetLocalStorageButton {
-    position: fixed;
-    bottom: 0px;
-    left: 0px;
-}

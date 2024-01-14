@@ -168,11 +168,6 @@
             </div>
         </div>
 
-        <button type="button" class="btn btn-danger" name="resetLocalStorageButton" id="resetLocalStorageButton" value="resetLocalStorageButton" 
-            data-toggle="tooltip" data-placement="top" title="Valid input data is stored in the browser to preload information on subsequent loads">
-            Clear stored data
-        </button>
-
         <!-- Extra Achievements Modal -->
         <div class="modal modal-xl fade" id="extraDataModal" tabindex="-1" role="dialog" aria-labelledby="extraDataModalTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -222,6 +217,10 @@
                     <div class="modal-body">
                         <p>ESO Shared Achievements Viewer can save any valid codes inputted to be available for future visits to this site</p>
                         <p>Note: This website does NOT transmit any of your data to any server</p>
+
+                        <button type="button" class="btn btn-danger" name="resetLocalStorageButton" id="resetLocalStorageButton" value="resetLocalStorageButton" data-toggle="tooltip" data-placement="top">
+                            Clear stored data
+                        </button>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
