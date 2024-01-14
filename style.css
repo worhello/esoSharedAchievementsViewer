@@ -14,16 +14,38 @@
 }
 
 .fixedWidthCol {
+    width: 8%;
+}
+
+.fixedWidthCol_trial {
     width: 12%;
 }
 
 .extraDataCol {
-    min-width: 12%;
-    max-width: 16%;
+    width: 13%;
+}
+
+.separatorCell {
+    width: 1%;
+    border-left: 1px dashed;
 }
 
 .dungeonNameCol {
     text-align: left !important;
+}
+
+.summaryCol {
+    text-align: center !important;
+}
+
+.summaryCell {
+    width: 3%;
+    color: black !important;
+}
+
+.summaryInfoModalDungeonInfoRow td {
+    text-align: center !important;
+    padding: 0.5em;
 }
 
 #playerNamesContainer {

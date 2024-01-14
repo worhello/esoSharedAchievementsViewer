@@ -32,7 +32,7 @@ function createMainViewCell(c, parentElementId) {
 function populateExtraDataModalRow(c, parentElementId, dungeonAbbv) {
     var row = document.createElement("tr");
     row.classList.add("extraDataModalDungeonInfoRow"); // used to hide all rows
-    row.classList.add(dungeonAbbv);
+    row.classList.add(`${dungeonAbbv}_extraData`);
     row.setAttribute("extraDataModalDungeonAbbv", dungeonAbbv); // used to show only this dungeon's rows
 
     var titleCell = document.createElement("td");
@@ -61,7 +61,7 @@ function setupExtraDataModalButton(dungeonName, dungeonAbbv, parentElementId) {
     showModalButton.classList.add("btn-primary");
     showModalButton.onclick = function() {
         $('.extraDataModalDungeonInfoRow').hide();
-        $(`.${dungeonAbbv}`).show();
+        $(`.${dungeonAbbv}_extraData`).show();
         $("#extraDataModalTitleDungeon").html(dungeonName);
         var myModalEl = document.querySelector('#extraDataModal')
         var modal = bootstrap.Modal.getOrCreateInstance(myModalEl) 
@@ -72,7 +72,86 @@ function setupExtraDataModalButton(dungeonName, dungeonAbbv, parentElementId) {
     return cell;
 }
 
-function createTableRow(dataRow, numDataColumnsInMainView, parentElementId) {
+function createSeparatorCell() {
+    var cell = document.createElement("td");
+    cell.classList.add("separatorCell");
+    return cell;
+}
+
+function getSummaryCellId(dungeonAbbv, numPlayersCompleted, numberOfPlayers) {
+    return "summary_" + dungeonAbbv + "_" + numPlayersCompleted + "_" + numberOfPlayers;
+}
+
+function createSummaryCell(dungeonAbbv, numPlayersCompleted, numberOfPlayers) {
+    var cell = document.createElement("td");
+    cell.classList.add("summaryCell");
+    cell.id = getSummaryCellId(dungeonAbbv, numPlayersCompleted, numberOfPlayers);
+
+    return cell;
+}
+
+function shouldShowSummaryInfoInline(numPlayers) {
+    return numPlayers < 5;
+}
+
+function setupSummaryInfoButton(parentElementId, dungeonAbbv, dungeonName) {
+    var cell = document.createElement("td");
+
+    var showModalButton = document.createElement("button");
+    showModalButton.id = parentElementId + dungeonAbbv + "summaryInfoButton";
+    showModalButton.innerHTML = "Show Summary";
+    showModalButton.classList.add("btn");
+    showModalButton.classList.add("btn-sm");
+    showModalButton.classList.add("btn-primary");
+    showModalButton.onclick = function() {
+        $('.summaryInfoModalDungeonInfoRow').hide();
+        $(`.${dungeonAbbv}_summary`).show();
+        $("#summaryInfoModalTitleDungeon").html(dungeonName);
+        var myModalEl = document.querySelector('#summaryInfoModal')
+        var modal = bootstrap.Modal.getOrCreateInstance(myModalEl) 
+        modal.show();
+    }
+
+    cell.appendChild(showModalButton);
+    return cell;
+}
+
+function setupSummaryInfoModalHeader(numberOfPlayers) {
+    var row = document.createElement("tr");
+    row.classList.add("summaryInfoHeaderRow");
+
+    for (var i = numberOfPlayers; i >= 0; i--) {
+        var headerCell = document.createElement("th");
+        let extraText = i == 1 ? "Player" : "Players";
+        headerCell.textContent = `${i} ${extraText}`;
+        row.appendChild(headerCell);
+    }
+
+    $("#summaryInfoTable").append(row);
+}
+
+function initSummaryInfoModalRow(dungeonAbbv, numberOfPlayers) {
+    var row = document.createElement("tr");
+    row.classList.add("summaryInfoModalDungeonInfoRow"); // used to hide all rows
+    row.classList.add(`${dungeonAbbv}_summary`);
+    row.setAttribute("summaryInfoModalDungeonAbbv", dungeonAbbv); // used to show only this dungeon's rows
+
+    for (let cell of createSummaryCells(dungeonAbbv, numberOfPlayers)) {
+        row.appendChild(cell);
+    }
+
+    $("#summaryInfoTable").append(row);
+}
+
+function createSummaryCells(dungeonAbbv, numberOfPlayers) {
+    var cells = [];
+    for (var i = numberOfPlayers; i >= 0; i--) {
+        cells.push(createSummaryCell(dungeonAbbv, i, numberOfPlayers));
+    }
+    return cells;
+}
+
+function createTableRow(dataRow, numDataColumnsInMainView, parentElementId, numberOfPlayers) {
     var row = document.createElement("tr");
     var nameCellCreated = false;
     const extraDataModalNeeded = dataRow["CODES"].length > numDataColumnsInMainView;
@@ -87,50 +166,63 @@ function createTableRow(dataRow, numDataColumnsInMainView, parentElementId) {
         row.appendChild(createMainViewCell(c, parentElementId));
     }
 
+    const dungeonAbbv = dataRow["ABBV"];
+    const dungeonName = achievementInfos[dataRow["CODES"][0]].dungeon;
     if (extraDataModalNeeded) {
-        const dungeonAbbv = dataRow["ABBV"];
-        const dungeonName = achievementInfos[dataRow["CODES"][0]].dungeon;
         row.appendChild(setupExtraDataModalButton(dungeonName, dungeonAbbv, parentElementId));
         for (var i = numMainViewColumnsWithData; i < dataRow["CODES"].length; i++) {
             const c = dataRow["CODES"][i];
             populateExtraDataModalRow(c, parentElementId, dungeonAbbv);
         }
     }
+
+    row.appendChild(createSeparatorCell());
+
+    if (shouldShowSummaryInfoInline(numberOfPlayers)) {
+        for (let cell of createSummaryCells(dungeonAbbv, numberOfPlayers)) {
+            row.appendChild(cell);
+        }
+    } else {
+        row.appendChild(setupSummaryInfoButton(parentElementId, dungeonAbbv, dungeonName));
+        initSummaryInfoModalRow(dungeonAbbv, numberOfPlayers);
+    }
+    $(`#${parentElementId}_summaryColHeader`).attr("colspan", numberOfPlayers + 1);
     return row;
 }
 
-function createTableRows(parentElementId, numDataColumnsInMainView, data) {
+function createTableRows(parentElementId, numDataColumnsInMainView, data, numberOfPlayers) {
     $("#" + parentElementId).empty();
+    setupSummaryInfoModalHeader(numberOfPlayers);
     for (var i = 0; i < data.length; i++) {
-        $("#" + parentElementId).append(createTableRow(data[i], numDataColumnsInMainView, parentElementId));
+        $("#" + parentElementId).append(createTableRow(data[i], numDataColumnsInMainView, parentElementId, numberOfPlayers));
     }
 }
 
-function buildDlcDungeonView(schemaVersion) {
+function buildDlcDungeonView(schemaVersion, numberOfPlayers) {
     var numDataColumnsInMainView = 7;
     var data = schemas[schemaVersion].filter((instanceData) => instanceData["TYPE"] == "dungeon");
 
-    createTableRows("dlcDungeonsTableBody", numDataColumnsInMainView, data);
+    createTableRows("dlcDungeonsTableBody", numDataColumnsInMainView, data, numberOfPlayers);
 }
 
-function buildBaseDungeonView(schemaVersion) {
+function buildBaseDungeonView(schemaVersion, numberOfPlayers) {
     var numDataColumnsInMainView = 4;
     var data = schemas[schemaVersion].filter((instanceData) => instanceData["TYPE"] == "baseDungeon");
 
-    createTableRows("baseDungeonsTableBody", numDataColumnsInMainView, data);
+    createTableRows("baseDungeonsTableBody", numDataColumnsInMainView, data, numberOfPlayers);
 }
 
-function buildTrialsView(schemaVersion) {
+function buildTrialsView(schemaVersion, numberOfPlayers) {
     var numDataColumnsInMainView = 6;
     var data = schemas[schemaVersion].filter((instanceData) => instanceData["TYPE"] == "trial");
 
-    createTableRows("trialsTableBody", numDataColumnsInMainView, data);
+    createTableRows("trialsTableBody", numDataColumnsInMainView, data, numberOfPlayers);
 }
 
-function buildViews(schemaVersion) {
-    buildDlcDungeonView(schemaVersion);
-    buildBaseDungeonView(schemaVersion);
-    buildTrialsView(schemaVersion);
+function buildViews(schemaVersion, numberOfPlayers) {
+    buildDlcDungeonView(schemaVersion, numberOfPlayers);
+    buildBaseDungeonView(schemaVersion, numberOfPlayers);
+    buildTrialsView(schemaVersion, numberOfPlayers);
 }
 
 function isAllValidCharacters(data, validChars) {
@@ -400,6 +492,32 @@ function isNonAchievementCell(cellId) {
     return permaNonAchieveCells.includes(cellId);
 }
 
+function initSummaryCellsStyles(dungeonAbbv, numPlayers) {
+    for (var i = 0; i <= numPlayers; i++) {
+        var cellId = "#" + getSummaryCellId(dungeonAbbv, i, numPlayers);
+        let percent = Math.trunc((i / numPlayers) * 100);
+        setCellColorBasedOnPercentComplete(cellId, percent);
+    }
+}
+
+function getNumAchievesWithThisCompletionPercent(dungeonAchievementSummary, numPlayers) {
+    var num = 0;
+    for (const dungeonCompletionCount of dungeonAchievementSummary.values()) {
+        if (dungeonCompletionCount == numPlayers) {
+            num++;
+        }
+    }
+    return num;
+}
+
+function updateRowSummary(dungeonAbbv, numPlayers, dungeonAchievementSummary) {
+    for (var i = 0; i <= numPlayers; i++) {
+        let numAchievesWithThisCompletionPercent = getNumAchievesWithThisCompletionPercent(dungeonAchievementSummary, i);
+        var cellId = "#" + getSummaryCellId(dungeonAbbv, i, numPlayers);
+        $(cellId).html(numAchievesWithThisCompletionPercent);
+    }
+}
+
 function populateTable(data, parentElementId, inputData) {
     var numPlayers = inputData.length;
 
@@ -407,6 +525,10 @@ function populateTable(data, parentElementId, inputData) {
 
     var currentAchievementIndex = -1; // start on -1 so first index checked is 0, caused by the early continue
     for (var row = 0; row < data.length; row++) {
+        const dungeonAbbv = data[row]["ABBV"];
+        initSummaryCellsStyles(dungeonAbbv, numPlayers);
+        var dungeonAchievementSummary = new Map();
+
         for (var col = 0; col < data[row]["CODES"].length; col++) {
             let code = data[row]["CODES"][col];
             let cellId = "#" + parentElementId + code;
@@ -423,11 +545,14 @@ function populateTable(data, parentElementId, inputData) {
                 totalCountForCell += val;
                 playersWhoHaveAchieve.push({"name": perEncounterArrays[p].name, "hasAchieve": val == 1});
             }
+            dungeonAchievementSummary.set(code, totalCountForCell);
             let percent = Math.trunc((totalCountForCell / numPlayers) * 100);
             $(cellId).html(totalCountForCell + "/" + numPlayers);
             setListOfPlayersWithAchieveInTooltip(cellId, playersWhoHaveAchieve);
             setCellColorBasedOnPercentComplete(cellId, percent);
         }
+
+        updateRowSummary(dungeonAbbv, numPlayers, dungeonAchievementSummary);
     }
 
     var allPlayerNames = "";
@@ -568,11 +693,9 @@ function handleGenerateViewButtonClicked(v) {
         return;
     }
 
-    
     $(".extraDataModalDungeonInfoRow").remove();
-
-    let schemaVersion = getSchemaVersion();
-    buildViews(schemaVersion);
+    $(".summaryInfoHeaderRow").remove();
+    $(".summaryInfoModalDungeonInfoRow").remove();
 
     $("div.view").hide();
     $("#generateButtonsContainer").hide();
@@ -581,11 +704,17 @@ function handleGenerateViewButtonClicked(v) {
     $("#playerNamesContainer").show();
     $("#shareButtonContainer").show();
 
+    let schemaVersion = getSchemaVersion();
+    let numberOfPlayers = inputData.length;
+
     if (v == "dlcDungeons") {
+        buildDlcDungeonView(schemaVersion, numberOfPlayers);
         populateDlcDungeonsFromData(inputData, schemaVersion);
     } else if (v == "baseDungeons") {
+        buildBaseDungeonView(schemaVersion, numberOfPlayers);
         populateBaseDungeonsFromData(inputData, schemaVersion);
     } else if (v == "trials") {
+        buildTrialsView(schemaVersion, numberOfPlayers);
         populateTrialsFromData(inputData, schemaVersion);
     }
 

@@ -115,6 +115,8 @@
                             <th scope="col" class="fixedWidthCol">Challenger</th>
                             <th scope="col" class="fixedWidthCol">Trifecta</th>
                             <th scope="col" class="extraDataCol">Extra</th>
+                            <th scope="col" class="separatorCell"></th>
+                            <th scope="col" class="summaryCol" id="dlcDungeonsTableBody_summaryColHeader">Summary</th>
                             </tr>
                         </thead>
                         <tbody id="dlcDungeonsTableBody">
@@ -130,6 +132,8 @@
                             <th scope="col" class="fixedWidthCol">Hard Mode</th>
                             <th scope="col" class="fixedWidthCol">Speed Run</th>
                             <th scope="col" class="fixedWidthCol">No Death</th>
+                            <th scope="col" class="separatorCell"></th>
+                            <th scope="col" class="summaryCol" id="baseDungeonsTableBody_summaryColHeader">Summary</th>
                         </tr>
                         </thead>
                         <tbody id="baseDungeonsTableBody">
@@ -141,12 +145,14 @@
                         <thead>
                         <tr>
                             <th scope="col">Trial</th>
-                            <th scope="col" class="fixedWidthCol">Veteran</th>
-                            <th scope="col" class="fixedWidthCol">Partial Hard Mode</th>
-                            <th scope="col" class="fixedWidthCol">Partial Hard Mode</th>
-                            <th scope="col" class="fixedWidthCol">Hard Mode</th>
-                            <th scope="col" class="fixedWidthCol">Trifecta</th>
+                            <th scope="col" class="fixedWidthCol_trial">Veteran</th>
+                            <th scope="col" class="fixedWidthCol_trial">Partial Hard Mode</th>
+                            <th scope="col" class="fixedWidthCol_trial">Partial Hard Mode</th>
+                            <th scope="col" class="fixedWidthCol_trial">Hard Mode</th>
+                            <th scope="col" class="fixedWidthCol_trial">Trifecta</th>
                             <th scope="col" class="extraDataCol">Extra</th>
+                            <th scope="col" class="separatorCell"></th>
+                            <th scope="col" class="summaryCol" id="trialsTableBody_summaryColHeader">Summary</th>
                         </tr>
                         </thead>
                         <tbody id="trialsTableBody">
@@ -161,7 +167,7 @@
             Clear stored data
         </button>
 
-        <!-- Modal -->
+        <!-- Extra Achievements Modal -->
         <div class="modal modal-xl fade" id="extraDataModal" tabindex="-1" role="dialog" aria-labelledby="extraDataModalTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -175,6 +181,23 @@
                                 <th>Description</th>
                                 <th>Completed</th>
                             </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Summary Info Modal -->
+        <div class="modal modal-xl fade" id="summaryInfoModal" tabindex="-1" role="dialog" aria-labelledby="summaryInfoModalTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="summaryInfoModalTitle">Summary Info - <span id="summaryInfoModalTitleDungeon"></span></h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table" id="summaryInfoTable">
                         </table>
                     </div>
                     <div class="modal-footer">
