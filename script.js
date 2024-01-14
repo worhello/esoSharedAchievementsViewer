@@ -30,6 +30,10 @@ function createMainViewCell(c, parentElementId) {
 }
 
 function populateExtraDataModalRow(c, parentElementId, dungeonAbbv) {
+    if (c == "NIL") {
+        return;
+    }
+
     var row = document.createElement("tr");
     row.classList.add("extraDataModalDungeonInfoRow"); // used to hide all rows
     row.classList.add(`${dungeonAbbv}_extraData`);
@@ -206,7 +210,7 @@ function buildDlcDungeonView(schemaVersion, numberOfPlayers) {
 }
 
 function buildBaseDungeonView(schemaVersion, numberOfPlayers) {
-    var numDataColumnsInMainView = 4;
+    var numDataColumnsInMainView = 5;
     var data = schemas[schemaVersion].filter((instanceData) => instanceData["TYPE"] == "baseDungeon");
 
     createTableRows("baseDungeonsTableBody", numDataColumnsInMainView, data, numberOfPlayers);

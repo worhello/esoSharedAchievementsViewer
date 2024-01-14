@@ -40,6 +40,11 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="https://github.com/worhello/esoSharedPithkaViewer" target="_blank" rel="noopener noreferrer">Github Repo</a> 
                                 </li>
+                                <li class="nav-item">
+                                    <button type="button" class="btn btn-info" name="manageDataButton" id="manageDataButton" data-bs-toggle="modal" data-bs-target="#manageDataModal">
+                                        About your data
+                                    </button>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -132,6 +137,7 @@
                             <th scope="col" class="fixedWidthCol">Hard Mode</th>
                             <th scope="col" class="fixedWidthCol">Speed Run</th>
                             <th scope="col" class="fixedWidthCol">No Death</th>
+                            <th scope="col" class="extraDataCol">Extra</th>
                             <th scope="col" class="separatorCell"></th>
                             <th scope="col" class="summaryCol" id="baseDungeonsTableBody_summaryColHeader">Summary</th>
                         </tr>
@@ -199,6 +205,23 @@
                     <div class="modal-body">
                         <table class="table" id="summaryInfoTable">
                         </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="manageDataModal" tabindex="-1" role="dialog" aria-labelledby="manageDataModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="manageDataModalLabel">About your data</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p>ESO Shared Achievements Viewer can save any valid codes inputted to be available for future visits to this site</p>
+                        <p>Note: This website does NOT transmit any of your data to any server</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
