@@ -4457,5 +4457,957 @@ const achievementInfos = {
         "name": "They Were Just Rusty",
         "description": "Defeat the Guardian Constructs in Veteran Volenfell, after invoking the Scroll of Glorious Battle.",
         "points": 50
+    },
+    "870": {
+        "id": 870,
+        "dungeon": "Hel Ra Citadel",
+        "name": "Hel Ra Citadel: The War Horn",
+        "description": "Sound the war horn in Veteran Hel Ra Citadel and defeat the ancient warriors who answer.",
+        "points": 5
+    },
+    "1080": {
+        "id": 1080,
+        "dungeon": "Hel Ra Citadel",
+        "name": "Time Trial: Hel Ra Citadel",
+        "description": "Complete Veteran Hel Ra Citadel within a time limit of 33 minutes.",
+        "points": 50
+    },
+    "1081": {
+        "id": 1081,
+        "dungeon": "Aetherian Archive",
+        "name": "Time Trial: Aetherian Archive",
+        "description": "Complete Veteran Aetherian Archive within a time limit of 33 minutes.",
+        "points": 50
+    },
+    "1113": {
+        "id": 1113,
+        "dungeon": "Sanctum Ophidia",
+        "name": "Sanctum Ophidia: Feeding Pit",
+        "description": "Use the feed pile in Sanctum Ophidia and survive the ensuing battle.",
+        "points": 5
+    },
+    "1124": {
+        "id": 1124,
+        "dungeon": "Sanctum Ophidia",
+        "name": "Time Trial: Sanctum Ophidia",
+        "description": "Complete Veteran Sanctum Ophidia within a time limit of 33 minutes.",
+        "points": 50
+    },
+    "1367": {
+        "id": 1367,
+        "dungeon": "Maw of Lorkhaj",
+        "name": "Time Trial: Maw of Lorkhaj",
+        "description": "Complete Veteran Maw of Lorkhaj within a time limit of 40 minutes. Your trial begins when you cross the threshold of the Temple of Seven Riddles.",
+        "points": 50
+    },
+    "1369": {
+        "id": 1369,
+        "dungeon": "Maw of Lorkhaj",
+        "name": "Maw of Lorkhaj: Unchained Ambush",
+        "description": "Use both chain switches within ten seconds in Veteran Maw of Lorkhaj, then defeat the dro-m'Athra invaders.",
+        "points": 5
+    },
+    "1385": {
+        "id": 1385,
+        "dungeon": "Maw of Lorkhaj",
+        "name": "Maw of Lorkhaj: Shadow Slayer",
+        "description": "Defeat 25 Void Callers in the Maw of Lorkhaj.",
+        "points": 10
+    },
+    "1386": {
+        "id": 1386,
+        "dungeon": "Maw of Lorkhaj",
+        "name": "Maw of Lorkhaj: Stainless Souls",
+        "description": "Defeat Rakkhat without anyone dying while afflicted by the Breath of Lorkhaj.",
+        "points": 15
+    },
+    "1388": {
+        "id": 1388,
+        "dungeon": "Maw of Lorkhaj",
+        "name": "Maw of Lorkhaj: Two-Moons Dance",
+        "description": "In Veteran Maw of Lorkhaj, force Rakkhat into his final phase within two lunar cycles, then defeat him.",
+        "points": 15
+    },
+    "1389": {
+        "id": 1389,
+        "dungeon": "Maw of Lorkhaj",
+        "name": "Maw of Lorkhaj: Void Avoided",
+        "description": "Defeat Rakkhat in Veteran Maw of Lorkhaj, with a maximum of two players ever being afflicted by the Breath of Lorkhaj.",
+        "points": 15
+    },
+    "1390": {
+        "id": 1390,
+        "dungeon": "Maw of Lorkhaj",
+        "name": "Maw of Lorkhaj: Fang Focused",
+        "description": "Defeat Rakkhat in Veteran Maw of Lorkhaj, with at least three dro-m'Athra Dreadstalkers still alive.",
+        "points": 15
+    },
+    "1392": {
+        "id": 1392,
+        "dungeon": "Maw of Lorkhaj",
+        "name": "Maw of Lorkhaj: Spotless Triumph",
+        "description": "Complete Veteran Maw of Lorkhaj without suffering a group member death.",
+        "points": 50
+    },
+    "1809": {
+        "id": 1809,
+        "dungeon": "Halls of Fabrication",
+        "name": "Time Trial: Halls of Fabrication",
+        "description": "Complete Veteran Halls of Fabrication within a time limit of 40 minutes. Your trial begins when you enter Abanabi Cave beneath Tel Fyr.",
+        "points": 50
+    },
+    "1811": {
+        "id": 1811,
+        "dungeon": "Halls of Fabrication",
+        "name": "Well-Oiled Machine",
+        "description": "Complete Veteran Halls of Fabrication without suffering a group member death.",
+        "points": 50
+    },
+    "1830": {
+        "id": 1830,
+        "dungeon": "Halls of Fabrication",
+        "name": "Refabricant Slayer",
+        "description": "Defeat 100 Calefactors, Capacitors, or Dissectors in the Veteran Halls of Fabrication.",
+        "points": 10
+    },
+    "1831": {
+        "id": 1831,
+        "dungeon": "Halls of Fabrication",
+        "name": "Power House",
+        "description": "Defeat the Pinnacle Factotum without ever using energy from the generator to break a Refabricated Sphere's shield, in Veteran Halls of Fabrication.",
+        "points": 15
+    },
+    "1832": {
+        "id": 1832,
+        "dungeon": "Halls of Fabrication",
+        "name": "Planned Obsolescence",
+        "description": "Defeat the Refabrication Committee in Veteran Halls of Fabrication without ever allowing the Reclaimer to overcharge a Ruined Factotum.",
+        "points": 15
+    },
+    "1833": {
+        "id": 1833,
+        "dungeon": "Halls of Fabrication",
+        "name": "Environmentally Conscious",
+        "description": "Defeat the Assembly General in Veteran Halls of Fabrication without any group member dying to traps and hazards.",
+        "points": 15
+    },
+    "1834": {
+        "id": 1834,
+        "dungeon": "Halls of Fabrication",
+        "name": "Terminal Terminator",
+        "description": "Defeat the Assembly General in Veteran Halls of Fabrication without letting any Terminals complete their activation sequence.",
+        "points": 15
+    },
+    "1837": {
+        "id": 1837,
+        "dungeon": "Halls of Fabrication",
+        "name": "Stress Tested",
+        "description": "Complete Veteran Halls of Fabrication after resetting the circuit breaker and empowering the Assembly General, all without suffering a group member death.",
+        "points": 50
+    },
+    "1839": {
+        "id": 1839,
+        "dungeon": "Halls of Fabrication",
+        "name": "Kill Process",
+        "description": "Defeat one Hunter-Killer Fabricant while the other still has at least half of its health remaining, before defeating the remaining Fabricant in Veteran Halls of Fabrication.",
+        "points": 10
+    },
+    "1840": {
+        "id": 1840,
+        "dungeon": "Halls of Fabrication",
+        "name": "Arc-Custodian",
+        "description": "In Veteran Halls of Fabrication, defeat the Archcustodian using six or fewer Shock Pylons without ever missing an opportunity to disable it with one.",
+        "points": 10
+    },
+    "1841": {
+        "id": 1841,
+        "dungeon": "Halls of Fabrication",
+        "name": "Scholar of Seht's Mysteries",
+        "description": "Discover all the notes scattered throughout the Halls of Fabrication.",
+        "points": 10
+    },
+    "2078": {
+        "id": 2078,
+        "dungeon": "Asylum Sanctorium",
+        "name": "Asylum Sanctorium Contender",
+        "description": "Defeat Saint Olms the Just, Saint Llothis the Pious, and Saint Felms the Bold in the same fight in Asylum Sanctorium.",
+        "points": 50
+    },
+    "2080": {
+        "id": 2080,
+        "dungeon": "Asylum Sanctorium",
+        "name": "Sanctified",
+        "description": "Defeat Saint Olms the Just, Saint Llothis the Pious, and Saint Felms the Bold without suffering a group member death in Veteran Asylum Sanctorium.",
+        "points": 50
+    },
+    "2081": {
+        "id": 2081,
+        "dungeon": "Asylum Sanctorium",
+        "name": "Swift Mercy",
+        "description": "Defeat Saint Olms the Just, Saint Llothis the Pious, and Saint Felms the Bold within a time limit of 15 minutes in Veteran Asylum Sanctorium. Timer starts when players enter the Sanctuary Atrium.",
+        "points": 50
+    },
+    "2082": {
+        "id": 2082,
+        "dungeon": "Asylum Sanctorium",
+        "name": "Beatific Beatdown",
+        "description": "Defeat Saint Olms the Just, Saint Llothis the Pious, and Saint Felms the Bold at the same time without allowing Saint Felms or Saint Llothis to enrage during the fight in Veteran Asylum Sanctorium.",
+        "points": 50
+    },
+    "2083": {
+        "id": 2083,
+        "dungeon": "Asylum Sanctorium",
+        "name": "Placid Projections",
+        "description": "Defeat Saint Felms the Bold without allowing either of his Pneuma Projections to enrage in Veteran Asylum Sanctorium.",
+        "points": 15
+    },
+    "2084": {
+        "id": 2084,
+        "dungeon": "Asylum Sanctorium",
+        "name": "Imperfect Attendance",
+        "description": "Defeat Saint Llothis the Pious without dismantling his Imperfect Attendants in Veteran Asylum Sanctorium.",
+        "points": 15
+    },
+    "2132": {
+        "id": 2132,
+        "dungeon": "Cloudrest",
+        "name": "Cloudrest Contender",
+        "description": "Defeat Z'Maja, Siroria, Relequen, and Galenwe in the same fight in Cloudrest.",
+        "points": 50
+    },
+    "2137": {
+        "id": 2137,
+        "dungeon": "Cloudrest",
+        "name": "Speedy Sload Slayer",
+        "description": "Defeat Z'Maja, Siroria, Relequen, and Galenwe within a time limit of 15 minutes in Veteran Cloudrest. Timer starts when players enter the Cloudrest Aerie.",
+        "points": 50
+    },
+    "2138": {
+        "id": 2138,
+        "dungeon": "Cloudrest",
+        "name": "Surviving the Shadows",
+        "description": "Defeat Z'Maja, Siroria, Relequen, and Galenwe without suffering a group member death in Veteran Cloudrest.",
+        "points": 50
+    },
+    "2231": {
+        "id": 2231,
+        "dungeon": "Cloudrest",
+        "name": "One Core, No More",
+        "description": "Defeat Z'Maja with each group member picking up and destroying only one Malevolent Core in Veteran Cloudrest.",
+        "points": 50
+    },
+    "2232": {
+        "id": 2232,
+        "dungeon": "Cloudrest",
+        "name": "Misery Loves Company",
+        "description": "While battling Z'Maja with all three of the Welkynars' shades by her side, a player with the Hoarfrost affliction and two other players with the Voltaic Overload affliction share the damage of the Roaring Flare eruption in Veteran Cloudrest.",
+        "points": 50
+    },
+    "2233": {
+        "id": 2233,
+        "dungeon": "Cloudrest",
+        "name": "Flares and Deadly Shadows",
+        "description": "While battling Z'Maja with Siroria's shade by her side, utilize a Roaring Flare attack and achieve 20 killing blows against Shadows of the Fallen in Veteran Cloudrest.",
+        "points": 15
+    },
+    "2234": {
+        "id": 2234,
+        "dungeon": "Cloudrest",
+        "name": "Core Coordination",
+        "description": "While battling Z'Maja, after activating a single Welkynar's Light, activate two more Welkynar's Lights and destroy three Malevolent Cores within the next 6 seconds in Veteran Cloudrest.",
+        "points": 15
+    },
+    "2235": {
+        "id": 2235,
+        "dungeon": "Cloudrest",
+        "name": "Yaghra Blockade",
+        "description": "While battling Z'Maja during a single Shadow World event, prevent all yaghra from entering the gateway and crossing into the mortal realm on 15 separate occasions in Cloudrest.",
+        "points": 15
+    },
+    "2236": {
+        "id": 2236,
+        "dungeon": "Cloudrest",
+        "name": "The Mystic's Ice",
+        "description": "Have Galenwe's shade destroy 20 roaming Hoarfrost cyclones with his Spiked Ice attack in Cloudrest.",
+        "points": 15
+    },
+    "2237": {
+        "id": 2237,
+        "dungeon": "Cloudrest",
+        "name": "Shocking Instinct",
+        "description": "While battling Relequen's shade by itself, no player is hit by Voltaic Overload and no player spreads Voltaic Current to other players throughout the entire encounter in Cloudrest.",
+        "points": 10
+    },
+    "2238": {
+        "id": 2238,
+        "dungeon": "Cloudrest",
+        "name": "Valorous Combustion",
+        "description": "While battling Siroria's shade by itself, every Roaring Flare throughout the entire encounter must be split between at least 6 players in Cloudrest.",
+        "points": 10
+    },
+    "2434": {
+        "id": 2434,
+        "dungeon": "Sunspire",
+        "name": "Sunspire Sprinter",
+        "description": "Defeat all enemies in addition to Yolnahkriin, Lokkestiiz, and Nahviintaas in Veteran Sunspire within 30 minutes of entering the corridor between the Sunspire Temple Vestibule and the Courtyard in Veteran Sunspire.",
+        "points": 50
+    },
+    "2436": {
+        "id": 2436,
+        "dungeon": "Sunspire",
+        "name": "Dragonsbane",
+        "description": "Defeat all enemies in addition to Yolnahkriin, Lokkestiiz, and Nahviintaas without suffering a group member death in Veteran Sunspire.",
+        "points": 50
+    },
+    "2437": {
+        "id": 2437,
+        "dungeon": "Sunspire",
+        "name": "Senche-raht Slayer",
+        "description": "Defeat 100 Alkosh's Roars, Jone's Gale-Claws, or Jode's Fire-Fangs in Sunspire.",
+        "points": 10
+    },
+    "2438": {
+        "id": 2438,
+        "dungeon": "Sunspire",
+        "name": "Dragonbound Demolisher",
+        "description": "Defeat 200 of Alkosh's Fate, Will, Fury, or Ruin in Sunspire.",
+        "points": 10
+    },
+    "2499": {
+        "id": 2499,
+        "dungeon": "Sunspire",
+        "name": "Strike When the Iron's Hot",
+        "description": "Defeat Yolnahkriin while destroying his Iron Servants only after they have enraged in Sunspire.",
+        "points": 10
+    },
+    "2500": {
+        "id": 2500,
+        "dungeon": "Sunspire",
+        "name": "Faster Than Lightning",
+        "description": "Defeat Lokkestiiz without any group members being hit by Storm Breath in Sunspire.",
+        "points": 10
+    },
+    "2501": {
+        "id": 2501,
+        "dungeon": "Sunspire",
+        "name": "Keeping In Sync",
+        "description": "Defeat Nahviintaas without a member of the group Time Shifting through a Time Breach more than once in Veteran Sunspire.",
+        "points": 10
+    },
+    "2733": {
+        "id": 2733,
+        "dungeon": "Kyne's Aegis",
+        "name": "Kyne's Aegis Sprinter",
+        "description": "Defeat all enemies in addition to Yandir the Butcher, Captain Vrol, and Lord Falgravn in Veteran Kyne's Aegis within 35 minutes of entering Kyne's Perch village.",
+        "points": 50
+    },
+    "2735": {
+        "id": 2735,
+        "dungeon": "Kyne's Aegis",
+        "name": "Perfect Storm",
+        "description": "Defeat all enemies in addition to Yandir the Butcher, Captain Vrol, and Lord Falgravn without suffering a group member death in Veteran Kyne's Aegis.",
+        "points": 50
+    },
+    "2741": {
+        "id": 2741,
+        "dungeon": "Kyne's Aegis",
+        "name": "Vampire Slayer",
+        "description": "Defeat 175 vampires and harrowfiends in Veteran Kyne's Aegis.",
+        "points": 10
+    },
+    "2742": {
+        "id": 2742,
+        "dungeon": "Kyne's Aegis",
+        "name": "Half-Giant Slayer",
+        "description": "Defeat 100 half-giants in Veteran Kyne's Aegis.",
+        "points": 10
+    },
+    "2743": {
+        "id": 2743,
+        "dungeon": "Kyne's Aegis",
+        "name": "Bile Breaker",
+        "description": "Defeat Yandir the Butcher without any player spreading Chaurus Bile to another player in Veteran Kyne's Aegis.",
+        "points": 10
+    },
+    "2744": {
+        "id": 2744,
+        "dungeon": "Kyne's Aegis",
+        "name": "Singular Siegecraft",
+        "description": "Defeat Captain Vrol while only repairing one of the two available ballistae in Veteran Kyne's Aegis.",
+        "points": 10
+    },
+    "2745": {
+        "id": 2745,
+        "dungeon": "Kyne's Aegis",
+        "name": "Deepest Gratitude",
+        "description": "Successfully rescue all prisoners held captive by Lord Falgravn in Veteran Kyne's Aegis.",
+        "points": 10
+    },
+    "2816": {
+        "id": 2816,
+        "dungeon": "Kyne's Aegis",
+        "name": "Lightning Leaper",
+        "description": "Defeat Yandir the Butcher, Captain Vrol, and Lord Falgravn in Veteran Kyne's Aegis without ever being struck by Lightning Bolt.",
+        "points": 10
+    },
+    "2817": {
+        "id": 2817,
+        "dungeon": "Kyne's Aegis",
+        "name": "Stone-hearted Slayer",
+        "description": "Allow all eight prisoners to die before defeating Lord Falgravn in Veteran Kyne's Aegis.",
+        "points": 10
+    },
+    "2818": {
+        "id": 2818,
+        "dungeon": "Kyne's Aegis",
+        "name": "Spare the Servants",
+        "description": "Defeat Lord Falgravn while Lieutenant Njordal is alive in Veteran Kyne's Aegis.",
+        "points": 10
+    },
+    "2986": {
+        "id": 2986,
+        "dungeon": "Rockgrove",
+        "name": "Rockgrove Sprinter",
+        "description": "Defeat all encounters in addition to Oaxiltso, Flame-Herald Bahsei, and Xalvakka within 30 minutes of entering Veteran Rockgrove. Your timer starts when you engage the first group of enemies. Defeating Bask-In-Snakes and the injured Sul-Xan Militants is not required for completion.",
+        "points": 50
+    },
+    "2988": {
+        "id": 2988,
+        "dungeon": "Rockgrove",
+        "name": "Will of Stone",
+        "description": "Defeat all encounters in addition to Oaxiltso, Flame-Herald Bahsei, and Xalvakka in Veteran Rockgrove without suffering a group member death. Defeating Bask-In-Snakes and the injured Sul-Xan Militants is not required for completion.",
+        "points": 50
+    },
+    "2989": {
+        "id": 2989,
+        "dungeon": "Rockgrove",
+        "name": "Sul-Xan Slayer",
+        "description": "Defeat 300 Sul-Xan in Veteran Rockgrove.",
+        "points": 10
+    },
+    "2990": {
+        "id": 2990,
+        "dungeon": "Rockgrove",
+        "name": "Havocrel Harvester",
+        "description": "Defeat 100 Havocrel in Veteran Rockgrove.",
+        "points": 10
+    },
+    "3008": {
+        "id": 3008,
+        "dungeon": "Rockgrove",
+        "name": "Turtle Soup",
+        "description": "Sacrifice the haj mota to the Grand Geyser in Rockgrove.",
+        "points": 10
+    },
+    "3009": {
+        "id": 3009,
+        "dungeon": "Rockgrove",
+        "name": "Light Stepper",
+        "description": "Complete Rockgrove without a single party member triggering a deadly plant or a trap.",
+        "points": 10
+    },
+    "3010": {
+        "id": 3010,
+        "dungeon": "Rockgrove",
+        "name": "What is this Filth?",
+        "description": "For every time that Noxious Sludge is cleansed, use all 4 cleansing pools to simultaneously remove it from 4 different infected party members, then defeat Oaxiltso in Veteran Rockgrove.",
+        "points": 10
+    },
+    "3011": {
+        "id": 3011,
+        "dungeon": "Rockgrove",
+        "name": "Keep Your Distance",
+        "description": "Avoid infecting any party member with Death Touch by a separate party member, then defeat Flame-Herald Bahsei in Veteran Rockgrove.",
+        "points": 10
+    },
+    "3012": {
+        "id": 3012,
+        "dungeon": "Rockgrove",
+        "name": "Soul Bombardier",
+        "description": "Use Purge Soul to feed 15 Corrupted Azureplasms until they explode during the fight with Xalvakka in Veteran Rockgrove.",
+        "points": 10
+    },
+    "3243": {
+        "id": 3243,
+        "dungeon": "Dreadsail Reef",
+        "name": "Tip of the Harpoon",
+        "description": "Defeat Lylanar and Turlassil, the Reef Guardian, and Tideborn Taleria along with all their hostile followers, within 30 minutes of entering Veteran Dreadsail Reef.",
+        "points": 50
+    },
+    "3245": {
+        "id": 3245,
+        "dungeon": "Dreadsail Reef",
+        "name": "Unsinkable",
+        "description": "Defeat Lylanar and Turlassil, the Reef Guardian, and Tideborn Taleria along with all their hostile followers, without suffering a group member death in Veteran Dreadsail Reef.",
+        "points": 50
+    },
+    "3246": {
+        "id": 3246,
+        "dungeon": "Dreadsail Reef",
+        "name": "Dreadsail Slayer",
+        "description": "Defeat 300 Dreadsail pirates in Veteran Dreadsail Reef.",
+        "points": 10
+    },
+    "3247": {
+        "id": 3247,
+        "dungeon": "Dreadsail Reef",
+        "name": "Ornaug Slayer",
+        "description": "Defeat 50 Ornaugs in Veteran Dreadsail Reef.",
+        "points": 10
+    },
+    "3253": {
+        "id": 3253,
+        "dungeon": "Dreadsail Reef",
+        "name": "Deliberate Disobedience",
+        "description": "Defeat thirty Frost Hounds that have been unaffected by the Destructive Ember and thirty Flame Hounds that have been unaffected by the Piercing Hailstone in Dreadsail Reef.",
+        "points": 10
+    },
+    "3254": {
+        "id": 3254,
+        "dungeon": "Dreadsail Reef",
+        "name": "Once into the Depths",
+        "description": "Defeat the Reef Guardian without any group member descending into the reef rapids more than once during the battle in Veteran Dreadsail Reef.",
+        "points": 10
+    },
+    "3255": {
+        "id": 3255,
+        "dungeon": "Dreadsail Reef",
+        "name": "Full Tour",
+        "description": "Defeat the Dreadsail Venom Evoker, Dreadsail Sea Boiler, and Dreadsail Tidal Mage within 10 seconds of each other after raising the challenge banner in Veteran Dreadsail Reef.",
+        "points": 10
+    },
+    "3256": {
+        "id": 3256,
+        "dungeon": "Dreadsail Reef",
+        "name": "Synchronized Slaying",
+        "description": "Defeat Bow Breaker and Sail Ripper within 15 seconds of each other in Veteran Dreadsail Reef.",
+        "points": 10
+    },
+    "3257": {
+        "id": 3257,
+        "dungeon": "Dreadsail Reef",
+        "name": "Inhospitable",
+        "description": "Assist Ardahan with his research in Dreadsail Reef.",
+        "points": 10
+    },
+    "3559": {
+        "id": 3559,
+        "dungeon": "Sanity's Edge",
+        "name": "Sanity's Edge Sprinter",
+        "description": "Defeat all enemies in addition to Exarchanic Yaseyla, Archwizard Twelvane, and Ansuul the Tormentor in Veteran Sanity's Edge within 30 minutes. Your time begins when you enter Vanton's Nightmare.",
+        "points": 50
+    },
+    "3561": {
+        "id": 3561,
+        "dungeon": "Sanity's Edge",
+        "name": "Lucid Dreaming",
+        "description": "Defeat all enemies in addition to Exarchanic Yaseyla, Archwizard Twelvane, and Ansuul the Tormentor without suffering a group member death in Veteran Sanity's Edge.",
+        "points": 50
+    },
+    "3562": {
+        "id": 3562,
+        "dungeon": "Sanity's Edge",
+        "name": "Terror Slayer",
+        "description": "Defeat 125 Disruptors, Voidmasters, Summoners, Butchers, and Enforcers in Veteran Sanity's Edge.",
+        "points": 10
+    },
+    "3563": {
+        "id": 3563,
+        "dungeon": "Sanity's Edge",
+        "name": "Paranoxia Slayer",
+        "description": "Defeat 50 Paranoxia in Veteran Sanity's Edge.",
+        "points": 10
+    },
+    "3569": {
+        "id": 3569,
+        "dungeon": "Sanity's Edge",
+        "name": "Positive Visualization",
+        "description": "8 unique players must use Vanton's Clarity to kill Horrors while fighting Exarchanic Yaseyla in Sanity's Edge.",
+        "points": 10
+    },
+    "3570": {
+        "id": 3570,
+        "dungeon": "Sanity's Edge",
+        "name": "Astral Cycle",
+        "description": "As a group, never fail to input the correct crystal control sequence during the encounter with Archwizard Twelvane in Veteran Sanity's Edge.",
+        "points": 10
+    },
+    "3571": {
+        "id": 3571,
+        "dungeon": "Sanity's Edge",
+        "name": "Clinical Mortality",
+        "description": "Once the Chimera comes to life, it never returns to its statue form during the encounter with Archwizard Twelvane in Veteran Sanity's Edge.",
+        "points": 10
+    },
+    "3572": {
+        "id": 3572,
+        "dungeon": "Sanity's Edge",
+        "name": "Voice of Clarity",
+        "description": "Enter Vanton's Torment 7 times during the encounter with Ansuul the Tormentor in Sanity's Edge.",
+        "points": 10
+    },
+    "3573": {
+        "id": 3573,
+        "dungeon": "Sanity's Edge",
+        "name": "Fearless Sanity",
+        "description": "Complete each Torment with fewer than 4 players during the encounter with Ansuul the Tormentor in Veteran Sanity's Edge.",
+        "points": 10
+    },
+    "3670": {
+        "id": 3670,
+        "dungeon": "Sanity's Edge",
+        "name": "Group Therapy",
+        "description": "Have 11 players reach the end on a single maze run while fighting Ansuul the Tormentor in Sanity's Edge.",
+        "points": 10
+    },
+    "1557": {
+        "id": 1557,
+        "dungeon": "Fungal Grotto 1",
+        "name": "Veteran Goblin Slayer",
+        "description": "Defeat 450 Goblins in Veteran Fungal Grotto I.",
+        "points": 10
+    },
+    "1558": {
+        "id": 1558,
+        "dungeon": "Fungal Grotto 1",
+        "name": "Veteran Dreugh Slayer",
+        "description": "Defeat 50 Dreugh in Veteran Fungal Grotto I.",
+        "points": 10
+    },
+    "850": {
+        "id": 850,
+        "dungeon": "Fungal Grotto 2",
+        "name": "Veteran Arachnid Slayer",
+        "description": "Defeat 200 Spiders in Veteran Fungal Grotto II.",
+        "points": 10
+    },
+    "851": {
+        "id": 851,
+        "dungeon": "Fungal Grotto 2",
+        "name": "Veteran Obsidian Slayer",
+        "description": "Defeat 425 Obsidian Warriors in Veteran Fungal Grotto II.",
+        "points": 10
+    },
+    "1550": {
+        "id": 1550,
+        "dungeon": "Banished Cell 1",
+        "name": "Veteran Bonebreaker I",
+        "description": "Defeat 350 Skeletons in Veteran Banished Cells I.",
+        "points": 10
+    },
+    "1551": {
+        "id": 1551,
+        "dungeon": "Banished Cell 1",
+        "name": "Veteran Daedra Slayer I",
+        "description": "Defeat 100 Daedra in Veteran Banished Cells I.",
+        "points": 10
+    },
+    "852": {
+        "id": 852,
+        "dungeon": "Banished Cell 2",
+        "name": "Veteran Bonebreaker II",
+        "description": "Defeat 120 Skeletons in Veteran Banished Cells II.",
+        "points": 10
+    },
+    "853": {
+        "id": 853,
+        "dungeon": "Banished Cell 2",
+        "name": "Rilis Dremora Slayer",
+        "description": "Defeat 300 Dremora in Veteran Banished Cells II.",
+        "points": 10
+    },
+    "1574": {
+        "id": 1574,
+        "dungeon": "Elden Hollow 1",
+        "name": "Veteran Darkfern Orc Slayer",
+        "description": "Defeat 400 Darkfern Orcs in Veteran Elden Hollow I.",
+        "points": 10
+    },
+    "1575": {
+        "id": 1575,
+        "dungeon": "Elden Hollow 1",
+        "name": "Veteran Alit Slayer",
+        "description": "Defeat 100 Alit in Veteran Elden Hollow I.",
+        "points": 10
+    },
+    "858": {
+        "id": 858,
+        "dungeon": "Elden Hollow 2",
+        "name": "Veteran Banekin Slayer",
+        "description": "Defeat 140 Banekin in Veteran Elden Hollow II.",
+        "points": 10
+    },
+    "859": {
+        "id": 859,
+        "dungeon": "Elden Hollow 2",
+        "name": "Veteran Lurcher Slayer",
+        "description": "Defeat 60 Lurchers in Veteran Elden Hollow II.",
+        "points": 10
+    },
+    "1598": {
+        "id": 1598,
+        "dungeon": "City of Ash 1",
+        "name": "Veteran Deadlands Banekin Slayer",
+        "description": "Defeat 550 Banekin in Veteran City of Ash I.",
+        "points": 10
+    },
+    "1599": {
+        "id": 1599,
+        "dungeon": "City of Ash 1",
+        "name": "Veteran Flame Atronach Slayer",
+        "description": "Defeat 60 Flame Atronach in Veteran City of Ash I.",
+        "points": 10
+    },
+    "1082": {
+        "id": 1082,
+        "dungeon": "City of Ash 2",
+        "name": "Undaunted Rescuer",
+        "description": "Rescue all of the members of the failed Undaunted expedition to the City of Ash II.",
+        "points": 10
+    },
+    "1105": {
+        "id": 1105,
+        "dungeon": "City of Ash 2",
+        "name": "Mehrunes Dremora Slayer",
+        "description": "Defeat 300 Dremora in Veteran City of Ash II.",
+        "points": 10
+    },
+    "1106": {
+        "id": 1106,
+        "dungeon": "City of Ash 2",
+        "name": "Veteran Flame Colossus Slayer",
+        "description": "Defeat 50 Flame Colossi in Veteran City of Ash II.",
+        "points": 10
+    },
+    "1159": {
+        "id": 1159,
+        "dungeon": "City of Ash 2",
+        "name": "Deadlands Savvy",
+        "description": "Complete the following achievements associated with City of Ash II.",
+        "points": 50
+    },
+    "1611": {
+        "id": 1611,
+        "dungeon": "Crypt of Hearts 1",
+        "name": "Veteran Crypt Zombie Slayer",
+        "description": "Defeat 400 Zombies in Veteran Crypt of Hearts I.",
+        "points": 10
+    },
+    "1612": {
+        "id": 1612,
+        "dungeon": "Crypt of Hearts 1",
+        "name": "Veteran Crypt Skeleton Slayer",
+        "description": "Defeat 400 Skeletons in Veteran Crypt of Hearts I.",
+        "points": 10
+    },
+    "939": {
+        "id": 939,
+        "dungeon": "Crypt of Hearts 2",
+        "name": "Veteran Spiderkith Slayer",
+        "description": "Defeat 250 Spiderkith in Veteran Crypt of Hearts II.",
+        "points": 10
+    },
+    "940": {
+        "id": 940,
+        "dungeon": "Crypt of Hearts 2",
+        "name": "Veteran Flesh Atronach Slayer",
+        "description": "Defeat 50 Flesh Atronachs in Veteran Crypt of Hearts II.",
+        "points": 10
+    },
+    "1582": {
+        "id": 1582,
+        "dungeon": "Darkshade Caverns 1",
+        "name": "Veteran Pit Rat Slayer",
+        "description": "Defeat 175 Pit Rat Thugs in Veteran Darkshade Caverns I.",
+        "points": 10
+    },
+    "1583": {
+        "id": 1583,
+        "dungeon": "Darkshade Caverns 1",
+        "name": "Veteran Kwama Slayer",
+        "description": "Defeat 300 Kwama in Veteran Darkshade Caverns I.",
+        "points": 10
+    },
+    "856": {
+        "id": 856,
+        "dungeon": "Darkshade Caverns 2",
+        "name": "Veteran Kwama Slayer II",
+        "description": "Defeat 200 Kwama in Veteran Darkshade Caverns II.",
+        "points": 10
+    },
+    "857": {
+        "id": 857,
+        "dungeon": "Darkshade Caverns 2",
+        "name": "Veteran Construct Slayer",
+        "description": "Defeat 800 Dwarven Constructs in Veteran Darkshade Caverns II.",
+        "points": 10
+    },
+    "1566": {
+        "id": 1566,
+        "dungeon": "Spindleclutch 1",
+        "name": "Veteran Spider Slayer",
+        "description": "Defeat 600 Spiders in Veteran Spindleclutch I.",
+        "points": 10
+    },
+    "1567": {
+        "id": 1567,
+        "dungeon": "Spindleclutch 1",
+        "name": "Veteran Corrupted Slayer",
+        "description": "Defeat 350 Corrupted in Veteran Spindleclutch I.",
+        "points": 10
+    },
+    "854": {
+        "id": 854,
+        "dungeon": "Spindleclutch 2",
+        "name": "Veteran Thrall Slayer",
+        "description": "Defeat 220 Vampire Thralls in Veteran Spindleclutch II.",
+        "points": 10
+    },
+    "855": {
+        "id": 855,
+        "dungeon": "Spindleclutch 2",
+        "name": "Veteran Flesh Atronach Conqueror",
+        "description": "Defeat 65 Flesh Atronachs in Veteran Spindleclutch II.",
+        "points": 10
+    },
+    "1590": {
+        "id": 1590,
+        "dungeon": "Wayrest Sewers 1",
+        "name": "Veteran Skeever Slayer",
+        "description": "Defeat 800 Skeevers in Veteran Wayrest Sewers I.",
+        "points": 10
+    },
+    "1591": {
+        "id": 1591,
+        "dungeon": "Wayrest Sewers 1",
+        "name": "Veteran Mercenary Slayer",
+        "description": "Defeat 500 Pellingare Mercenaries in Veteran Wayrest Sewers I.",
+        "points": 10
+    },
+    "860": {
+        "id": 860,
+        "dungeon": "Wayrest Sewers 2",
+        "name": "Veteran Zombie Slayer",
+        "description": "Defeat 350 Zombies in Veteran Wayrest Sewers II.",
+        "points": 10
+    },
+    "861": {
+        "id": 861,
+        "dungeon": "Wayrest Sewers 2",
+        "name": "Veteran Colossus Slayer",
+        "description": "Defeat 40 Bone Colossi in Veteran Wayrest Sewers II.",
+        "points": 10
+    },
+    "1605": {
+        "id": 1605,
+        "dungeon": "Arx Corinium",
+        "name": "Veteran Lamia Slayer",
+        "description": "Defeat 400 Lamias in Veteran Arx Corinium.",
+        "points": 10
+    },
+    "1606": {
+        "id": 1606,
+        "dungeon": "Arx Corinium",
+        "name": "Veteran Snake Slayer",
+        "description": "Defeat 175 Giant Snakes in Veteran Arx Corinium.",
+        "points": 10
+    },
+    "1648": {
+        "id": 1648,
+        "dungeon": "Blackheart Haven",
+        "name": "Veteran Pirate Slayer",
+        "description": "Defeat 500 Haven Pirates in Veteran Blackheart Haven.",
+        "points": 10
+    },
+    "1649": {
+        "id": 1649,
+        "dungeon": "Blackheart Haven",
+        "name": "Veteran Harpy Slayer",
+        "description": "Defeat 400 Harpies in Veteran Blackheart Haven.",
+        "points": 10
+    },
+    "1642": {
+        "id": 1642,
+        "dungeon": "Blessed Crucible",
+        "name": "Veteran Gladiator Slayer",
+        "description": "Defeat 500 Gladiators in Veteran Blessed Crucible.",
+        "points": 10
+    },
+    "1643": {
+        "id": 1643,
+        "dungeon": "Blessed Crucible",
+        "name": "Veteran Durzog Slayer",
+        "description": "Defeat 150 Durzogs in Veteran Blessed Crucible.",
+        "points": 10
+    },
+    "1624": {
+        "id": 1624,
+        "dungeon": "Direfrost Keep",
+        "name": "Veteran Draugr Slayer",
+        "description": "Defeat 325 Draugr in Veteran Direfrost Keep.",
+        "points": 10
+    },
+    "1625": {
+        "id": 1625,
+        "dungeon": "Direfrost Keep",
+        "name": "Veteran Frozen Skeleton Slayer",
+        "description": "Defeat 350 Frozen Skeletons in Veteran Direfrost Keep.",
+        "points": 10
+    },
+    "1636": {
+        "id": 1636,
+        "dungeon": "Selene's Web",
+        "name": "Veteran Selene's Bosmer Slayer",
+        "description": "Defeat 250 of Selene's Bosmer in Veteran Selene's Web.",
+        "points": 10
+    },
+    "1637": {
+        "id": 1637,
+        "dungeon": "Selene's Web",
+        "name": "Veteran Selene's Spider Slayer",
+        "description": "Defeat 250 Spiders in Veteran Selene's Web.",
+        "points": 10
+    },
+    "1618": {
+        "id": 1618,
+        "dungeon": "Tempest Island",
+        "name": "Veteran Tempest Lamia Slayer",
+        "description": "Defeat 600 Lamias in Veteran Tempest Island.",
+        "points": 10
+    },
+    "1619": {
+        "id": 1619,
+        "dungeon": "Tempest Island",
+        "name": "Veteran Sea Viper Slayer",
+        "description": "Defeat 550 Sea Vipers in Veteran Tempest Island.",
+        "points": 10
+    },
+    "1654": {
+        "id": 1654,
+        "dungeon": "Vaults of Madness",
+        "name": "Veteran Dremora Destroyer",
+        "description": "Defeat 150 Dremora in Veteran Vaults of Madness.",
+        "points": 10
+    },
+    "1655": {
+        "id": 1655,
+        "dungeon": "Vaults of Madness",
+        "name": "Veteran Feral Shriven Slayer",
+        "description": "Defeat 750 Feral Shriven in Veteran Vaults of Madness.",
+        "points": 10
+    },
+    "1630": {
+        "id": 1630,
+        "dungeon": "Volenfell",
+        "name": "Veteran Treasure Hunter Slayer",
+        "description": "Defeat 250 Treasure Hunters in Veteran Volenfell.",
+        "points": 10
+    },
+    "1631": {
+        "id": 1631,
+        "dungeon": "Volenfell",
+        "name": "Veteran Dwarven Construct Slayer",
+        "description": "Defeat 300 Dwarven Constructs in Veteran Volenfell.",
+        "points": 10
     }
 }
