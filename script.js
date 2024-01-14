@@ -155,10 +155,20 @@ function createSummaryCells(dungeonAbbv, numberOfPlayers) {
     return cells;
 }
 
+function shouldExtraInfoBeShownInModal(dataRow, numDataColumnsInMainView) {
+    let schemaVersion = Array.from(currentSchemaVersions)[0];
+    console.log(schemaVersion);
+    if (schemaVersion && schemaVersion > 2) {
+        return true;
+    }
+
+    return dataRow["CODES"].length > numDataColumnsInMainView;
+}
+
 function createTableRow(dataRow, numDataColumnsInMainView, parentElementId, numberOfPlayers) {
     var row = document.createElement("tr");
     var nameCellCreated = false;
-    const extraDataModalNeeded = dataRow["CODES"].length > numDataColumnsInMainView;
+    const extraDataModalNeeded = shouldExtraInfoBeShownInModal(dataRow, numDataColumnsInMainView);
     const numMainViewColumnsWithData = extraDataModalNeeded ? numDataColumnsInMainView - 1 : dataRow["CODES"].length;
     for (var i  = 0; i < numMainViewColumnsWithData; i++) {
         const c = dataRow["CODES"][i];
