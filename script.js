@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 "use strict";
 
 class Player {
@@ -78,85 +79,6 @@ function setupExtraDataModalButton(dungeonName, dungeonAbbv, parentElementId) {
     return cell;
 }
 
-function getSummaryCellId(dungeonAbbv, numPlayersCompleted, numberOfPlayers) {
-    return "summary_" + dungeonAbbv + "_" + numPlayersCompleted + "_" + numberOfPlayers;
-}
-
-function createSummaryCell(dungeonAbbv, numPlayersCompleted, numberOfPlayers) {
-    var cell = document.createElement("td");
-    cell.classList.add("summaryCell");
-    cell.id = getSummaryCellId(dungeonAbbv, numPlayersCompleted, numberOfPlayers);
-
-    return cell;
-}
-
-function setupSummaryInfoButton(parentElementId, dungeonAbbv, dungeonName) {
-    var cell = document.createElement("td");
-
-    var showModalButton = document.createElement("button");
-    showModalButton.id = parentElementId + dungeonAbbv + "summaryInfoButton";
-    showModalButton.innerHTML = "Show Summary";
-    showModalButton.classList.add("btn");
-    showModalButton.classList.add("btn-sm");
-    showModalButton.classList.add("btn-primary");
-    showModalButton.onclick = function() {
-        $('.summaryInfoModalDungeonInfoRow').hide();
-        $(`.${dungeonAbbv}_summary`).show();
-        $("#summaryInfoModalTitleDungeon").html(dungeonName);
-        var myModalEl = document.querySelector('#summaryInfoModal')
-        var modal = bootstrap.Modal.getOrCreateInstance(myModalEl) 
-        modal.show();
-    }
-
-    cell.appendChild(showModalButton);
-    return cell;
-}
-
-function setupSummaryInfoModalHeader(numberOfPlayers) {
-    var section = document.createElement("thead");
-    var row = document.createElement("tr");
-    row.classList.add("summaryInfoHeaderRow");
-
-    var cell = document.createElement("th");
-    cell.textContent = "Dungeon"
-    row.appendChild(cell);
-
-    for (var i = numberOfPlayers; i >= 0; i--) {
-        var headerCell = document.createElement("th");
-        let extraText = i == 1 ? "Player" : "Players";
-        headerCell.textContent = `${i} ${extraText}`;
-        row.appendChild(headerCell);
-    }
-
-    section.appendChild(row);
-    $("#summaryInfoTable").append(section);
-}
-
-function initSummaryInfoModalRow(c, parentElementId, dungeonAbbv, numberOfPlayers) {
-    var section = document.createElement("tbody");
-    var row = document.createElement("tr");
-    row.classList.add("summaryInfoModalDungeonInfoRow"); // used to hide all rows
-    row.classList.add(`${dungeonAbbv}_summary`);
-    row.setAttribute("summaryInfoModalDungeonAbbv", dungeonAbbv); // used to show only this dungeon's rows
-
-    row.appendChild(createNameCell(c, parentElementId));
-
-    for (let cell of createSummaryCells(dungeonAbbv, numberOfPlayers)) {
-        row.appendChild(cell);
-    }
-
-    section.appendChild(row);
-    $("#summaryInfoTable").append(section);
-}
-
-function createSummaryCells(dungeonAbbv, numberOfPlayers) {
-    var cells = [];
-    for (var i = numberOfPlayers; i >= 0; i--) {
-        cells.push(createSummaryCell(dungeonAbbv, i, numberOfPlayers));
-    }
-    return cells;
-}
-
 function shouldExtraInfoBeShownInModal(dataRow, numDataColumnsInMainView) {
     let schemaVersion = Array.from(currentSchemaVersions)[0];
     if (schemaVersion && schemaVersion > 2) {
@@ -186,13 +108,11 @@ function createTableRow(dataRow, numDataColumnsInMainView, parentElementId, numb
     if (extraDataModalNeeded) {
         row.appendChild(setupExtraDataModalButton(dungeonName, dungeonAbbv, parentElementId));
         let startingExtraDataIndex = numMainViewColumnsWithData;
-        for (var i = startingExtraDataIndex; i < dataRow["CODES"].length; i++) {
-            const c = dataRow["CODES"][i];
+        for (var j = startingExtraDataIndex; j < dataRow["CODES"].length; j++) {
+            const c = dataRow["CODES"][j];
             populateExtraDataModalRow(c, parentElementId, dungeonAbbv);
         }
     }
-
-    const c = dataRow["CODES"][0];
 
     $(`#${parentElementId}_summaryColHeader`).attr("colspan", numberOfPlayers + 1);
     return row;
@@ -224,12 +144,6 @@ function buildTrialsView(schemaVersion, numberOfPlayers) {
     var data = schemas[schemaVersion].filter((instanceData) => instanceData["TYPE"] == "trial");
 
     createTableRows("trialsTableBody", numDataColumnsInMainView, data, numberOfPlayers);
-}
-
-function buildViews(schemaVersion, numberOfPlayers) {
-    buildDlcDungeonView(schemaVersion, numberOfPlayers);
-    buildBaseDungeonView(schemaVersion, numberOfPlayers);
-    buildTrialsView(schemaVersion, numberOfPlayers);
 }
 
 function isAllValidCharacters(data, validChars) {
@@ -402,9 +316,9 @@ function parseRawAchievementDataFromInput(playerInfoAsArray, schemaVersion) {
     }
 
     const validInputSizes = getValidInputSizes(schemaVersion);
-    for (var i = 0; i < validInputSizes.length; i++) {
-        if (decoded.length > validInputSizes[i] && decoded.length - validInputSizes[i] < 6) {
-            decoded = decoded.substring(0, decoded.length - (decoded.length - validInputSizes[i]));
+    for (var j = 0; j < validInputSizes.length; j++) {
+        if (decoded.length > validInputSizes[j] && decoded.length - validInputSizes[j] < 6) {
+            decoded = decoded.substring(0, decoded.length - (decoded.length - validInputSizes[j]));
             break;
         }
     }
@@ -428,11 +342,6 @@ function getColorBucketFromPercent(percentValue) {
     if (percentValue < 34) return BucketColors[1];
     if (percentValue > 67) return BucketColors[3];
     return BucketColors[2];
-}
-
-function getTextColorFromPercent(percentValue) {
-    if (percentValue < 0) return BucketColors[5];
-    return "black";
 }
 
 function setCellColorBasedOnPercentComplete(cellId, percentValue) {
@@ -558,7 +467,7 @@ function generateDataSetsForGraph(allDungeonsAchievementsSummary, numPlayers) {
     return dataArray;
 }
 
-Chart.Tooltip.positioners.myCustomPositioner = function(elements, eventPosition) {
+Chart.Tooltip.positioners.myCustomPositioner = function(elements) {
 
     if(elements.length){ // to prevent errors in the console
         const { x, y, base } = elements[0].element; // _model doesn't exist anymore
@@ -635,7 +544,7 @@ function setupSummaryGraph(allDungeonsAchievementsSummary, numPlayers) {
                         font: {
                             size: 14
                         },
-                        callback: function(value, index, values) {
+                        callback: function(value) {
                             return value + "%";
                         }
                     }
