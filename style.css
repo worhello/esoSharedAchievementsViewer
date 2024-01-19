@@ -62,3 +62,8 @@
     min-width: 300px;
     max-width: 5em; 
 }
+
+#summaryGraphContainer {
+    min-height: 700px;
+    color: white;
+}

@@ -49,6 +49,7 @@ function populateExtraDataModalRow(c, parentElementId, dungeonAbbv) {
     row.appendChild(descriptionCell);
 
     var completedByCell = createMainViewCell(c, parentElementId);
+    completedByCell.id = `${completedByCell.id}_extraData`;
     row.appendChild(completedByCell);
 
     $("#extraDataTable").append(row);
@@ -158,7 +159,6 @@ function createSummaryCells(dungeonAbbv, numberOfPlayers) {
 
 function shouldExtraInfoBeShownInModal(dataRow, numDataColumnsInMainView) {
     let schemaVersion = Array.from(currentSchemaVersions)[0];
-    console.log(schemaVersion);
     if (schemaVersion && schemaVersion > 2) {
         return true;
     }
@@ -185,14 +185,14 @@ function createTableRow(dataRow, numDataColumnsInMainView, parentElementId, numb
     const dungeonName = achievementInfos[dataRow["CODES"][0]].dungeon;
     if (extraDataModalNeeded) {
         row.appendChild(setupExtraDataModalButton(dungeonName, dungeonAbbv, parentElementId));
-        for (var i = numMainViewColumnsWithData; i < dataRow["CODES"].length; i++) {
+        let startingExtraDataIndex = numMainViewColumnsWithData;
+        for (var i = startingExtraDataIndex; i < dataRow["CODES"].length; i++) {
             const c = dataRow["CODES"][i];
             populateExtraDataModalRow(c, parentElementId, dungeonAbbv);
         }
     }
 
     const c = dataRow["CODES"][0];
-    initSummaryInfoModalRow(c, parentElementId, dungeonAbbv, numberOfPlayers);
 
     $(`#${parentElementId}_summaryColHeader`).attr("colspan", numberOfPlayers + 1);
     return row;
@@ -200,7 +200,6 @@ function createTableRow(dataRow, numDataColumnsInMainView, parentElementId, numb
 
 function createTableRows(parentElementId, numDataColumnsInMainView, data, numberOfPlayers) {
     $("#" + parentElementId).empty();
-    setupSummaryInfoModalHeader(numberOfPlayers);
     for (var i = 0; i < data.length; i++) {
         $("#" + parentElementId).append(createTableRow(data[i], numDataColumnsInMainView, parentElementId, numberOfPlayers));
     }
@@ -489,42 +488,171 @@ function splitCombinedEncounterDataForAllPlayers(fullArray, subArraySize) {
 }
 
 function isNonAchievementCell(cellId) {
+    let cellsToUpdate = [
+        `${cellId}`, `${cellId}_extraData`
+    ];
+    var res = true;
+    for (let id of cellsToUpdate) {
+        res = res && _isNonAchievementCell(id);
+    }
+    return res;
+}
+
+function _isNonAchievementCell(cellId) {
     if (!$(cellId).attr("achievementText")) {
         return true;
     }
 
     const permaNonAchieveCells = [
         "#dlcDungeonsTableBodycha0",
-        "#dlcDungeonsTableBodycha28"
+        "#dlcDungeonsTableBodycha0_extraData",
+        "#dlcDungeonsTableBodycha28",
+        "#dlcDungeonsTableBodycha28_extraData"
     ];
     return permaNonAchieveCells.includes(cellId);
 }
 
-function initSummaryCellsStyles(dungeonAbbv, numPlayers) {
-    for (var i = 0; i <= numPlayers; i++) {
-        var cellId = "#" + getSummaryCellId(dungeonAbbv, i, numPlayers);
-        let percent = Math.trunc((i / numPlayers) * 100);
-        setCellColorBasedOnPercentComplete(cellId, percent);
-    }
-}
+function generateDataSetsForGraph(allDungeonsAchievementsSummary, numPlayers) {
+    var transformedDataMap = new Map();
 
-function getNumAchievesWithThisCompletionPercent(dungeonAchievementSummary, numPlayers) {
-    var num = 0;
-    for (const dungeonCompletionCount of dungeonAchievementSummary.values()) {
-        if (dungeonCompletionCount == numPlayers) {
-            num++;
+    for (let dungeonName of allDungeonsAchievementsSummary.keys()) {
+        let singleDungeonAchievementsSummary = allDungeonsAchievementsSummary.get(dungeonName);
+        var results = {};
+        results.totalNumAchievements = Array.from(singleDungeonAchievementsSummary.keys()).length;
+        results.groupedByPlayerCount = new Map();
+        for (let achievementCode of singleDungeonAchievementsSummary.keys()) {
+            let playerCount = singleDungeonAchievementsSummary.get(achievementCode);
+            if (!results.groupedByPlayerCount.has(playerCount)) {
+                results.groupedByPlayerCount.set(playerCount, 0);
+            }
+            results.groupedByPlayerCount.set(playerCount, results.groupedByPlayerCount.get(playerCount) + 1);
         }
+
+        transformedDataMap.set(dungeonName, results);
     }
-    return num;
+
+    var dataArray = [];
+    for (var i = numPlayers; i >= 0; i--) {
+        var nPlayersHaveAchievement = [];
+        let percentValue = Math.trunc((i / numPlayers) * 100);
+
+        for (let dungeon of transformedDataMap.keys()) {
+            let dungeonData = transformedDataMap.get(dungeon);
+            if (dungeonData.groupedByPlayerCount.has(i)) {
+                var rawValue = dungeonData.groupedByPlayerCount.get(i);
+                let achievementCompletedPercent = (rawValue / dungeonData.totalNumAchievements) * 100;
+                nPlayersHaveAchievement.push(achievementCompletedPercent);
+            } else {
+                nPlayersHaveAchievement.push(0);
+            }
+        }
+
+        dataArray.push({
+            label: `${i} Player(s) have the achievement`,
+            data: nPlayersHaveAchievement,
+            barThickness: 17,
+            backgroundColor: getColorBucketFromPercent(percentValue)
+        });
+    }
+
+    return dataArray;
 }
 
-function updateRowSummary(dungeonAbbv, numPlayers, dungeonAchievementSummary) {
-    for (var i = 0; i <= numPlayers; i++) {
-        let numAchievesWithThisCompletionPercent = getNumAchievesWithThisCompletionPercent(dungeonAchievementSummary, i);
-        var cellId = "#" + getSummaryCellId(dungeonAbbv, i, numPlayers);
-        let percent = Math.trunc((numAchievesWithThisCompletionPercent / dungeonAchievementSummary.size) * 100);
-        $(cellId).html(`${percent}%`);
+Chart.Tooltip.positioners.myCustomPositioner = function(elements, eventPosition) {
+
+    if(elements.length){ // to prevent errors in the console
+        const { x, y, base } = elements[0].element; // _model doesn't exist anymore
+        const width = !base ? 0 : base - x;// so it doesn't break in combo graphs like lines + bars
+        return { 
+            x: x + (width / 2), 
+            y: y,
+            xAlign: 'center',
+            yAlign: 'bottom'
+        };
     }
+    return false;
+};
+
+var summaryGraphChart = null;
+
+function setupSummaryGraph(allDungeonsAchievementsSummary, numPlayers) {
+    const ctx = document.getElementById('summaryGraphCanvas');
+
+    summaryGraphChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: Array.from(allDungeonsAchievementsSummary.keys()),
+            datasets: generateDataSetsForGraph(allDungeonsAchievementsSummary, numPlayers),
+        },
+        options: {
+            indexAxis: 'y',
+            // Elements options apply to all of the options unless overridden in a dataset
+            // In this case, we are setting the border of each horizontal bar to be 2px wide
+            elements: {
+                bar: {
+                    borderWidth: 2,
+                }
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            var label = context.dataset.label || '';
+    
+                            var numPlayers = 0;
+                            if (label) {
+                                numPlayers = Number(label.substr(0, 2)); // support up to 99 players
+                            }
+                            if (context.parsed.y !== null) {
+                                let rawVal = Number(context.parsed.x);
+                                let adjustedVal = Math.trunc(rawVal * 100) / 100;
+                                label = `${adjustedVal}% of this dungeon's achievements have been completed by ${numPlayers} players`;
+                            }
+                            return label;
+                        }
+                    },
+                    position: 'myCustomPositioner'
+                },
+                legend: {
+                    labels: {
+                        color: 'white',
+                        usePointStyle: true,
+                        font: {
+                            size: 14
+                        }
+                    }
+                },
+            },
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    stacked: true,
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: {
+                        color: "white",
+                        font: {
+                            size: 14
+                        },
+                        callback: function(value, index, values) {
+                            return value + "%";
+                        }
+                    }
+                },
+                y: {
+                    stacked: true,
+                    ticks: {
+                        autoSkip: false,
+                        color: "white",
+                        font: {
+                            size: 14
+                        }
+                    }
+                }
+            }
+        }
+    });
 }
 
 function populateTable(data, parentElementId, inputData) {
@@ -532,11 +660,12 @@ function populateTable(data, parentElementId, inputData) {
 
     var perEncounterArrays = splitCombinedEncounterDataForAllPlayers(inputData, data[0]["CODES"].length);
 
+    var allDungeonsAchievementsSummary = new Map();
+
     var currentAchievementIndex = -1; // start on -1 so first index checked is 0, caused by the early continue
     for (var row = 0; row < data.length; row++) {
-        const dungeonAbbv = data[row]["ABBV"];
-        initSummaryCellsStyles(dungeonAbbv, numPlayers);
         var dungeonAchievementSummary = new Map();
+        var dungeonName = "";
 
         for (var col = 0; col < data[row]["CODES"].length; col++) {
             let code = data[row]["CODES"][col];
@@ -554,15 +683,26 @@ function populateTable(data, parentElementId, inputData) {
                 totalCountForCell += val;
                 playersWhoHaveAchieve.push({"name": perEncounterArrays[p].name, "hasAchieve": val == 1});
             }
-            dungeonAchievementSummary.set(code, totalCountForCell);
             let percent = Math.trunc((totalCountForCell / numPlayers) * 100);
-            $(cellId).html(totalCountForCell + "/" + numPlayers);
-            setListOfPlayersWithAchieveInTooltip(cellId, playersWhoHaveAchieve);
-            setCellColorBasedOnPercentComplete(cellId, percent);
+            let cellsToUpdate = [
+                `${cellId}`, `${cellId}_extraData`
+            ];
+            for (let id of cellsToUpdate) {
+                if ($(id).length) {
+                    $(id).html(totalCountForCell + "/" + numPlayers);
+                    setListOfPlayersWithAchieveInTooltip(id, playersWhoHaveAchieve);
+                    setCellColorBasedOnPercentComplete(id, percent);
+                }
+            }
+
+            dungeonName = achievementInfos[code].dungeon;
+            dungeonAchievementSummary.set(code, totalCountForCell);
         }
 
-        updateRowSummary(dungeonAbbv, numPlayers, dungeonAchievementSummary);
+        allDungeonsAchievementsSummary.set(dungeonName, dungeonAchievementSummary);
     }
+
+    setupSummaryGraph(allDungeonsAchievementsSummary, numPlayers);
 
     var allPlayerNames = "";
     for (var playerNum = 0; playerNum < numPlayers; playerNum++) {
@@ -685,6 +825,11 @@ function handleOptionsButtonClicked(buttonVal) {
     $("#playerNamesContainer").hide();
     $("#dataInput_" + buttonVal).show();
     $("#metadataContainer").hide();
+
+    if (summaryGraphChart) {
+        summaryGraphChart.destroy();
+        summaryGraphChart = null;
+    }
 }
 
 function getSchemaVersion() {
