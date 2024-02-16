@@ -62,7 +62,7 @@ function setupExtraDataModalButton(dungeonName, dungeonAbbv, parentElementId) {
 
     var showModalButton = document.createElement("button");
     showModalButton.id = parentElementId + dungeonAbbv + "extraAchievementsButton";
-    showModalButton.innerHTML = "Extra Achievements";
+    showModalButton.innerHTML = "More Details";
     showModalButton.classList.add("btn");
     showModalButton.classList.add("btn-sm");
     showModalButton.classList.add("btn-primary");
@@ -107,7 +107,7 @@ function createTableRow(dataRow, numDataColumnsInMainView, parentElementId, numb
     const dungeonName = achievementInfos[dataRow["CODES"][0]].dungeon;
     if (extraDataModalNeeded) {
         row.appendChild(setupExtraDataModalButton(dungeonName, dungeonAbbv, parentElementId));
-        let startingExtraDataIndex = numMainViewColumnsWithData;
+        let startingExtraDataIndex = 0;
         for (var j = startingExtraDataIndex; j < dataRow["CODES"].length; j++) {
             const c = dataRow["CODES"][j];
             populateExtraDataModalRow(c, parentElementId, dungeonAbbv);
@@ -495,6 +495,7 @@ function setupSummaryGraph(allDungeonsAchievementsSummary, numPlayers) {
         },
         options: {
             indexAxis: 'y',
+            animation: false,
             // Elements options apply to all of the options unless overridden in a dataset
             // In this case, we are setting the border of each horizontal bar to be 2px wide
             elements: {
