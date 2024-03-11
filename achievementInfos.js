@@ -5409,5 +5409,285 @@ const achievementInfos = {
         "name": "Veteran Dwarven Construct Slayer",
         "description": "Defeat 300 Dwarven Constructs in Veteran Volenfell.",
         "points": 10
+    },
+    "3849": {
+        "id": 3849,
+        "dungeon": "Bedlam Veil",
+        "name": "Blind Path Slayer",
+        "description": "Defeat 150 Blind Path Cultists in Veteran Bedlam Veil.",
+        "points": 10
+    },
+    "3850": {
+        "id": 3850,
+        "dungeon": "Bedlam Veil",
+        "name": "Hollow Sentinel Slayer",
+        "description": "Defeat 60 Hollow Sentinels in Veteran Bedlam Veil.",
+        "points": 10
+    },
+    "3851": {
+        "id": 3851,
+        "dungeon": "Bedlam Veil",
+        "name": "Bedlam Veil Vanquisher",
+        "description": "Defeat the Shattered Champion, Darkshard, and the Blind in Bedlam Veil.",
+        "points": 10
+    },
+    "3852": {
+        "id": 3852,
+        "dungeon": "Bedlam Veil",
+        "name": "Bedlam Veil Conqueror",
+        "description": "Defeat the Shattered Champion, Darkshard, and the Blind in Veteran Bedlam Veil.",
+        "points": 10
+    },
+    "3853": {
+        "id": 3853,
+        "dungeon": "Bedlam Veil",
+        "name": "Lithe and Clever",
+        "description": "Defeat the Blind after placing the Challenge Banner in Veteran Bedlam Veil.",
+        "points": 50
+    },
+    "3854": {
+        "id": 3854,
+        "dungeon": "Bedlam Veil",
+        "name": "Following a Path",
+        "description": "Defeat all encounters in addition to the Shattered Champion, Darkshard, and the Blind within 25 minutes of entering Veteran Bedlam Veil. Your timer starts upon engaging the first enemies.",
+        "points": 50
+    },
+    "3855": {
+        "id": 3855,
+        "dungeon": "Bedlam Veil",
+        "name": "Demiprince's Delight",
+        "description": "Defeat all encounters in addition to the Shattered Champion, Darkshard, and the Blind in Veteran Bedlam Veil without suffering a group member death.",
+        "points": 50
+    },
+    "3856": {
+        "id": 3856,
+        "dungeon": "Bedlam Veil",
+        "name": "Bedlam Veil Challenger",
+        "description": "Complete the listed achievements for Veteran Bedlam Veil.",
+        "points": 50
+    },
+    "3857": {
+        "id": 3857,
+        "dungeon": "Bedlam Veil",
+        "name": "Unshakeable Fervor",
+        "description": "Defeat all encounters in addition to the Shattered Champion, Darkshard, and the Blind after placing the Challenge Banner in Veteran Bedlam Veil within 25 minutes without suffering a group member death.",
+        "points": 50
+    },
+    "3858": {
+        "id": 3858,
+        "dungeon": "Bedlam Veil",
+        "name": "Arachnophilia",
+        "description": "Uncover a Humming Artifact 15 times while fighting the Darkshard in Veteran Bedlam Veil.",
+        "points": 10
+    },
+    "3859": {
+        "id": 3859,
+        "dungeon": "Bedlam Veil",
+        "name": "Shattered Attackers",
+        "description": "Kill 10 Glass Remnants after the Siege phase has ended during the Blind Encounter in Veteran Bedlam Veil.",
+        "points": 10
+    },
+    "3860": {
+        "id": 3860,
+        "dungeon": "Bedlam Veil",
+        "name": "Fighting the Locks",
+        "description": "Solve all 3 puzzles within 30 seconds of each other as a team in Bedlam Veil.",
+        "points": 10
+    },
+    "3861": {
+        "id": 3861,
+        "dungeon": "Bedlam Veil",
+        "name": "Veiled Historian",
+        "description": "Find and read all the plaques dedicated to the Barons Who Move Like This in the Hall of Barons in Bedlam Veil.",
+        "points": 10
+    },
+    "3862": {
+        "id": 3862,
+        "dungeon": "Bedlam Veil",
+        "name": "Trinket Treasurer",
+        "description": "Use the Ocular Disperser 5 times in Veteran Bedlam Veil.",
+        "points": 10
+    },
+    "3863": {
+        "id": 3863,
+        "dungeon": "Bedlam Veil",
+        "name": "Well Aimed",
+        "description": "Use Catatonic Disruptor to knock the Blind out of the air 3 times as a team in Veteran Bedlam Veil.",
+        "points": 10
+    },
+    "3864": {
+        "id": 3864,
+        "dungeon": "Bedlam Veil",
+        "name": "Champion Fracturer",
+        "description": "Defeat the Shattered Champion after placing the Challenge Banner in Veteran Bedlam Veil.",
+        "points": 50
+    },
+    "3865": {
+        "id": 3865,
+        "dungeon": "Bedlam Veil",
+        "name": "Light Bringer",
+        "description": "Defeat the Darkshard after placing the Challenge Banner in Veteran Bedlam Veil.",
+        "points": 50
+    },
+    "3866": {
+        "id": 3866,
+        "dungeon": "Bedlam Veil",
+        "name": "Maelstrom's Lockpick",
+        "description": "Find and solve all the puzzles in Bedlam Veil.",
+        "points": 10
+    },
+    "3867": {
+        "id": 3867,
+        "dungeon": "Bedlam Veil",
+        "name": "Martial Gift",
+        "description": "Defeat the Blind after placing the Challenge Banner without completing any optional content and having the aid of the buffs in Veteran Bedlam Veil.",
+        "points": 50
+    },
+    "4010": {
+        "id": 4010,
+        "dungeon": "Bedlam Veil",
+        "name": "Bedlam Veil Champion",
+        "description": "Complete the listed achievements in Bedlam Veil.",
+        "points": 50
+    },
+    "3808": {
+        "id": 3808,
+        "dungeon": "Oathsworn Pit",
+        "name": "Recollection Slayer",
+        "description": "Defeat 300 Recollection in Veteran Oathsworn Pit.",
+        "points": 10
+    },
+    "3809": {
+        "id": 3809,
+        "dungeon": "Oathsworn Pit",
+        "name": "Robust Monster Slayer",
+        "description": "Defeat 100 Bears, Lurchers, or Iron Atronachs in Veteran Oathsworn Pit.",
+        "points": 10
+    },
+    "3810": {
+        "id": 3810,
+        "dungeon": "Oathsworn Pit",
+        "name": "Oathsworn Pit Vanquisher",
+        "description": "Defeat Packmaster Rethelros, Anthelmir and Anthelmir's Construct, as well as Aradros the Awakened in Oathsworn Pit.",
+        "points": 10
+    },
+    "3811": {
+        "id": 3811,
+        "dungeon": "Oathsworn Pit",
+        "name": "Oathsworn Pit Conqueror",
+        "description": "Defeat Packmaster Rethelros, Anthelmir and Anthelmir's Construct, as well as Aradros the Awakened in Veteran Oathsworn Pit.",
+        "points": 10
+    },
+    "3812": {
+        "id": 3812,
+        "dungeon": "Oathsworn Pit",
+        "name": "Scorched but Surviving",
+        "description": "Defeat Aradros the Awakened after placing the Challenge Banner in Veteran Oathsworn Pit.",
+        "points": 50
+    },
+    "3813": {
+        "id": 3813,
+        "dungeon": "Oathsworn Pit",
+        "name": "Malacath's Swift Revenge",
+        "description": "Defeat all encounters in addition to Packmaster Rethelros, Anthelmir and Anthelmir's Construct, as well as Aradros the Awakened within 25 minutes of entering Veteran Oathsworn Pit. Your timer starts after engaging the first Recollection members.",
+        "points": 50
+    },
+    "3814": {
+        "id": 3814,
+        "dungeon": "Oathsworn Pit",
+        "name": "Enduring Retribution",
+        "description": "Defeat all encounters in addition to Packmaster Rethelros, Anthelmir and Anthelmir's Construct, and Aradros the Awakened in Veteran Oathsworn Pit without suffering a group member death.",
+        "points": 50
+    },
+    "3815": {
+        "id": 3815,
+        "dungeon": "Oathsworn Pit",
+        "name": "Oathsworn Pit Challenger",
+        "description": "Complete the listed achievements for Veteran Oathsworn Pit.",
+        "points": 50
+    },
+    "3816": {
+        "id": 3816,
+        "dungeon": "Oathsworn Pit",
+        "name": "Lighting the Embers",
+        "description": "Defeat all encounters in addition to Packmaster Rethelros, Anthelmir and Anthelmir's Construct, as well as Aradros the Awakened after placing the Challenge Banner in Veteran Oathsworn Pit within 25 minutes without suffering a group member death. Your timer starts upon engaging the first group of enemies.",
+        "points": 50
+    },
+    "3817": {
+        "id": 3817,
+        "dungeon": "Oathsworn Pit",
+        "name": "Betrayed's Defender",
+        "description": "Fight Packmaster Rethelros with all the Oathsworn Warriors alive in Veteran Oathsworn Pit.",
+        "points": 10
+    },
+    "3818": {
+        "id": 3818,
+        "dungeon": "Oathsworn Pit",
+        "name": "Fight Fire with Fire",
+        "description": "Defeat Anthelmir and Anthelmir's Construct after detonating every Kindle Pitch Barrel in Malacath's Eye in Veteran Oathsworn Pit.",
+        "points": 10
+    },
+    "3819": {
+        "id": 3819,
+        "dungeon": "Oathsworn Pit",
+        "name": "Grubduthag's Blessing",
+        "description": "Defeat Aradros the Awakened while under the effects of Warrior's Visage in Veteran Oathsworn Pit.",
+        "points": 10
+    },
+    "3820": {
+        "id": 3820,
+        "dungeon": "Oathsworn Pit",
+        "name": "Ready. Set. Kick!",
+        "description": "Knock four Recollection members into the pit in Oathsworn Pit.",
+        "points": 10
+    },
+    "3821": {
+        "id": 3821,
+        "dungeon": "Oathsworn Pit",
+        "name": "Forgesmith",
+        "description": "Forge the Smelter while fighting Aradros the Awakened in Veteran Oathsworn Pit.",
+        "points": 10
+    },
+    "3822": {
+        "id": 3822,
+        "dungeon": "Oathsworn Pit",
+        "name": "Axe Sworn",
+        "description": "Land all 4 axes within 5 meters of each other while fighting Anthelmir and Anthelmir's Construct in Veteran Oathsworn Pit.",
+        "points": 10
+    },
+    "3823": {
+        "id": 3823,
+        "dungeon": "Oathsworn Pit",
+        "name": "Pack Hunter",
+        "description": "Defeat Packmaster Rethelros after placing the Challenge Banner in Veteran Oathsworn Pit.",
+        "points": 50
+    },
+    "3824": {
+        "id": 3824,
+        "dungeon": "Oathsworn Pit",
+        "name": "Splitting Headache",
+        "description": "Defeat Anthelmir and Anthelmir's Construct after placing the Challenge Banner in Veteran Oathsworn Pit.",
+        "points": 50
+    },
+    "3825": {
+        "id": 3825,
+        "dungeon": "Oathsworn Pit",
+        "name": "Seeking Approval",
+        "description": "Complete optional content in Oathsworn Pit by finding and completing the Lodge Leader's Trials.",
+        "points": 10
+    },
+    "3826": {
+        "id": 3826,
+        "dungeon": "Oathsworn Pit",
+        "name": "Dogged Avenger",
+        "description": "Defeat Aradros the Awakened after placing the Challenge Banner without completing any optional content in Veteran Oathsworn Pit.",
+        "points": 50
+    },
+    "4009": {
+        "id": 4009,
+        "dungeon": "Oathsworn Pit",
+        "name": "Oathsworn Pit Champion",
+        "description": "Complete the listed achievements for Oathsworn Pit.",
+        "points": 50
     }
 }
