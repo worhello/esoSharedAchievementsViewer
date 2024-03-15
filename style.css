@@ -13,6 +13,11 @@
     cursor: pointer
 }
 
+tr td{
+    padding: 0.2em !important;
+    margin: 0 !important;
+  }
+
 .fixedWidthCol {
     width: 8%;
 }
