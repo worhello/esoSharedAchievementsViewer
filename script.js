@@ -444,23 +444,30 @@ function generateDataSetsForGraph(allDungeonsAchievementsSummary, numPlayers) {
     for (var i = numPlayers; i >= 0; i--) {
         var nPlayersHaveAchievement = [];
         let percentValue = Math.trunc((i / numPlayers) * 100);
+        var perDungeonPerPlayersLabels = new Map();
+
+        let prettifiedPlayersString = i == numPlayers ? `All Players have` :
+            i == 0 ? `No Players have` :
+            i == 1 ? `1 Player has` :
+            `${i} Players have`
 
         for (let dungeon of transformedDataMap.keys()) {
             let dungeonData = transformedDataMap.get(dungeon);
-            if (dungeonData.groupedByPlayerCount.has(i)) {
-                var rawValue = dungeonData.groupedByPlayerCount.get(i);
-                let achievementCompletedPercent = (rawValue / dungeonData.totalNumAchievements) * 100;
-                nPlayersHaveAchievement.push(achievementCompletedPercent);
-            } else {
-                nPlayersHaveAchievement.push(0);
-            }
+            var rawValue = dungeonData.groupedByPlayerCount.get(i) || 0;
+            let achievementCompletedPercent = (rawValue / dungeonData.totalNumAchievements) * 100;
+            nPlayersHaveAchievement.push(achievementCompletedPercent);
+
+            let adjustedVal = Math.trunc(achievementCompletedPercent * 100) / 100;
+            var label = `${prettifiedPlayersString} completed ${rawValue} (${adjustedVal}%) of the achievements`
+            perDungeonPerPlayersLabels.set(dungeon, label);
         }
 
         dataArray.push({
-            label: `${i} Player(s) have the achievement`,
+            label: `${prettifiedPlayersString} the achievement`,
             data: nPlayersHaveAchievement,
             barThickness: 17,
-            backgroundColor: getColorBucketFromPercent(percentValue)
+            backgroundColor: getColorBucketFromPercent(percentValue),
+            perDungeonPerPlayersLabels: perDungeonPerPlayersLabels
         });
     }
 
@@ -507,18 +514,7 @@ function setupSummaryGraph(allDungeonsAchievementsSummary, numPlayers) {
                 tooltip: {
                     callbacks: {
                         label: function(context) {
-                            var label = context.dataset.label || '';
-    
-                            var numPlayers = 0;
-                            if (label) {
-                                numPlayers = Number(label.substr(0, 2)); // support up to 99 players
-                            }
-                            if (context.parsed.y !== null) {
-                                let rawVal = Number(context.parsed.x);
-                                let adjustedVal = Math.trunc(rawVal * 100) / 100;
-                                label = `${adjustedVal}% of this dungeon's achievements have been completed by ${numPlayers} players`;
-                            }
-                            return label;
+                            return context.dataset.perDungeonPerPlayersLabels.get(context.label)
                         }
                     },
                     position: 'myCustomPositioner'
