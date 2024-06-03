@@ -1,4 +1,5 @@
-const achievementInfos = {
+/*eslint no-unused-vars: ["error", { "varsIgnorePattern": "achievementInfos" }]*/
+var achievementInfos = {
     "1120": {
         "id": 1120,
         "dungeon": "White-Gold Tower",
@@ -5689,5 +5690,142 @@ const achievementInfos = {
         "name": "Oathsworn Pit Champion",
         "description": "Complete the listed achievements for Oathsworn Pit.",
         "points": 50
+    },
+    "4013": {
+        "id": 4013,
+        "dungeon": "Lucent Citadel",
+        "name": "Lucent Citadel Vanquisher",
+        "description": "Defeat Count Ryelaz, Zilyesset, Orphic Shattered Shard, and secure the knot in Lucent Citadel.",
+        "points": 10
+    },
+    "4014": {
+        "id": 4014,
+        "dungeon": "Lucent Citadel",
+        "name": "Expedited Excursion",
+        "description": "Defeat all enemies in addition to Count Ryelaz and Zilyesset, the Orphic Shattered Shard, and secure the arcane knot in Veteran Lucent Citadel within 35 minutes of entering. Your time begins when you enter Lucent Citadel.",
+        "points": 50
+    },
+    "4015": {
+        "id": 4015,
+        "dungeon": "Lucent Citadel",
+        "name": "Lucent Citadel Conqueror",
+        "description": "Defeat Count Ryelaz and Zilyesset, the Orphic Shattered Shard, and secure the arcane knot in Veteran Lucent Citadel.",
+        "points": 10
+    },
+    "4016": {
+        "id": 4016,
+        "dungeon": "Lucent Citadel",
+        "name": "Crystalline Survivors",
+        "description": "Defeat all enemies in addition to Count Ryelaz and Zilyesset, the Orphic Stattered Shard, and secure the arcane knot without suffering a group member death in Veteran Lucent Citadel.",
+        "points": 50
+    },
+    "4017": {
+        "id": 4017,
+        "dungeon": "Lucent Citadel",
+        "name": "Dremora Slayer",
+        "description": "Defeat 200 Dremora in Veteran Lucent Citadel.",
+        "points": 10
+    },
+    "4018": {
+        "id": 4018,
+        "dungeon": "Lucent Citadel",
+        "name": "Light and Dark Slayer",
+        "description": "Defeat 200 Lightbringers and Darkcasters in Veteran Lucent Citadel.",
+        "points": 10
+    },
+    "4019": {
+        "id": 4019,
+        "dungeon": "Lucent Citadel",
+        "name": "Arcane Stabilizer",
+        "description": "Defeat Count Ryelaz and Zilyesset, the Orphic Shattered Shard, and secure the arcane knot along with all the enemies within the citadel after activating hard mode for all of them, without suffering a group member death, within 35 minutes of entering in Veteran Lucent Citadel.",
+        "points": 50
+    },
+    "4020": {
+        "id": 4020,
+        "dungeon": "Lucent Citadel",
+        "name": "Knot Worthy",
+        "description": "Complete the listed achievements for Lucent Citadel.",
+        "points": 50
+    },
+    "4021": {
+        "id": 4021,
+        "dungeon": "Lucent Citadel",
+        "name": "Mirrored Cooperation",
+        "description": "Defeat Count Ryelaz and Zilyesset after raising the challenge banner in Veteran Lucent Citadel.",
+        "points": 15
+    },
+    "4022": {
+        "id": 4022,
+        "dungeon": "Lucent Citadel",
+        "name": "Shredded Shard",
+        "description": "Defeat the Orphic Shattered Shard after raising the challenge banner in Veteran Lucent Citadel.",
+        "points": 15
+    },
+    "4023": {
+        "id": 4023,
+        "dungeon": "Lucent Citadel",
+        "name": "Retrieval Specialist",
+        "description": "Defeat Count Ryelaz and Zilyesset, the Orphic Shattered Shard, and secure the arcane knot after raising the challenge banner in Veteran Lucent Citadel, in one run.",
+        "points": 50
+    },
+    "4024": {
+        "id": 4024,
+        "dungeon": "Lucent Citadel",
+        "name": "Annihilation Reflected",
+        "description": "Defeat Count Ryelaz and Zilyesset when they are both casting Annihilation in Veteran Lucent Citadel.",
+        "points": 10
+    },
+    "4025": {
+        "id": 4025,
+        "dungeon": "Lucent Citadel",
+        "name": "Light Mastery",
+        "description": "Defeat 50 enemies made vulnerable by the Brilliant Lusterbeam and Bleak Lusterbeam abilities during the encounter with Count Ryelaz and Zilyesset in Lucent Citadel.",
+        "points": 10
+    },
+    "4026": {
+        "id": 4026,
+        "dungeon": "Lucent Citadel",
+        "name": "Breaking the Seal",
+        "description": "Defeat the Orphic Shattered Shard without any players dying to Fate Sealer in Lucent Citadel.",
+        "points": 10
+    },
+    "4027": {
+        "id": 4027,
+        "dungeon": "Lucent Citadel",
+        "name": "Shared Responsibilities",
+        "description": "Defeat the Orphic Shattered Shard after each player has swapped a mirror in Lucent Citadel.",
+        "points": 10
+    },
+    "4028": {
+        "id": 4028,
+        "dungeon": "Lucent Citadel",
+        "name": "Tight Grip",
+        "description": "Secure the arcane knot having 6 different party members or less hold the knot while allowing no member to carry the knot twice in Veteran Lucent Citadel.",
+        "points": 10
+    },
+    "4061": {
+        "id": 4061,
+        "dungeon": "Lucent Citadel",
+        "name": "Interplanar Cohesion",
+        "description": "Secure the arcane knot while always having at least 5 party members supporting the knot carrier at all times excluding the moment where the knot fractures in Veteran Lucent Citadel.",
+        "points": 10
+    },
+    "4079": {
+        "id": 4079,
+        "dungeon": "Lucent Citadel",
+        "name": "Embrace the Dark",
+        "description": "As a group, cleanse Creeping Dark with any source of Radiance in Lucent Citadel.",
+        "points": 10
+    },
+    "4151": {
+        "id": 4151,
+        "dungeon": "Lucent Citadel",
+        "name": "High Flier",
+        "description": "Travel from the bottom of the sunken ruins tower to the top without leaving the Ghost Light form and without using a sigil to replenish it in Veteran Lucent Citadel.",
+        "points": 10
+    },
+    "9846": {
+        "id": 9846,
+        "dungeon": "Lucent Citadel"
     }
 }
