@@ -67,9 +67,11 @@ function setupExtraDataModalButton(dungeonName, dungeonAbbv, parentElementId) {
     showModalButton.classList.add("btn-sm");
     showModalButton.classList.add("btn-primary");
     showModalButton.onclick = function() {
+        $('#summaryGraphContainer').hide()
+        $('#extraDataTable').show()
         $('.extraDataModalDungeonInfoRow').hide();
         $(`.${dungeonAbbv}_extraData`).show();
-        $("#extraDataModalTitleDungeon").html(dungeonName);
+        $("#extraDataModalTitle").html(`Extra Achievements - ${dungeonName}`);
         var myModalEl = document.querySelector('#extraDataModal')
         var modal = bootstrap.Modal.getOrCreateInstance(myModalEl) 
         modal.show();
@@ -800,6 +802,16 @@ $(document).ready(function() {
             clearInputs();
             handleOptionsButtonClicked("dlcDungeons");
         }
+    });
+
+    $("button[name$='showSummaryViewButton']").click(function() {
+        $('#summaryGraphContainer').show()
+        $('#extraDataTable').hide()
+        $("#extraDataModalTitle").html(`Achievement Completion Summary`);
+
+        var myModalEl = document.querySelector('#extraDataModal')
+        var modal = bootstrap.Modal.getOrCreateInstance(myModalEl) 
+        modal.show();
     });
 
     // Doing this dynamically allows for different URLs when run locally
