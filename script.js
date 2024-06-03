@@ -448,10 +448,10 @@ function generateDataSetsForGraph(allDungeonsAchievementsSummary, numPlayers) {
         let percentValue = Math.trunc((i / numPlayers) * 100);
         var perDungeonPerPlayersLabels = new Map();
 
-        let prettifiedPlayersString = i == numPlayers ? `All Players have` :
-            i == 0 ? `No Players have` :
-            i == 1 ? `1 Player has` :
-            `${i} Players have`
+        let prettifiedPlayersString = i == numPlayers ? `all players` :
+            i == 0 ? `no players` :
+            i == 1 ? `1 player` :
+            `${i} players`
 
         for (let dungeon of transformedDataMap.keys()) {
             let dungeonData = transformedDataMap.get(dungeon);
@@ -460,12 +460,12 @@ function generateDataSetsForGraph(allDungeonsAchievementsSummary, numPlayers) {
             nPlayersHaveAchievement.push(achievementCompletedPercent);
 
             let adjustedVal = Math.trunc(achievementCompletedPercent * 100) / 100;
-            var label = `${prettifiedPlayersString} completed ${rawValue} (${adjustedVal}%) of the achievements`
+            var label = `Completed by ${prettifiedPlayersString}: ${rawValue} (${adjustedVal}%) out of ${dungeonData.totalNumAchievements}`
             perDungeonPerPlayersLabels.set(dungeon, label);
         }
 
         dataArray.push({
-            label: `${prettifiedPlayersString} the achievement`,
+            label: `Completed by ${prettifiedPlayersString}`,
             data: nPlayersHaveAchievement,
             barThickness: 17,
             backgroundColor: getColorBucketFromPercent(percentValue),
