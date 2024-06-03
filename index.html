@@ -89,28 +89,9 @@
                         </div>
                         <div id="metadataButtonsDivider"></div>
                         <div> 
-                            <button type="button" class="btn btn-info" name="showSummaryViewButton" id="showSummaryViewButton" data-bs-toggle="modal" data-bs-target="#summaryInfoModal">
+                            <button type="button" class="btn btn-info" name="showSummaryViewButton" id="showSummaryViewButton" data-bs-toggle="modal" data-bs-target="#extraDataModal">
                                 Show Achievement Completion Summary
                             </button>
-                            
-                            <!-- Summary Info Modal -->
-                            <div class="modal modal-xl fade" id="summaryInfoModal" tabindex="-1" role="dialog" aria-labelledby="summaryInfoModalTitle" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h4 class="modal-title" id="summaryInfoModalTitle">Achievement Completion Summary</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div id="summaryGraphContainer">
-                                                <canvas id="summaryGraphCanvas"></canvas>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div id="generateButtonsContainer" class="col">
@@ -195,9 +176,12 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="extraDataModalTitle">Extra Achievements - <span id="extraDataModalTitleDungeon"></span></h4>
+                        <h4 class="modal-title" id="extraDataModalTitle"></h4>
                     </div>
                     <div class="modal-body">
+                        <div id="summaryGraphContainer">
+                            <canvas id="summaryGraphCanvas"></canvas>
+                        </div>
                         <table class="table" id="extraDataTable">
                             <tr id="extraDataHeaderRow">
                                 <th>Name</th>
