@@ -355,6 +355,7 @@ function setListOfPlayersWithAchieveInTooltip(cellId, playersWhoHaveAchieve) {
 
     const achievementTitle = $(cellId).attr("achievementText");
     const achievementDescription = $(cellId).attr("achievementDescription");
+    const achievementPoints = $(cellId).attr("achievementPoints");
 
     var playersSection = "";
     for (var i = 0; i < playersWhoHaveAchieve.length; i++) {
@@ -366,7 +367,8 @@ function setListOfPlayersWithAchieveInTooltip(cellId, playersWhoHaveAchieve) {
     var tooltipText = `<h2>${achievementTitle}</h2><br>`;
     tooltipText += `<p>${achievementDescription}</p><br>`;
     tooltipText += `${playersSection}`;
-
+    tooltipText += `<h4>${achievementPoints}</h4>`;
+    
 
     $(cellId).data("bs-toggle", "tooltip");
     $(cellId).attr("data-bs-html", "true");
