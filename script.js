@@ -129,21 +129,21 @@ function createTableRows(parentElementId, numDataColumnsInMainView, data, number
 
 function buildDlcDungeonView(schemaVersion, numberOfPlayers) {
     var numDataColumnsInMainView = 7;
-    var data = getData(schemaVersion, "dungeon");// getSchema(schemaVersion).filter((instanceData) => instanceData["TYPE"] == "dungeon");
+    var data = getData(schemaVersion, "dungeon");
 
     createTableRows("dlcDungeonsTableBody", numDataColumnsInMainView, data, numberOfPlayers);
 }
 
 function buildBaseDungeonView(schemaVersion, numberOfPlayers) {
     var numDataColumnsInMainView = 5;
-    var data = getData(schemaVersion, "baseDungeon");// getSchema(schemaVersion).filter((instanceData) => instanceData["TYPE"] == "baseDungeon");
+    var data = getData(schemaVersion, "baseDungeon");
 
     createTableRows("baseDungeonsTableBody", numDataColumnsInMainView, data, numberOfPlayers);
 }
 
 function buildTrialsView(schemaVersion, numberOfPlayers) {
     var numDataColumnsInMainView = 6;
-    var data = getData(schemaVersion, "trial");// getSchema(schemaVersion).filter((instanceData) => instanceData["TYPE"] == "trial");
+    var data = getData(schemaVersion, "trial");
 
     createTableRows("trialsTableBody", numDataColumnsInMainView, data, numberOfPlayers);
 }
@@ -209,7 +209,7 @@ function getValidInputSizes(schemaVersion) {
     const supportedTypes = ["dungeon", "baseDungeon", "trial"];
     let validSizes = [];
     for (let type of supportedTypes) {
-        var data = getData(schemaVersion, type);// getSchema(schemaVersion).filter((instanceData) => instanceData["TYPE"] == type);
+        var data = getData(schemaVersion, type);
         var total = 0;
         for (let row of data) {
             total += row["CODES"].length;
@@ -625,21 +625,21 @@ function populateTable(data, parentElementId, inputData) {
 }
 
 function populateDlcDungeonsFromData(inputData, schemaVersion) {
-    var data = getData(schemaVersion,"dungeon");// getSchema(schemaVersion).filter((instanceData) => instanceData["TYPE"] == "dungeon");
+    var data = getData(schemaVersion,"dungeon");
     var parentElementId = "dlcDungeonsTableBody";
 
     populateTable(data, parentElementId, inputData);
 }
 
 function populateBaseDungeonsFromData(inputData, schemaVersion) {
-    var data = getData(schemaVersion, "baseDungeon");// getSchema(schemaVersion).filter((instanceData) => instanceData["TYPE"] == "baseDungeon");
+    var data = getData(schemaVersion, "baseDungeon");
     var parentElementId = "baseDungeonsTableBody";
 
     populateTable(data, parentElementId, inputData);
 }
 
 function populateTrialsFromData(inputData, schemaVersion) {
-    var data = getData(schemaVersion, "trial");// getSchema(schemaVersion).filter((instanceData) => instanceData["TYPE"] == "trial");
+    var data = getData(schemaVersion, "trial");
     var parentElementId = "trialsTableBody";
 
     populateTable(data, parentElementId, inputData);
