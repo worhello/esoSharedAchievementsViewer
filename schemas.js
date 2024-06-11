@@ -52,7 +52,7 @@ const schemas_internal = {
         {"ABBV":"GD",  "CODES":[3395, 3396, 3397, 3398, 3399,  3400,  3410, 3407,3408,3526,3392,3393,3401,3404,3405,3425,3394,3403,3406,3409],      "TYPE":"dungeon"},
         {"ABBV":"BS",  "CODES":[3469, 3470, 3471, 3472, 3473,  3474,  3484, 3481,3482,3617,3466,3467,3475,3476,3477,3478,3468,3483,3479,3480,3619], "TYPE":"dungeon"},
         {"ABBV":"SH",  "CODES":[3530, 3531, 3532, 3533, 3534,  3535,  3538, 3542,3543,3545,3618,3527,3528,3536,3537,3539,3540,3541,3529,3544,3662], "TYPE":"dungeon"},
-        {"ABBV":"BRP", "CODES":[2363, 2364, 2366, 2365, "NIL", 2368,  2372, 2362,2367,2369,2374,2370,2375,2371,2373],                               "TYPE":"dungeon"},
+        {"ABBV":"BRP", "CODES":[2363, 2364, 2366, 2365, "NIL", 2368,  2372, 2362,2367,2369,2374,2370,2375,2371,2373],                               "TYPE":"dungeon_extra"},
 
 
         // Base Game Dungeons
@@ -97,7 +97,6 @@ const schemas_internal = {
 
 var constructedSchemas = {};
 
-/*eslint no-unused-vars: ["error", { "varsIgnorePattern": "getSchema" }]*/
 function getSchema(schemaVersion) {
     if (!(schemaVersion in schemas_internal)) {
         return null;
@@ -115,4 +114,17 @@ function getSchema(schemaVersion) {
     }
 
     return constructedSchemas[schemaVersion];
+}
+
+/*eslint no-unused-vars: ["error", { "varsIgnorePattern": "getData" }]*/
+function getData(schemaVersion, dataType) {
+    var fullSchema = getSchema(schemaVersion);
+    var data = fullSchema.filter((instanceData) => instanceData["TYPE"] == dataType);
+
+    if (dataType == "dungeon") {
+        var extraData = fullSchema.filter((instanceData) => instanceData["TYPE"] == "dungeon_extra");
+        data = data.concat(extraData);
+    }
+
+    return data;
 }
