@@ -9,17 +9,20 @@ class Player {
 }
 
 const viewTableConfig = {
-    "dungeon": {
+    "dlcDungeons": {
         "parentElementId": "dlcDungeonsTableBody",
-        "numDataColumnsInMainView": 7
+        "numDataColumnsInMainView": 7,
+        "databaseEntriesType": "dungeon"
     },
-    "baseDungeon": {
+    "baseDungeons": {
         "parentElementId": "baseDungeonsTableBody",
-        "numDataColumnsInMainView": 5
+        "numDataColumnsInMainView": 5,
+        "databaseEntriesType": "baseDungeon"
     },
-    "trial": {
+    "trials": {
         "parentElementId": "trialsTableBody",
-        "numDataColumnsInMainView": 6
+        "numDataColumnsInMainView": 6,
+        "databaseEntriesType": "trial"
     },
 }
 
@@ -138,7 +141,7 @@ function createTableRow(dataRow, numDataColumnsInMainView, parentElementId, numb
 function createTableRows(schemaVersion, dataType, numberOfPlayers) {
     const parentElementId = viewTableConfig[dataType].parentElementId;
     const numDataColumnsInMainView = viewTableConfig[dataType].numDataColumnsInMainView;
-    const data = getData(schemaVersion, dataType);
+    const data = getData(schemaVersion, viewTableConfig[dataType].databaseEntriesType);
 
     $("#" + parentElementId).empty();
     for (let dataPoint of data) {
@@ -147,15 +150,15 @@ function createTableRows(schemaVersion, dataType, numberOfPlayers) {
 }
 
 function buildDlcDungeonView(schemaVersion, numberOfPlayers) {
-    createTableRows(schemaVersion, "dungeon", numberOfPlayers);
+    createTableRows(schemaVersion, "dlcDungeons", numberOfPlayers);
 }
 
 function buildBaseDungeonView(schemaVersion, numberOfPlayers) {
-    createTableRows(schemaVersion, "baseDungeon", numberOfPlayers);
+    createTableRows(schemaVersion, "baseDungeons", numberOfPlayers);
 }
 
 function buildTrialsView(schemaVersion, numberOfPlayers) {
-    createTableRows(schemaVersion, "trial", numberOfPlayers);
+    createTableRows(schemaVersion, "trials", numberOfPlayers);
 }
 
 function isAllValidCharacters(data, validChars) {
@@ -219,7 +222,7 @@ function getValidInputSizes(schemaVersion) {
     const supportedTypes = Object.keys(viewTableConfig);
     let validSizes = [];
     for (let type of supportedTypes) {
-        var data = getData(schemaVersion, type);
+        const data = getData(schemaVersion, viewTableConfig[type].databaseEntriesType);
         var total = 0;
         for (let row of data) {
             total += row["CODES"].length;
@@ -576,7 +579,7 @@ function setupSummaryGraph(allDungeonsAchievementsSummary, numPlayers) {
 }
 
 function populateTable(schemaVersion, dataType, inputData) {
-    var data = getData(schemaVersion, dataType);
+    const data = getData(schemaVersion, viewTableConfig[dataType].databaseEntriesType);
     const parentElementId = viewTableConfig[dataType].parentElementId;
     var numPlayers = inputData.length;
 
@@ -637,25 +640,19 @@ function populateTable(schemaVersion, dataType, inputData) {
 }
 
 function populateDlcDungeonsFromData(inputData, schemaVersion) {
-    populateTable(schemaVersion, "dungeon", inputData);
+    populateTable(schemaVersion, "dlcDungeons", inputData);
 }
 
 function populateBaseDungeonsFromData(inputData, schemaVersion) {
-    populateTable(schemaVersion, "baseDungeon", inputData);
+    populateTable(schemaVersion, "baseDungeons", inputData);
 }
 
 function populateTrialsFromData(inputData, schemaVersion) {
-    populateTable(schemaVersion, "trial", inputData);
+    populateTable(schemaVersion, "trials", inputData);
 }
 
-const InputCategories = [
-    "dlcDungeons",
-    "baseDungeons",
-    "trials"
-]
-
 function loadDataFromLocalStorage() {
-    InputCategories.forEach(category => {
+    Object.keys(viewTableConfig).forEach(category => {
         var stored = localStorage.getItem("dataInput_" + category);
         if (stored) {
             $("#dataInput_" + category).html(stored);
@@ -664,7 +661,7 @@ function loadDataFromLocalStorage() {
 }
 
 function storeInputDataToLocalStorage() {
-    InputCategories.forEach(category => {
+    Object.keys(viewTableConfig).forEach(category => {
         var v = $("#dataInput_" + category).val();
         if (v) {
             localStorage.setItem("dataInput_" + category, v);
@@ -673,7 +670,7 @@ function storeInputDataToLocalStorage() {
 }
 
 function clearInputDataFromLocalStorage() {
-    InputCategories.forEach(category => {
+    Object.keys(viewTableConfig).forEach(category => {
         var v = $("#dataInput_" + category).val();
         if (v) {
             localStorage.removeItem("dataInput_" + category, v);
@@ -682,7 +679,7 @@ function clearInputDataFromLocalStorage() {
 }
 
 function clearInputs() {
-    InputCategories.forEach(category => {
+    Object.keys(viewTableConfig).forEach(category => {
         $("#dataInput_" + category).html("");
     });
 }
@@ -718,7 +715,7 @@ function loadDataFromUrlIfPresent() {
     }
 
     var paramType = url.searchParams.get("type");
-    if (InputCategories.indexOf(paramType) == -1) {
+    if (Object.keys(viewTableConfig).indexOf(paramType) == -1) {
         return false;
     }
 
