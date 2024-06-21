@@ -715,7 +715,7 @@ function loadDataFromUrlIfPresent() {
     }
 
     var paramType = url.searchParams.get("type");
-    if (Object.keys(viewTableConfig).indexOf(paramType) == -1) {
+    if (!(paramType in viewTableConfig)) {
         return false;
     }
 
