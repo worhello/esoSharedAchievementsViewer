@@ -565,7 +565,8 @@ function setupSummaryGraph(allDungeonsAchievementsSummary, numPlayers) {
     });
 }
 
-function populateTable(data, parentElementId, inputData) {
+function populateTable(schemaVersion, dataType, parentElementId, inputData) {
+    var data = getData(schemaVersion, dataType);
     var numPlayers = inputData.length;
 
     var perEncounterArrays = splitCombinedEncounterDataForAllPlayers(inputData, data[0]["CODES"].length);
@@ -625,24 +626,15 @@ function populateTable(data, parentElementId, inputData) {
 }
 
 function populateDlcDungeonsFromData(inputData, schemaVersion) {
-    var data = getData(schemaVersion,"dungeon");
-    var parentElementId = "dlcDungeonsTableBody";
-
-    populateTable(data, parentElementId, inputData);
+    populateTable(schemaVersion, "dungeon", "dlcDungeonsTableBody", inputData);
 }
 
 function populateBaseDungeonsFromData(inputData, schemaVersion) {
-    var data = getData(schemaVersion, "baseDungeon");
-    var parentElementId = "baseDungeonsTableBody";
-
-    populateTable(data, parentElementId, inputData);
+    populateTable(schemaVersion, "baseDungeon", "baseDungeonsTableBody", inputData);
 }
 
 function populateTrialsFromData(inputData, schemaVersion) {
-    var data = getData(schemaVersion, "trial");
-    var parentElementId = "trialsTableBody";
-
-    populateTable(data, parentElementId, inputData);
+    populateTable(schemaVersion, "trial", "trialsTableBody", inputData);
 }
 
 const InputCategories = [
@@ -728,7 +720,8 @@ function handleOptionsButtonClicked(buttonVal) {
     $("#generateButtonsContainer").show();
     $("button.desc").hide();
     $("#val_" + buttonVal).show();
-    
+    $("#generateViewButtonId").val(buttonVal);
+
     $("#inputsContainer").show();
     $("#inputsContainer textarea").hide();
     $("#viewsContainer").hide();
@@ -797,7 +790,7 @@ $(document).ready(function() {
     });
 
     $("button[name$='resetLocalStorageButton']").click(function() {
-        if (window.confirm("Do you really want to clear the local cache? This will also clear all input boxes' current values!")) {
+        if (window.confirm("Do you really want to clear the local cache? This will clear all input boxes' current values!")) {
             clearInputDataFromLocalStorage();
             clearInputs();
             handleOptionsButtonClicked("dlcDungeons");
