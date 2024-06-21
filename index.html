@@ -21,7 +21,7 @@
         <script src="script.js"></script>
 
         <title>ESO Shared Achievements Viewer</title>
-        <link rel="icon" type="image/x-icon" href="/favicon.ico">
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
 
     </head>
     <body data-bs-theme="dark">
@@ -53,27 +53,8 @@
                             <button type="button" class="btn btn-info" name="shareViewButton" id="shareViewButton" data-bs-toggle="modal" data-bs-target="#copyUrlModal">
                                 Share Current View
                             </button>
-
-                            <!-- Copy URL Modal -->
-                            <div class="modal fade" id="copyUrlModal" tabindex="-1" role="dialog" aria-labelledby="copyUrlModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="copyUrlModalLabel">Copy URL to this View</h5>
-                                        </div>
-                                        <div class="modal-body">
-                                            <textarea rows="8" readonly id="copyUrlModalBody"></textarea>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary" id="copyUrlModalButton">Copy to clipboard</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
-                        <div id="metadataButtonsDivider"></div>
-                        <div> 
+                        <div>
                             <button type="button" class="btn btn-info" name="showSummaryViewButton" id="showSummaryViewButton" data-bs-toggle="modal" data-bs-target="#extraDataModal">
                                 Show Achievement Completion Summary
                             </button>
@@ -142,14 +123,8 @@
                 </div>
             </div>
             <div id="generateButtonsContainer" >
-                <button type="button" class="desc btn btn-info" name="generateViewButtons" id="val_dlcDungeons" value="dlcDungeons" >
-                    Generate DLC Dungeons Shared View
-                </button>
-                <button type="button" class="desc btn btn-info" name="generateViewButtons" id="val_baseDungeons" value="baseDungeons" style="display: none;">
-                    Generate Base Game Dungeons Shared View
-                </button>
-                <button type="button" class="desc btn btn-info" name="generateViewButtons" id="val_trials" value="trials" style="display: none;">
-                    Generate Trials Shared View
+                <button type="button" class="btn btn-info" name="generateViewButtons" id="generateViewButtonId" value="dlcDungeons">
+                    Generate View
                 </button>
             </div>
         </div>
@@ -168,6 +143,24 @@
                 </div>
             </nav>
         </footer>
+
+        <!-- Copy URL Modal -->
+        <div class="modal fade" id="copyUrlModal" tabindex="-1" role="dialog" aria-labelledby="copyUrlModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="copyUrlModalLabel">Copy URL to this View</h5>
+                    </div>
+                    <div class="modal-body">
+                        <textarea rows="8" readonly id="copyUrlModalBody"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="copyUrlModalButton">Copy to clipboard</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Extra Achievements Modal -->
         <div class="modal modal-xl fade" id="extraDataModal" tabindex="-1" role="dialog" aria-labelledby="extraDataModalTitle" aria-hidden="true">
@@ -195,6 +188,7 @@
             </div>
         </div>
 
+        <!-- Manage user data Modal -->
         <div class="modal fade" id="manageDataModal" tabindex="-1" role="dialog" aria-labelledby="manageDataModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
