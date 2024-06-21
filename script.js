@@ -8,6 +8,21 @@ class Player {
     }
 }
 
+const viewTableConfig = {
+    "dungeon": {
+        "parentElementId": "dlcDungeonsTableBody",
+        "numDataColumnsInMainView": 7
+    },
+    "baseDungeon": {
+        "parentElementId": "baseDungeonsTableBody",
+        "numDataColumnsInMainView": 5
+    },
+    "trial": {
+        "parentElementId": "trialsTableBody",
+        "numDataColumnsInMainView": 6
+    },
+}
+
 function createNameCell(c, parentElementId) {
     var cell = document.createElement("td");
     cell.id = parentElementId + c + "name";
@@ -105,9 +120,9 @@ function createTableRow(dataRow, numDataColumnsInMainView, parentElementId, numb
         row.appendChild(createMainViewCell(c, parentElementId));
     }
 
-    const dungeonAbbv = dataRow["ABBV"];
-    const dungeonName = achievementInfos[dataRow["CODES"][0]].dungeon;
     if (extraDataModalNeeded) {
+        const dungeonAbbv = dataRow["ABBV"];
+        const dungeonName = achievementInfos[dataRow["CODES"][0]].dungeon;
         row.appendChild(setupExtraDataModalButton(dungeonName, dungeonAbbv, parentElementId));
         let startingExtraDataIndex = 0;
         for (var j = startingExtraDataIndex; j < dataRow["CODES"].length; j++) {
@@ -120,32 +135,27 @@ function createTableRow(dataRow, numDataColumnsInMainView, parentElementId, numb
     return row;
 }
 
-function createTableRows(parentElementId, numDataColumnsInMainView, data, numberOfPlayers) {
+function createTableRows(schemaVersion, dataType, numberOfPlayers) {
+    const parentElementId = viewTableConfig[dataType].parentElementId;
+    const numDataColumnsInMainView = viewTableConfig[dataType].numDataColumnsInMainView;
+    const data = getData(schemaVersion, dataType);
+
     $("#" + parentElementId).empty();
-    for (var i = 0; i < data.length; i++) {
-        $("#" + parentElementId).append(createTableRow(data[i], numDataColumnsInMainView, parentElementId, numberOfPlayers));
+    for (let dataPoint of data) {
+        $("#" + parentElementId).append(createTableRow(dataPoint, numDataColumnsInMainView, parentElementId, numberOfPlayers));
     }
 }
 
 function buildDlcDungeonView(schemaVersion, numberOfPlayers) {
-    var numDataColumnsInMainView = 7;
-    var data = getData(schemaVersion, "dungeon");
-
-    createTableRows("dlcDungeonsTableBody", numDataColumnsInMainView, data, numberOfPlayers);
+    createTableRows(schemaVersion, "dungeon", numberOfPlayers);
 }
 
 function buildBaseDungeonView(schemaVersion, numberOfPlayers) {
-    var numDataColumnsInMainView = 5;
-    var data = getData(schemaVersion, "baseDungeon");
-
-    createTableRows("baseDungeonsTableBody", numDataColumnsInMainView, data, numberOfPlayers);
+    createTableRows(schemaVersion, "baseDungeon", numberOfPlayers);
 }
 
 function buildTrialsView(schemaVersion, numberOfPlayers) {
-    var numDataColumnsInMainView = 6;
-    var data = getData(schemaVersion, "trial");
-
-    createTableRows("trialsTableBody", numDataColumnsInMainView, data, numberOfPlayers);
+    createTableRows(schemaVersion, "trial", numberOfPlayers);
 }
 
 function isAllValidCharacters(data, validChars) {
@@ -206,7 +216,7 @@ function validateInputData(input) {
 }
 
 function getValidInputSizes(schemaVersion) {
-    const supportedTypes = ["dungeon", "baseDungeon", "trial"];
+    const supportedTypes = Object.keys(viewTableConfig);
     let validSizes = [];
     for (let type of supportedTypes) {
         var data = getData(schemaVersion, type);
@@ -565,8 +575,9 @@ function setupSummaryGraph(allDungeonsAchievementsSummary, numPlayers) {
     });
 }
 
-function populateTable(schemaVersion, dataType, parentElementId, inputData) {
+function populateTable(schemaVersion, dataType, inputData) {
     var data = getData(schemaVersion, dataType);
+    const parentElementId = viewTableConfig[dataType].parentElementId;
     var numPlayers = inputData.length;
 
     var perEncounterArrays = splitCombinedEncounterDataForAllPlayers(inputData, data[0]["CODES"].length);
@@ -626,15 +637,15 @@ function populateTable(schemaVersion, dataType, parentElementId, inputData) {
 }
 
 function populateDlcDungeonsFromData(inputData, schemaVersion) {
-    populateTable(schemaVersion, "dungeon", "dlcDungeonsTableBody", inputData);
+    populateTable(schemaVersion, "dungeon", inputData);
 }
 
 function populateBaseDungeonsFromData(inputData, schemaVersion) {
-    populateTable(schemaVersion, "baseDungeon", "baseDungeonsTableBody", inputData);
+    populateTable(schemaVersion, "baseDungeon", inputData);
 }
 
 function populateTrialsFromData(inputData, schemaVersion) {
-    populateTable(schemaVersion, "trial", "trialsTableBody", inputData);
+    populateTable(schemaVersion, "trial", inputData);
 }
 
 const InputCategories = [
