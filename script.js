@@ -721,7 +721,8 @@ function loadDataFromUrlIfPresent() {
 
     $("input[value$='" + paramType + "']").trigger('click');
     $("#dataInput_" + paramType).html(url.searchParams.get("data"));
-    $("#val_" + paramType).trigger('click');
+    $("#generateViewButtonId").trigger('click');
+    return true;
 }
 
 function handleOptionsButtonClicked(buttonVal) {
