@@ -246,10 +246,7 @@ function validateGatheredData() {
     return allOk;
 }
 
-function gatherInputData(inputName) {
-    var data = [];
-    currentInputLengths = [];
-
+function readDataFromInput(inputName) {
     var inputDataAll = [];
     try {
         inputDataAll = $("#dataInput_" + inputName).val()
@@ -262,6 +259,16 @@ function gatherInputData(inputName) {
         console.error("invalid input from dataInput_" + inputName + ", " + err);
         return [];
     }
+
+    return inputDataAll;
+}
+
+function gatherInputData(inputName) {
+    var data = [];
+    currentInputLengths = [];
+
+    const inputDataAll = readDataFromInput(inputName);
+
     currentInputLengths = [];
     currentSchemaVersions = new Set();
     inputDataAll.forEach(d => {
@@ -706,23 +713,57 @@ function populateShareUrl(v) {
     });
 }
 
-function loadDataFromUrlIfPresent() {
+function loadData() {
     var url = new URL(window.location.href);
     var hasType = url.searchParams.has("type");
     var hasData = url.searchParams.has("data");
     if (!hasData || !hasType) {
-        return false;
+        return;
     }
 
     var paramType = url.searchParams.get("type");
     if (!(paramType in viewTableConfig)) {
-        return false;
+        return;
     }
 
+    const mode = url.searchParams.get("mode");
+    if (!mode || mode == "all") {
+        loadDataIntoInput(paramType, url.searchParams.get("data"));
+        return;
+    }
+
+    loadDataFromLocalStorage();
+
+    if (mode == "update") {
+        loadUpdatedDataFromUrlIfPresent(url, paramType);
+    }
+}
+
+
+function loadDataIntoInput(paramType, fullInput) {
     $("input[value$='" + paramType + "']").trigger('click');
-    $("#dataInput_" + paramType).html(url.searchParams.get("data"));
+    $("#dataInput_" + paramType).html(fullInput);
     $("#generateViewButtonId").trigger('click');
     return true;
+}
+
+function loadUpdatedDataFromUrlIfPresent(url, paramType) {
+    const inputDataAll = readDataFromInput(paramType);
+
+    const updatedData = url.searchParams.get("data");
+    const userName = updatedData.split(":")[0];
+
+    const indexToUpdate = inputDataAll.findIndex(dataArr => { return dataArr.split(":")[0] == userName });
+
+    var newInputData = inputDataAll;
+    if (indexToUpdate == -1) {
+        newInputData = newInputData.concat([updatedData]);
+    } else {
+        newInputData[indexToUpdate] = updatedData;
+    }
+
+    const fullInput = newInputData.join("\n");
+    loadDataIntoInput(paramType, fullInput);
 }
 
 function handleOptionsButtonClicked(buttonVal) {
@@ -819,9 +860,7 @@ $(document).ready(function() {
     // Doing this dynamically allows for different URLs when run locally
     $("#navbarTitleLink").attr("href", getBaseUrl());
 
-    if (!loadDataFromUrlIfPresent()) {
-        loadDataFromLocalStorage();
-    }
+    loadData();
 
     $(function () {
         $('#resetLocalStorageButton').hover(function(){
