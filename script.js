@@ -714,27 +714,22 @@ function populateShareUrl(v) {
 }
 
 function loadData() {
-    var url = new URL(window.location.href);
-    var hasType = url.searchParams.has("type");
-    var hasData = url.searchParams.has("data");
-    if (!hasData || !hasType) {
-        return;
-    }
-
-    var paramType = url.searchParams.get("type");
-    if (!(paramType in viewTableConfig)) {
-        return;
-    }
-
+    const url = new URL(window.location.href);
+    const hasType = url.searchParams.has("type");
+    const hasData = url.searchParams.has("data");
+    const paramType = url.searchParams.get("type");
     const mode = url.searchParams.get("mode");
-    if (!mode || mode == "all") {
+
+    const isValidDataInUrl = hasData && hasType && (paramType in viewTableConfig);
+
+    if (isValidDataInUrl && (!mode || mode == "all")) {
         loadDataIntoInput(paramType, url.searchParams.get("data"));
         return;
     }
 
     loadDataFromLocalStorage();
 
-    if (mode == "update") {
+    if (isValidDataInUrl && mode == "update") {
         loadUpdatedDataFromUrlIfPresent(url, paramType);
     }
 }
