@@ -1,5 +1,5 @@
-/*eslint no-unused-vars: ["error", { "varsIgnorePattern": "achievementInfos" }]*/
-var achievementInfos = {
+"use strict";
+export const achievementInfos = {
     "1120": {
         "id": 1120,
         "dungeon": "White-Gold Tower",

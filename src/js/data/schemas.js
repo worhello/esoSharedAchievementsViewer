@@ -97,7 +97,7 @@ const schemas_internal = {
 
 var constructedSchemas = {};
 
-function getSchema(schemaVersion) {
+export function getSchema(schemaVersion) {
     if (!(schemaVersion in schemas_internal)) {
         return null;
     }
@@ -116,8 +116,7 @@ function getSchema(schemaVersion) {
     return constructedSchemas[schemaVersion];
 }
 
-/*eslint no-unused-vars: ["error", { "varsIgnorePattern": "getData" }]*/
-function getData(schemaVersion, dataType) {
+export function getData(schemaVersion, dataType) {
     var fullSchema = getSchema(schemaVersion);
     var data = fullSchema.filter((instanceData) => instanceData["TYPE"] == dataType);
 
