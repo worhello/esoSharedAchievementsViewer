@@ -52,7 +52,7 @@ function parsePlayerInputData(input) {
     player.originalInput = playerInfoAsArrayTmp[playerInfoAsArrayTmp.length - 1];
 
     const schemaVersion = player.schemaVersion;
-    if (!Schemas.getSchema(schemaVersion)) {
+    if (!Schemas.isValidSchema(schemaVersion)) {
         return null;
     }
 
@@ -132,14 +132,19 @@ function getValidInputSizes(schemaVersion) {
     const supportedTypes = Object.keys(viewTableConfig);
     let validSizes = [];
     for (let type of supportedTypes) {
-        const data = Schemas.getData(schemaVersion, viewTableConfig[type].databaseEntriesType);
-        var total = 0;
-        for (let row of data) {
-            total += row["CODES"].length;
-        }
-        validSizes.push(total);
+        validSizes.push(getValidInputSizeForType(schemaVersion, type));
     }
     return validSizes;
+}
+
+// only exported for tests
+export function getValidInputSizeForType(schemaVersion, type) {
+    const data = Schemas.getData(schemaVersion, viewTableConfig[type].databaseEntriesType);
+    var total = 0;
+    for (let row of data) {
+        total += row["CODES"].length;
+    }
+    return total;
 }
 
 export function getSchemaVersion() {

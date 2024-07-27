@@ -10,4 +10,10 @@ module.exports = {
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
+    "overrides": [
+        {
+        "files": ["**/*.test.js"],
+        "env": { "mocha": true }
+        }
+    ]
   }

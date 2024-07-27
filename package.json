@@ -1,0 +1,15 @@
+{
+  "name": "esosharedachievementsviewer",
+  "version": "1.0.0",
+  "description": "This allows multiple people to combine their exported Achievements Information to get a better idea of what they have in common etc",
+  "main": ".eslintrc.js",
+  "type": "module",
+  "scripts": {
+    "test": "mocha src/js/services --recursive --timeout 60000 --exit"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^10.7.0"
+  }
+}

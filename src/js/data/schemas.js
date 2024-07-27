@@ -97,8 +97,8 @@ const schemas_internal = {
 
 var constructedSchemas = {};
 
-export function getSchema(schemaVersion) {
-    if (!(schemaVersion in schemas_internal)) {
+function getSchema(schemaVersion) {
+    if (!isValidSchema(schemaVersion)) {
         return null;
     }
 
@@ -126,4 +126,8 @@ export function getData(schemaVersion, dataType) {
     }
 
     return data;
+}
+
+export function isValidSchema(schemaVersion) {
+    return schemaVersion in schemas_internal;
 }
