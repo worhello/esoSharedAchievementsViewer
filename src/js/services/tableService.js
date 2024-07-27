@@ -21,24 +21,25 @@ class TableModel {
     }
 }
 
-export function buildTableModel(data, players) {
+export function buildTableModel(schemaData, players) {
     const tableModel = new TableModel();
 
     const numPlayers = players.length;
 
     var currentAchievementIndex = -1; // start on -1 so first index checked is 0, caused by the early continue
-    for (var row = 0; row < data.length; row++) {
+    for (var row = 0; row < schemaData.length; row++) {
         var dungeonAchievementSummary = new Map();
         var dungeonName = "";
 
-        for (const code of data[row]["CODES"]){
+        for (const code of schemaData[row]["CODES"]){
             const cellModel = new AchievementCompletedModel();
             cellModel.code = code;
             currentAchievementIndex++;
 
             if (cellModel.code == "NIL") {
                 cellModel.isAchievement = false;
-                cellModel.completedPercent = -1;
+                cellModel.completedPercent = -1.0;
+                tableModel.achievementsList.push(cellModel);
                 continue;
             }
 
