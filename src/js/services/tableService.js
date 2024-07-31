@@ -43,7 +43,7 @@ export function buildTableModel(schemaData, players) {
                 continue;
             }
 
-            var totalCountForCell = 0;
+            let totalCountForCell = 0;
             cellModel.playersWhoHaveAchieve = [];
             for (const player of players) {
                 let val = parseInt(player.binaryCode[currentAchievementIndex])
