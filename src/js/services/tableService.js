@@ -26,10 +26,10 @@ export function buildTableModel(schemaData, players) {
 
     const numPlayers = players.length;
 
-    var currentAchievementIndex = -1; // start on -1 so first index checked is 0, caused by the early continue
-    for (var row = 0; row < schemaData.length; row++) {
-        var dungeonAchievementSummary = new Map();
-        var dungeonName = "";
+    let currentAchievementIndex = -1; // start on -1 so first index checked is 0, caused by the early continue
+    for (let row = 0; row < schemaData.length; row++) {
+        const dungeonAchievementSummary = new Map();
+        let dungeonName = "";
 
         for (const code of schemaData[row]["CODES"]){
             const cellModel = new AchievementCompletedModel();
@@ -43,7 +43,7 @@ export function buildTableModel(schemaData, players) {
                 continue;
             }
 
-            var totalCountForCell = 0;
+            let totalCountForCell = 0;
             cellModel.playersWhoHaveAchieve = [];
             for (const player of players) {
                 let val = parseInt(player.binaryCode[currentAchievementIndex])

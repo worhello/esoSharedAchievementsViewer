@@ -92,7 +92,7 @@ function assertSamePlayersHaveAchievement(actualPlayersWhoHaveAchieve, expectedP
   const actualPlayerNamessWhoHaveAchieve = actualPlayersWhoHaveAchieve.filter(p => p.hasAchieve).map(p => p.name).sort();
 
   assert.equal(actualPlayerNamessWhoHaveAchieve.length, expectedPlayerNamessWhoHaveAchieve.length);
-  for (var i = 0; i < actualPlayerNamessWhoHaveAchieve.length; i++) {
+  for (let i = 0; i < actualPlayerNamessWhoHaveAchieve.length; i++) {
     assert.equal(actualPlayerNamessWhoHaveAchieve[i], expectedPlayerNamessWhoHaveAchieve[i]);
   }
 }

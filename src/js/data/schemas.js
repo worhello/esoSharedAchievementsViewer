@@ -95,7 +95,7 @@ const schemas_internal = {
     ]
 };
 
-var constructedSchemas = {};
+const constructedSchemas = {};
 
 function getSchema(schemaVersion) {
     if (!isValidSchema(schemaVersion)) {
@@ -117,11 +117,11 @@ function getSchema(schemaVersion) {
 }
 
 export function getData(schemaVersion, dataType) {
-    var fullSchema = getSchema(schemaVersion);
-    var data = fullSchema.filter((instanceData) => instanceData["TYPE"] == dataType);
+    const fullSchema = getSchema(schemaVersion);
+    let data = fullSchema.filter((instanceData) => instanceData["TYPE"] == dataType);
 
     if (dataType == "dungeon") {
-        var extraData = fullSchema.filter((instanceData) => instanceData["TYPE"] == "dungeon_extra");
+        const extraData = fullSchema.filter((instanceData) => instanceData["TYPE"] == "dungeon_extra");
         data = data.concat(extraData);
     }
 

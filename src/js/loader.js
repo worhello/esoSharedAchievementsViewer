@@ -47,7 +47,7 @@ function handleOptionsButtonClicked(buttonVal) {
 }
 
 function handleGenerateViewButtonClicked(selectedCategory) {
-    var inputData = gatherInputData(selectedCategory);
+    const inputData = gatherInputData(selectedCategory);
     if (inputData.length == 0) {
         window.alert("Invalid data detected");
         return;
@@ -64,7 +64,7 @@ function handleGenerateViewButtonClicked(selectedCategory) {
     $("#playerNamesContainer").show();
     $("#metadataContainer").show();
 
-    let schemaVersion = InputCodesService.getSchemaVersion();
+    let schemaVersion = InputCodesService.getSchemaVersionFromInput();
 
     TableViewController.populateTable(schemaVersion, selectedCategory, inputData);
 
