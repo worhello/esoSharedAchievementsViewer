@@ -18,9 +18,9 @@ export function showSummaryViewModal() {
 }
 
 function showModal() {
-    var modalElement = document.querySelector('#extraDataModal');
+    const modalElement = document.querySelector('#extraDataModal');
     // Because we're not using webpack we need to specifically disable the warning here...
     // eslint-disable-next-line no-undef
-    var modal = bootstrap.Modal.getOrCreateInstance(modalElement)
+    const modal = bootstrap.Modal.getOrCreateInstance(modalElement)
     modal.show();
 }

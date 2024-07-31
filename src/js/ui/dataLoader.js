@@ -40,7 +40,7 @@ function loadUpdatedDataFromUrlIfPresent(url, paramType) {
 
     const indexToUpdate = inputDataAll.findIndex(dataArr => { return dataArr.split(":")[0] == userName });
 
-    var newInputData = inputDataAll;
+    let newInputData = inputDataAll;
     if (indexToUpdate == -1) {
         newInputData = newInputData.concat([updatedData]);
     } else {
@@ -52,7 +52,7 @@ function loadUpdatedDataFromUrlIfPresent(url, paramType) {
 }
 
 export function readDataFromInput(inputName) {
-    var inputDataAll = [];
+    let inputDataAll = [];
     try {
         inputDataAll = $("#dataInput_" + inputName).val()
             .split("\n")

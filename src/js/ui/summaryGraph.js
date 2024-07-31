@@ -16,7 +16,7 @@ Chart.Tooltip.positioners.myCustomPositioner = function(elements) {
     return false;
 };
 
-var summaryGraphChart = null;
+let summaryGraphChart = null;
 
 export function resetGraphChart() {
     if (summaryGraphChart) {

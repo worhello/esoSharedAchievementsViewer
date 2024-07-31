@@ -4,7 +4,7 @@ import { viewTableConfig } from "../data/viewTableConfig.js";
 
 export function loadDataFromLocalStorage() {
     Object.keys(viewTableConfig).forEach(category => {
-        var stored = localStorage.getItem("dataInput_" + category);
+        const stored = localStorage.getItem("dataInput_" + category);
         if (stored) {
             $("#dataInput_" + category).html(stored);
         }
@@ -13,7 +13,7 @@ export function loadDataFromLocalStorage() {
 
 export function storeInputDataToLocalStorage() {
     Object.keys(viewTableConfig).forEach(category => {
-        var v = $("#dataInput_" + category).val();
+        const v = $("#dataInput_" + category).val();
         if (v) {
             localStorage.setItem("dataInput_" + category, v);
         }
@@ -22,7 +22,7 @@ export function storeInputDataToLocalStorage() {
 
 export function clearInputDataFromLocalStorage() {
     Object.keys(viewTableConfig).forEach(category => {
-        var v = $("#dataInput_" + category).val();
+        const v = $("#dataInput_" + category).val();
         if (v) {
             localStorage.removeItem("dataInput_" + category, v);
         }

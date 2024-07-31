@@ -4,15 +4,15 @@ import * as Schemas from "../data/schemas.js";
 import { viewTableConfig } from "../data/viewTableConfig.js";
 import { Player } from "../model/player.js";
 
-var currentInputLengths = [];
-var currentSchemaVersions = new Set();
+let currentInputLengths = [];
+let currentSchemaVersions = new Set();
 
 export function parseInputData(inputDataAll) {
-    var players = [];
+    let players = [];
     currentInputLengths = [];
     currentSchemaVersions = new Set();
     inputDataAll.forEach(d => {
-        var validated = parsePlayerInputData(d);
+        const validated = parsePlayerInputData(d);
         if (validated != null) {
             players.push(validated);
         }
@@ -26,8 +26,8 @@ export function parseInputData(inputDataAll) {
 }
 
 function validateGatheredData() {
-    var allOk = true;
-    for (var i = 0; i < currentInputLengths.length; i++) {
+    let allOk = true;
+    for (let i = 0; i < currentInputLengths.length; i++) {
         allOk = allOk && currentInputLengths && currentInputLengths[0] == currentInputLengths[i];
     }
 
@@ -41,15 +41,15 @@ function parsePlayerInputData(input) {
         return null;
     }
 
-    var playerInfoAsArrayTmp = parsePlayerInfoIntoArray(input);
-    if (playerInfoAsArrayTmp.length < 2 || playerInfoAsArrayTmp.length > 3) {
+    const playerInfoAsArray = parsePlayerInfoIntoArray(input);
+    if (playerInfoAsArray.length < 2 || playerInfoAsArray.length > 3) {
         return null;
     }
 
-    var player = new Player();
-    player.name = parseUsername(playerInfoAsArrayTmp);
-    player.schemaVersion = (playerInfoAsArrayTmp.length == 3) ? playerInfoAsArrayTmp[1] : 1; // old codes didn't have the schemaVersion baked in
-    player.originalInput = playerInfoAsArrayTmp[playerInfoAsArrayTmp.length - 1];
+    let player = new Player();
+    player.name = parseUsername(playerInfoAsArray);
+    player.schemaVersion = (playerInfoAsArray.length == 3) ? playerInfoAsArray[1] : 1; // old codes didn't have the schemaVersion baked in
+    player.originalInput = playerInfoAsArray[playerInfoAsArray.length - 1];
 
     const schemaVersion = player.schemaVersion;
     if (!Schemas.isValidSchema(schemaVersion)) {
@@ -58,7 +58,7 @@ function parsePlayerInputData(input) {
 
     currentSchemaVersions.add(schemaVersion)
 
-    var playerCodeAsBinary = convertPlayerInputToBinary(player.originalInput, schemaVersion);
+    const playerCodeAsBinary = convertPlayerInputToBinary(player.originalInput, schemaVersion);
     if (!getValidInputSizes(schemaVersion).includes(playerCodeAsBinary.length)) {
         return null;
     }
@@ -80,14 +80,14 @@ function convertPlayerInputToBinary(originalUserInput, schemaVersion) {
         return "";
     }
 
-    var decoded = "";
-    for (var i = 0; i < originalUserInput.length; i++) {
+    let decoded = "";
+    for (let i = 0; i < originalUserInput.length; i++) {
         let binary = base64ToBinary(originalUserInput[i]);
         decoded = decoded.concat(binary);
     }
 
     const validInputSizes = getValidInputSizes(schemaVersion);
-    for (var j = 0; j < validInputSizes.length; j++) {
+    for (let j = 0; j < validInputSizes.length; j++) {
         if (decoded.length > validInputSizes[j] && decoded.length - validInputSizes[j] < 6) {
             decoded = decoded.substring(0, decoded.length - (decoded.length - validInputSizes[j]));
             break;
@@ -103,7 +103,7 @@ function isAllValidCharacters(data, validChars) {
 }
 
 function isAllValidBinaryCharacters(data) {
-    var binaryChars = "01";
+    const binaryChars = "01";
     return isAllValidCharacters(data, binaryChars);
 }
 
@@ -113,11 +113,11 @@ function isAllValidBase64Characters(data) {
 }
 
 function base64ToBinary(c) {
-    var remaining = Base64Lexicon.indexOf(c);
-    var result = "";
-    for (var i = 5; i >= 0; i--) {
-        var currPower = Math.pow(2, i);
-        var currBit = "0";
+    let remaining = Base64Lexicon.indexOf(c);
+    let result = "";
+    for (let i = 5; i >= 0; i--) {
+        const currPower = Math.pow(2, i);
+        let currBit = "0";
         if (remaining >= currPower) {
             currBit = "1";
             remaining -= currPower;
@@ -140,7 +140,7 @@ function getValidInputSizes(schemaVersion) {
 // only exported for tests
 export function getValidInputSizeForType(schemaVersion, type) {
     const data = Schemas.getData(schemaVersion, viewTableConfig[type].databaseEntriesType);
-    var total = 0;
+    let total = 0;
     for (let row of data) {
         total += row["CODES"].length;
     }
