@@ -3,6 +3,7 @@
 import * as Schemas from "../data/schemas.js";
 import { viewTableConfig } from "../data/viewTableConfig.js";
 import { Player } from "../model/player.js";
+import * as Base64Service from "./base64Service.js";
 
 let currentInputLengths = [];
 let currentSchemaVersions = new Set();
@@ -72,17 +73,17 @@ function parsePlayerInputData(input) {
 
 function convertPlayerInputToBinary(originalUserInput, schemaVersion) {
     // this allows the user to input binary codes directly
-    if (isAllValidBinaryCharacters(originalUserInput)) {
+    if (Base64Service.isAllValidBinaryCharacters(originalUserInput)) {
         return originalUserInput;
     }
 
-    if (!isAllValidBase64Characters(originalUserInput)) {
+    if (!Base64Service.isAllValidBase64Characters(originalUserInput)) {
         return "";
     }
 
     let decoded = "";
     for (let i = 0; i < originalUserInput.length; i++) {
-        let binary = base64ToBinary(originalUserInput[i]);
+        let binary = Base64Service.base64ToBinary(originalUserInput[i]);
         decoded = decoded.concat(binary);
     }
 
@@ -96,37 +97,6 @@ function convertPlayerInputToBinary(originalUserInput, schemaVersion) {
 
     return decoded;
 }
-
-function isAllValidCharacters(data, validChars) {
-    let validCharsAsArray = validChars.split('');
-    return data.split('').every(c => validCharsAsArray.includes(c));
-}
-
-function isAllValidBinaryCharacters(data) {
-    const binaryChars = "01";
-    return isAllValidCharacters(data, binaryChars);
-}
-
-const Base64Lexicon = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+_";
-function isAllValidBase64Characters(data) {
-    return isAllValidCharacters(data, Base64Lexicon);
-}
-
-function base64ToBinary(c) {
-    let remaining = Base64Lexicon.indexOf(c);
-    let result = "";
-    for (let i = 5; i >= 0; i--) {
-        const currPower = Math.pow(2, i);
-        let currBit = "0";
-        if (remaining >= currPower) {
-            currBit = "1";
-            remaining -= currPower;
-        }
-        result = result.concat(currBit);
-    }
-    return result;
-}
-
 
 function getValidInputSizes(schemaVersion) {
     const supportedTypes = Object.keys(viewTableConfig);
@@ -147,7 +117,7 @@ export function getValidInputSizeForType(schemaVersion, type) {
     return total;
 }
 
-export function getSchemaVersion() {
+export function getSchemaVersionFromInput() {
     if (currentSchemaVersions.size > 1) {
         return 1; // fallback to using 1
     }

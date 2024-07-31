@@ -77,7 +77,7 @@ function setupExtraDataModalButton(dungeonName, dungeonAbbv, parentElementId) {
 }
 
 function shouldExtraInfoBeShownInModal(dataRow, numDataColumnsInMainView) {
-    let schemaVersion = InputCodesService.getSchemaVersion();
+    let schemaVersion = InputCodesService.getSchemaVersionFromInput();
     if (schemaVersion && schemaVersion > 2) {
         return true;
     }

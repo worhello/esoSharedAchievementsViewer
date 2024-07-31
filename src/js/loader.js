@@ -64,7 +64,7 @@ function handleGenerateViewButtonClicked(selectedCategory) {
     $("#playerNamesContainer").show();
     $("#metadataContainer").show();
 
-    let schemaVersion = InputCodesService.getSchemaVersion();
+    let schemaVersion = InputCodesService.getSchemaVersionFromInput();
 
     TableViewController.populateTable(schemaVersion, selectedCategory, inputData);
 
