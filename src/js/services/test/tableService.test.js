@@ -3,18 +3,19 @@
 import { getData } from '../../data/schemas.js';
 import { getValidInputSizeForType } from '../inputCodesService.js'
 import { Player } from '../../model/player.js';
-import { buildTableModel } from '../tableService.js';
+import { buildTableModel, generateModelForNewAchievements } from '../tableService.js';
 
 import * as assert from 'assert';
 
 const schemaVersion = 5;
 
 describe('TableService.buildTableModel', function () {
-  const schemaData = getData(schemaVersion, 'dungeon');
+  const dataType = 'dungeon';
+  const schemaData = getData(schemaVersion, dataType);
 
   describe('players with different sets of achievements', function() {
     const players = buildPlayersArray([2, 3]);
-    const model = buildTableModel(schemaData, players);
+    const model = buildTableModel(dataType, schemaData, players);
     it('ensure state is correct', function () {
       assert.equal(model.headerText, 'Player 1, Player 2', 'should have a headerText with both player names');
       assert.equal(model.achievementsList[0].completedPercent, 100.0, "the 1st achievement has 100% completion rate");
@@ -41,7 +42,7 @@ describe('TableService.buildTableModel', function () {
 
   describe('players with the same sets of achievements', function() {
     const players = buildPlayersArray([2, 2]);
-    const model = buildTableModel(schemaData, players);
+    const model = buildTableModel(dataType, schemaData, players);
     it('ensure state is correct', function () {
       assert.equal(model.achievementsList[0].completedPercent, 100.0, "should return a model where the 1st achievement has 100% completion rate");
       assert.equal(model.achievementsList[1].completedPercent, 0.0, "should return a model where the 2nd achievement has 100% completion rate");
@@ -50,6 +51,88 @@ describe('TableService.buildTableModel', function () {
       assertSamePlayersHaveAchievement(model.achievementsList[0].playersWhoHaveAchieve, ['Player 1', 'Player 2']);
       assertSamePlayersHaveAchievement(model.achievementsList[1].playersWhoHaveAchieve, []);
       assertSamePlayersHaveAchievement(model.achievementsList[2].playersWhoHaveAchieve, ['Player 1', 'Player 2']);
+    });
+  });
+
+});
+
+describe('TableService.generateModelForNewAchievements', function () {
+  const dataType = 'dungeon';
+  const schemaData = getData(schemaVersion, dataType);
+  const players = buildPlayersArray([2, 2]);
+  const model = buildTableModel(dataType, schemaData, players, true); // this is to store this value in TableService
+
+  describe('different players', function() {
+    describe('different number of players', function() {
+      const prevPlayers = buildPlayersArray([2, 3, 2]);
+
+      it('button will not be visible and no new achievements will be calculated', function() {
+        const previousModel = buildTableModel(dataType, schemaData, prevPlayers, false);
+        const newAchievementsModel = generateModelForNewAchievements(dataType, previousModel);
+        assert.equal(false, newAchievementsModel.showButton);
+        assert.equal(0, newAchievementsModel.achievementsList.length);
+      });
+    });
+
+    describe('different players, same number', function() {
+      const prevPlayers = buildPlayersArray([2, 3]);
+      prevPlayers[0].name = "Another Player";
+
+      it('button will not be visible and no new achievements will be calculated', function() {
+        const previousModel = buildTableModel(dataType, schemaData, prevPlayers, false);
+        const newAchievementsModel = generateModelForNewAchievements(dataType, previousModel);
+        assert.equal(false, newAchievementsModel.showButton);
+        assert.equal(0, newAchievementsModel.achievementsList.length);
+      });
+    });
+  });
+
+  describe('different schema versions', function() {
+    const oldSchemaData = getData(schemaVersion - 1, dataType);
+
+    it('button will not be visible and no new achievements will be calculated', function() {
+      const previousModel = buildTableModel(dataType, oldSchemaData, players, false);
+      const newAchievementsModel = generateModelForNewAchievements(dataType, previousModel);
+      assert.equal(false, newAchievementsModel.showButton);
+      assert.equal(0, newAchievementsModel.achievementsList.length);
+    });
+  });
+
+  describe('same schema versions', function() {
+    describe('same achievements', function() {
+      it('button will not be visible and no new achievements will be calculated', function() {
+        const previousModel = buildTableModel(dataType, schemaData, players, false);
+        const newAchievementsModel = generateModelForNewAchievements(dataType, previousModel);
+        assert.equal(false, newAchievementsModel.showButton);
+        assert.equal(0, newAchievementsModel.achievementsList.length);
+      });
+    });
+
+    describe('new achievements in model', function() {
+      const oldPlayers = buildPlayersArray([2, 2]); // fewer achievements completed in "old" model
+      oldPlayers[0].binaryCode = oldPlayers[0].binaryCode.replace('1', '0'); // only replace the first 1 with a 0
+
+      describe('players have names in same case', function() {
+        it('button WILL be visible and new achievements will be calculated', function() {
+          const previousModel = buildTableModel(dataType, schemaData, oldPlayers, false);
+          const newAchievementsModel = generateModelForNewAchievements(dataType, previousModel);
+          assert.equal(true, newAchievementsModel.showButton);
+          assert.equal(1, newAchievementsModel.achievementsList.length);
+          assert.equal(2, newAchievementsModel.achievementsList[0].completedNumber);
+        });
+      });
+
+      describe('players have names in different case', function() {
+        oldPlayers[0].name = oldPlayers[0].name.toUpperCase();
+
+        it('button WILL be visible and new achievements will be calculated', function() {
+          const previousModel = buildTableModel(dataType, schemaData, oldPlayers, false);
+          const newAchievementsModel = generateModelForNewAchievements(dataType, previousModel);
+          assert.equal(true, newAchievementsModel.showButton);
+          assert.equal(1, newAchievementsModel.achievementsList.length);
+          assert.equal(2, newAchievementsModel.achievementsList[0].completedNumber);
+        });
+      });
     });
   });
 

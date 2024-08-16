@@ -18,16 +18,9 @@ function getBaseUrl() {
     return "https://worhello.github.io/esoSharedAchievementsViewer/";
 }
 
-function gatherInputData(inputName) {
-    const inputDataAll = DataLoader.readDataFromInput(inputName);
-
-    const data = InputCodesService.parseInputData(inputDataAll);
-
-    if (data.length > 0) {
-        LocalStorageUtil.storeInputDataToLocalStorage();
-    }
-
-    return data;
+function parseInput(rawInput, category) {
+    const formatted = DataLoader.formatDataFromInput(rawInput);
+    return InputCodesService.parseInputData(formatted, category);
 }
 
 function handleOptionsButtonClicked(buttonVal) {
@@ -47,12 +40,27 @@ function handleOptionsButtonClicked(buttonVal) {
 }
 
 function handleGenerateViewButtonClicked(selectedCategory) {
-    const inputData = gatherInputData(selectedCategory);
-    if (inputData.length == 0) {
+    const parsedInputResults = parseInput($("#dataInput_" + selectedCategory).val(), selectedCategory);
+    if (!parsedInputResults.isValid) {
         window.alert("Invalid data detected");
         return;
     }
 
+    LocalStorageUtil.storeInputDataToLocalStorage();
+
+    updateUiForGenerateViewButtonClicked();
+
+    TableViewController.populateTable(parsedInputResults);
+
+    const previousDataParsed = parseInput(LocalStorageUtil.readDataFromPreviousLocalStorage(selectedCategory), selectedCategory);
+    TableViewController.populateNewAchievementsIfApplicable(previousDataParsed);
+
+    DataLoader.populateShareUrl(selectedCategory, getBaseUrl());
+
+    $("#" + selectedCategory + "View").show();
+}
+
+function updateUiForGenerateViewButtonClicked() {
     $(".extraDataModalDungeonInfoRow").remove();
     $(".summaryInfoHeaderRow").remove();
     $(".summaryInfoModalDungeonInfoRow").remove();
@@ -63,14 +71,6 @@ function handleGenerateViewButtonClicked(selectedCategory) {
     $("#viewsContainer").show();
     $("#playerNamesContainer").show();
     $("#metadataContainer").show();
-
-    let schemaVersion = InputCodesService.getSchemaVersionFromInput();
-
-    TableViewController.populateTable(schemaVersion, selectedCategory, inputData);
-
-    DataLoader.populateShareUrl(selectedCategory, getBaseUrl());
-
-    $("#" + selectedCategory + "View").show();
 }
 
 $(document).ready(function() {
@@ -90,6 +90,10 @@ $(document).ready(function() {
 
     $("button[name$='showSummaryViewButton']").click(function() {
         ModalUtil.showSummaryViewModal();
+    });
+
+    $("button[name$='showNewAchievementsViewButton']").click(function() {
+        ModalUtil.showNewAchievementsViewModal();
     });
 
     // Doing this dynamically allows for different URLs when run locally

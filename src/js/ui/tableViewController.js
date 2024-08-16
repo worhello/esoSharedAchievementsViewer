@@ -2,7 +2,6 @@
 
 import { achievementInfos } from "../data/achievementInfos.js";
 import { viewTableConfig } from "../data/viewTableConfig.js";
-import * as InputCodesService from "../services/inputCodesService.js";
 import * as TableService from "../services/tableService.js";
 import * as ModalUtil from "./modalUtil.js";
 import * as Schemas from "../data/schemas.js";
@@ -12,7 +11,7 @@ import * as SummaryGraph from "./summaryGraph.js";
 // TODO investigate replacing this manual HTML creation with HTMl Templates
 function createNameCell(c, parentElementId) {
     let cell = document.createElement("td");
-    cell.id = parentElementId + c + "name";
+    cell.id = `${parentElementId}${c}name`;
     cell.dataset.toggle = "tooltip";
     cell.textContent = achievementInfos[c].dungeon;
     cell.setAttribute("scope", "row");
@@ -22,7 +21,7 @@ function createNameCell(c, parentElementId) {
 
 function createMainViewCell(c, parentElementId) {
     let cell = document.createElement("td");
-    cell.id = parentElementId + c;
+    cell.id = `${parentElementId}${c}`;
     cell.dataset.toggle = "tooltip";
     if (c != "NIL") {
         cell.classList.add("dataCell")
@@ -39,6 +38,7 @@ function populateExtraDataModalRow(c, parentElementId, dungeonAbbv) {
     }
 
     let row = document.createElement("tr");
+    row.id = `rowId_${c}_extraData`;
     row.classList.add("extraDataModalDungeonInfoRow"); // used to hide all rows
     row.classList.add(`${dungeonAbbv}_extraData`);
     row.setAttribute("extraDataModalDungeonAbbv", dungeonAbbv); // used to show only this dungeon's rows
@@ -63,7 +63,7 @@ function setupExtraDataModalButton(dungeonName, dungeonAbbv, parentElementId) {
     cell.classList.add("extraDataCol");
 
     let showModalButton = document.createElement("button");
-    showModalButton.id = parentElementId + dungeonAbbv + "extraAchievementsButton";
+    showModalButton.id = `${parentElementId}${dungeonAbbv}extraAchievementsButton`;
     showModalButton.innerHTML = "More Details";
     showModalButton.classList.add("btn");
     showModalButton.classList.add("btn-sm");
@@ -76,20 +76,10 @@ function setupExtraDataModalButton(dungeonName, dungeonAbbv, parentElementId) {
     return cell;
 }
 
-function shouldExtraInfoBeShownInModal(dataRow, numDataColumnsInMainView) {
-    let schemaVersion = InputCodesService.getSchemaVersionFromInput();
-    if (schemaVersion && schemaVersion > 2) {
-        return true;
-    }
-
-    return dataRow["CODES"].length > numDataColumnsInMainView;
-}
-
 function createTableRow(dataRow, numDataColumnsInMainView, parentElementId, numberOfPlayers) {
     let row = document.createElement("tr");
     let nameCellCreated = false;
-    const extraDataModalNeeded = shouldExtraInfoBeShownInModal(dataRow, numDataColumnsInMainView);
-    const numMainViewColumnsWithData = extraDataModalNeeded ? numDataColumnsInMainView - 1 : dataRow["CODES"].length;
+    const numMainViewColumnsWithData = numDataColumnsInMainView - 1;
     for (let i  = 0; i < numMainViewColumnsWithData; i++) {
         const c = dataRow["CODES"][i];
         if (nameCellCreated == false) {
@@ -100,15 +90,12 @@ function createTableRow(dataRow, numDataColumnsInMainView, parentElementId, numb
         row.appendChild(createMainViewCell(c, parentElementId));
     }
 
-    if (extraDataModalNeeded) {
-        const dungeonAbbv = dataRow["ABBV"];
-        const dungeonName = achievementInfos[dataRow["CODES"][0]].dungeon;
-        row.appendChild(setupExtraDataModalButton(dungeonName, dungeonAbbv, parentElementId));
-        let startingExtraDataIndex = 0;
-        for (let j = startingExtraDataIndex; j < dataRow["CODES"].length; j++) {
-            const c = dataRow["CODES"][j];
-            populateExtraDataModalRow(c, parentElementId, dungeonAbbv);
-        }
+    const dungeonAbbv = dataRow["ABBV"];
+    const dungeonName = achievementInfos[dataRow["CODES"][0]].dungeon;
+    row.appendChild(setupExtraDataModalButton(dungeonName, dungeonAbbv, parentElementId));
+    for (let j = 0; j < dataRow["CODES"].length; j++) {
+        const c = dataRow["CODES"][j];
+        populateExtraDataModalRow(c, parentElementId, dungeonAbbv);
     }
 
     $(`#${parentElementId}_summaryColHeader`).attr("colspan", numberOfPlayers + 1);
@@ -119,9 +106,9 @@ function createTableRows(data, dataType, numberOfPlayers) {
     const parentElementId = viewTableConfig[dataType].parentElementId;
     const numDataColumnsInMainView = viewTableConfig[dataType].numDataColumnsInMainView;
 
-    $("#" + parentElementId).empty();
+    $(`#${parentElementId}`).empty();
     for (let dataPoint of data) {
-        $("#" + parentElementId).append(createTableRow(dataPoint, numDataColumnsInMainView, parentElementId, numberOfPlayers));
+        $(`#${parentElementId}`).append(createTableRow(dataPoint, numDataColumnsInMainView, parentElementId, numberOfPlayers));
     }
 }
 
@@ -231,15 +218,14 @@ function generateDataSetsForGraph(allDungeonsAchievementsSummary, numPlayers) {
     return dataArray;
 }
 
-export function populateTable(schemaVersion, dataType, players) {
-    const data = Schemas.getData(schemaVersion, viewTableConfig[dataType].databaseEntriesType);
+export function populateTable(parsedInputResults) {
+    const dataType = parsedInputResults.category;
+    const { data, model } = getDataAndModel(parsedInputResults, true);
 
-    createTableRows(data, dataType, players.length);
+    createTableRows(data, dataType, parsedInputResults.players.length);
 
     const parentElementId = viewTableConfig[dataType].parentElementId;
-    const numPlayers = players.length;
-
-    const model = TableService.buildTableModel(data, players);
+    const numPlayers = parsedInputResults.players.length;
 
     populateTableFromModel(model, parentElementId);
     const labels = Array.from(model.allDungeonsAchievementsSummary.keys());
@@ -249,9 +235,17 @@ export function populateTable(schemaVersion, dataType, players) {
     $("#playerNamesContainer").html(model.headerText);
 }
 
+function getDataAndModel(parsedInputResults, isForMainView) {
+    const dataType = parsedInputResults.category;
+    const data = Schemas.getData(parsedInputResults.schemaVersion, viewTableConfig[dataType].databaseEntriesType);
+    const model = TableService.buildTableModel(dataType, data, parsedInputResults.players, isForMainView);
+
+    return { data, model };
+}
+
 function populateTableFromModel(model, parentElementId) {
     for (let achievement of model.achievementsList) {
-        let cellId = "#" + parentElementId + achievement.code;
+        let cellId = `#${parentElementId}${achievement.code}`;
 
         setCellColorBasedOnPercentComplete(cellId, -1);
         if (!achievement.isAchievement) { //represents cells with no actual achievement, need to grey out the boxes
@@ -268,5 +262,21 @@ function populateTableFromModel(model, parentElementId) {
                 setCellColorBasedOnPercentComplete(id, achievement.completedPercent);
             }
         }
+    }
+}
+
+export function populateNewAchievementsIfApplicable(previousData) {
+    const { model } = getDataAndModel(previousData, false);
+    const newAchievementsModel = TableService.generateModelForNewAchievements(previousData.category, model);
+
+    if (!newAchievementsModel.showButton) {
+        $("#showNewAchievementsViewButton").hide();
+        return;
+    }
+
+    $("#showNewAchievementsViewButton").show();
+
+    for (const dataRow of newAchievementsModel.achievementsList) {
+        $(`#rowId_${dataRow.code}_extraData`).addClass("newAchievement");
     }
 }

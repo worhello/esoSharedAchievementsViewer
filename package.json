@@ -5,7 +5,7 @@
   "main": ".eslintrc.js",
   "type": "module",
   "scripts": {
-    "test": "mocha src/js/services --recursive --timeout 60000 --exit"
+    "test": "mocha"
   },
   "author": "",
   "license": "ISC",
