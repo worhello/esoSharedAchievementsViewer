@@ -2,6 +2,8 @@
 
 import { achievementInfos } from "../data/achievementInfos.js";
 
+const categoryModels = new Map();
+
 class AchievementCompletedModel {
     constructor() {
         this.code = 0;
@@ -21,7 +23,17 @@ class TableModel {
     }
 }
 
-export function buildTableModel(schemaData, players) {
+export function buildTableModel(dataType, schemaData, players, storeModel) {
+    const model = buildTableModelWithoutStoringModel(schemaData, players);
+
+    if (storeModel) {
+        categoryModels[dataType] = model;
+    }
+
+    return model;
+}
+
+function buildTableModelWithoutStoringModel(schemaData, players) {
     const tableModel = new TableModel();
 
     const numPlayers = players.length;
@@ -67,4 +79,50 @@ export function buildTableModel(schemaData, players) {
     tableModel.headerText = players.map(p => p.name).join(", " );
 
     return tableModel;
+}
+
+export function generateModelForNewAchievements(dataType, previousData) {
+    
+    let result = {};
+    result.showButton = false;
+    result.achievementsList = [];
+    
+    const currentData = categoryModels[dataType];
+    
+    // check if schemas differ
+    if (currentData.achievementsList.length != previousData.achievementsList.length) {
+        return result;
+    }
+
+    // check if players are different
+    const currentPlayers = getPlayersSetFromHeaderText(currentData.headerText);
+    const previousPlayers = getPlayersSetFromHeaderText(previousData.headerText);
+    if (!currentPlayers.every(player => previousPlayers.includes(player)) || 
+        !previousPlayers.every(player => currentPlayers.includes(player))) {
+        return result;
+    }
+
+    result.achievementsList = getListOfChangedCompletionPercentAchievements(currentData, previousData);
+    result.showButton = result.achievementsList.length > 0;
+
+    return result;
+}
+
+function getPlayersSetFromHeaderText(headerText) {
+    return headerText.split(",").map(str => str.toLowerCase().trim());
+}
+
+function getListOfChangedCompletionPercentAchievements(currentData, previousData) {
+    let changedAchievements = [];
+
+    for (const currentAchievementValue of currentData.achievementsList) {
+        var previousAchievementValue = previousData.achievementsList.find(prev => prev.code === currentAchievementValue.code);
+        if (currentAchievementValue.completedNumber > previousAchievementValue.completedNumber) {
+            changedAchievements.push(currentAchievementValue);
+        } else if (currentAchievementValue.completedNumber < previousAchievementValue.completedNumber) {
+            console.log("something weird with " + JSON.stringify(currentAchievementValue) + " vs " + JSON.stringify(previousAchievementValue));
+        }
+    }
+
+    return changedAchievements;
 }

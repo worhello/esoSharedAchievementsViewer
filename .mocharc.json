@@ -1,0 +1,6 @@
+{
+    "package": "./package.json",
+    "recursive": true,
+    "slow": "75",
+    "spec": "./src/js/services/**/*.js"
+  }

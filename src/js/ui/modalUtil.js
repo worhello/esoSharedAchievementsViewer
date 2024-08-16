@@ -2,9 +2,11 @@
 
 export function showExtraDataModal(dungeonAbbv, dungeonName) {
     $('#summaryGraphContainer').hide()
-    $('#extraDataTable').show()
-    $('.extraDataModalDungeonInfoRow').hide();
-    $(`.${dungeonAbbv}_extraData`).show();
+    $('#extraDataTable').show();
+
+    $('.extraDataModalDungeonInfoRow').hide(); // hide all achievements
+    $(`.${dungeonAbbv}_extraData`).show(); // show this dungeon's achievements
+
     $("#extraDataModalTitle").html(`Extra Achievements - ${dungeonName}`);
     showModal();
 }
@@ -13,6 +15,18 @@ export function showSummaryViewModal() {
     $('#summaryGraphContainer').show()
     $('#extraDataTable').hide()
     $("#extraDataModalTitle").html(`Achievement Completion Summary`);
+
+    showModal();
+}
+
+export function showNewAchievementsViewModal() {
+    $('#summaryGraphContainer').hide()
+    $('#extraDataTable').show();
+
+    $('.extraDataModalDungeonInfoRow').hide(); // hide all achievements
+    $('.newAchievement').show();
+
+    $("#extraDataModalTitle").html(`New Achievements`);
 
     showModal();
 }

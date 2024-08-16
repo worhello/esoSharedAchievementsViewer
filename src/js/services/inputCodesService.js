@@ -5,39 +5,47 @@ import { viewTableConfig } from "../data/viewTableConfig.js";
 import { Player } from "../model/player.js";
 import * as Base64Service from "./base64Service.js";
 
-let currentInputLengths = [];
-let currentSchemaVersions = new Set();
+export function parseInputData(inputDataAll, category) {
+    let result = {};
+    result.category = category;
+    result.players = [];
+    result.schemaVersion = -1;
+    result.isValid = false;
 
-export function parseInputData(inputDataAll) {
-    let players = [];
-    currentInputLengths = [];
-    currentSchemaVersions = new Set();
-    inputDataAll.forEach(d => {
-        const validated = parsePlayerInputData(d);
+    let currentInfo = {};
+    currentInfo.currentInputLengths = [];
+    currentInfo.currentSchemaVersions = new Set();
+
+    inputDataAll.forEach(input => {
+        const validated = parsePlayerInputData(currentInfo, input);
         if (validated != null) {
-            players.push(validated);
+            result.players.push(validated);
         }
     });
 
-    if (!validateGatheredData()) {
+    if (!validateGatheredData(currentInfo)) {
         return [];
     }
 
-    return players;
+    result.schemaVersion = getSchemaVersionFromInput(currentInfo);
+
+    result.isValid = true;
+
+    return result;
 }
 
-function validateGatheredData() {
+function validateGatheredData(result) {
     let allOk = true;
-    for (let i = 0; i < currentInputLengths.length; i++) {
-        allOk = allOk && currentInputLengths && currentInputLengths[0] == currentInputLengths[i];
+    for (let i = 0; i < result.currentInputLengths.length; i++) {
+        allOk = allOk && result.currentInputLengths && result.currentInputLengths[0] == result.currentInputLengths[i];
     }
 
-    allOk = allOk && currentSchemaVersions.size == 1;
+    allOk = allOk && result.currentSchemaVersions.size == 1;
 
     return allOk;
 }
 
-function parsePlayerInputData(input) {
+function parsePlayerInputData(result, input) {
     if (input == "") {
         return null;
     }
@@ -57,14 +65,14 @@ function parsePlayerInputData(input) {
         return null;
     }
 
-    currentSchemaVersions.add(schemaVersion)
+    result.currentSchemaVersions.add(schemaVersion)
 
     const playerCodeAsBinary = convertPlayerInputToBinary(player.originalInput, schemaVersion);
     if (!getValidInputSizes(schemaVersion).includes(playerCodeAsBinary.length)) {
         return null;
     }
 
-    currentInputLengths.push(playerCodeAsBinary.length);
+    result.currentInputLengths.push(playerCodeAsBinary.length);
 
     player.binaryCode = playerCodeAsBinary;
 
@@ -117,12 +125,12 @@ export function getValidInputSizeForType(schemaVersion, type) {
     return total;
 }
 
-export function getSchemaVersionFromInput() {
-    if (currentSchemaVersions.size > 1) {
+function getSchemaVersionFromInput(result) {
+    if (result.currentSchemaVersions.size > 1) {
         return 1; // fallback to using 1
     }
 
-    return [...currentSchemaVersions][0];
+    return [...result.currentSchemaVersions][0];
 }
 
 function parsePlayerInfoIntoArray(unparsedString) {

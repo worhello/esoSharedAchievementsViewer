@@ -33,7 +33,7 @@ function loadDataIntoInput(paramType, fullInput) {
 }
 
 function loadUpdatedDataFromUrlIfPresent(url, paramType) {
-    const inputDataAll = readDataFromInput(paramType);
+    const inputDataAll = formatDataFromInput($("#dataInput_" + paramType).val());
 
     const updatedData = url.searchParams.get("data");
     const userName = updatedData.split(":")[0];
@@ -51,21 +51,13 @@ function loadUpdatedDataFromUrlIfPresent(url, paramType) {
     loadDataIntoInput(paramType, fullInput);
 }
 
-export function readDataFromInput(inputName) {
-    let inputDataAll = [];
-    try {
-        inputDataAll = $("#dataInput_" + inputName).val()
-            .split("\n")
-            .join(",")
-            .split("\r")
-            .join(",")
-            .split(",");
-    } catch(err) {
-        console.error("invalid input from dataInput_" + inputName + ", " + err);
-        return [];
-    }
-
-    return inputDataAll;
+export function formatDataFromInput(input) {
+    return input
+        .split("\n")
+        .join(",")
+        .split("\r")
+        .join(",")
+        .split(",");
 }
 
 export function populateShareUrl(category, baseUrl) {
