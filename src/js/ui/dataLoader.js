@@ -26,14 +26,14 @@ export function loadData() {
 
 
 function loadDataIntoInput(paramType, fullInput) {
-    $("input[value$='" + paramType + "']").trigger('click');
-    $("#dataInput_" + paramType).html(fullInput);
+    $(`input[value$='${paramType}']`).trigger('click');
+    $(`#dataInput_${paramType}`).html(fullInput);
     $("#generateViewButtonId").trigger('click');
     return true;
 }
 
 function loadUpdatedDataFromUrlIfPresent(url, paramType) {
-    const inputDataAll = formatDataFromInput($("#dataInput_" + paramType).val());
+    const inputDataAll = formatDataFromInput($(`#dataInput_${paramType}`).val());
 
     const updatedData = url.searchParams.get("data");
     const userName = updatedData.split(":")[0];
@@ -63,11 +63,7 @@ export function formatDataFromInput(input) {
 export function populateShareUrl(category, baseUrl) {
     const url = new URL(baseUrl);
     url.searchParams.append("type", category);
-    url.searchParams.append("data", $("#dataInput_" + category).val());
+    url.searchParams.append("data", $(`#dataInput_${category}`).val());
 
-    const str = url.toString();
-    $("#copyUrlModalBody").html(str);
-    $("#copyUrlModalButton").click(function() {
-        navigator.clipboard.writeText(str);
-    });
+    $("#copyUrlModalBody").html(url.toString());
 }

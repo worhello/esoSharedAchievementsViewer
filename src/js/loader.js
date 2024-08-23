@@ -26,21 +26,21 @@ function parseInput(rawInput, category) {
 function handleOptionsButtonClicked(buttonVal) {
     $("#generateButtonsContainer").show();
     $("button.desc").hide();
-    $("#val_" + buttonVal).show();
+    $(`#val_${buttonVal}`).show();
     $("#generateViewButtonId").val(buttonVal);
 
     $("#inputsContainer").show();
     $("#inputsContainer textarea").hide();
     $("#viewsContainer").hide();
     $("#playerNamesContainer").hide();
-    $("#dataInput_" + buttonVal).show();
+    $(`#dataInput_${buttonVal}`).show();
     $("#metadataContainer").hide();
 
     SummaryGraph.resetGraphChart();
 }
 
 function handleGenerateViewButtonClicked(selectedCategory) {
-    const parsedInputResults = parseInput($("#dataInput_" + selectedCategory).val(), selectedCategory);
+    const parsedInputResults = parseInput($(`#dataInput_${selectedCategory}`).val(), selectedCategory);
     if (!parsedInputResults.isValid) {
         window.alert("Invalid data detected");
         return;
@@ -60,7 +60,7 @@ function handleGenerateViewButtonClicked(selectedCategory) {
 
     DataLoader.populateShareUrl(selectedCategory, getBaseUrl());
 
-    $("#" + selectedCategory + "View").show();
+    $(`#${selectedCategory}View`).show();
 }
 
 function updateUiForGenerateViewButtonClicked() {
@@ -85,18 +85,28 @@ $(document).ready(function() {
         handleGenerateViewButtonClicked($(this).val());
     });
 
-    $("button[name$='resetLocalStorageButton']").click(function() {
+    $("button[name$='resetLocalStorageButton']").click(() => {
         if (LocalStorageUtil.deleteLocalStorageDataWithConfirmation()) {
             handleOptionsButtonClicked("dlcDungeons");
         }
     });
 
-    $("button[name$='showSummaryViewButton']").click(function() {
+    $("button[name$='showSummaryViewButton']").click(() => {
         ModalUtil.showSummaryViewModal();
     });
 
-    $("button[name$='showNewAchievementsViewButton']").click(function() {
+    $("button[name$='showNewAchievementsViewButton']").click(() => {
         ModalUtil.showNewAchievementsViewModal();
+    });
+
+    $("#shareViewButton").click(() => {
+        $("#copyUrlModalButton").text("Copy to clipboard");
+    })
+    
+    
+    $("#copyUrlModalButton").click(() => {
+        navigator.clipboard.writeText($("#copyUrlModalBody").val());
+        $("#copyUrlModalButton").text(`Copied!`);
     });
 
     // Doing this dynamically allows for different URLs when run locally
