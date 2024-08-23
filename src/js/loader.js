@@ -52,8 +52,11 @@ function handleGenerateViewButtonClicked(selectedCategory) {
 
     TableViewController.populateTable(parsedInputResults);
 
-    const previousDataParsed = parseInput(LocalStorageUtil.readDataFromPreviousLocalStorage(selectedCategory), selectedCategory);
-    TableViewController.populateNewAchievementsIfApplicable(previousDataParsed);
+    const previousRawInput = LocalStorageUtil.readDataFromPreviousLocalStorage(selectedCategory);
+    if (previousRawInput) {
+        const previousDataParsed = parseInput(previousRawInput, selectedCategory);
+        TableViewController.populateNewAchievementsIfApplicable(previousDataParsed);
+    }
 
     DataLoader.populateShareUrl(selectedCategory, getBaseUrl());
 

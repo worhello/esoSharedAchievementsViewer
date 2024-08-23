@@ -119,8 +119,6 @@ function getListOfChangedCompletionPercentAchievements(currentData, previousData
         var previousAchievementValue = previousData.achievementsList.find(prev => prev.code === currentAchievementValue.code);
         if (currentAchievementValue.completedNumber > previousAchievementValue.completedNumber) {
             changedAchievements.push(currentAchievementValue);
-        } else if (currentAchievementValue.completedNumber < previousAchievementValue.completedNumber) {
-            console.log("something weird with " + JSON.stringify(currentAchievementValue) + " vs " + JSON.stringify(previousAchievementValue));
         }
     }
 
