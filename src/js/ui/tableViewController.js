@@ -68,7 +68,7 @@ function setupExtraDataModalButton(dungeonName, dungeonAbbv, parentElementId) {
     showModalButton.classList.add("btn");
     showModalButton.classList.add("btn-sm");
     showModalButton.classList.add("btn-primary");
-    showModalButton.onclick = function() {
+    showModalButton.onclick = () => {
         ModalUtil.showExtraDataModal(dungeonAbbv, dungeonName);
     }
 
@@ -159,7 +159,7 @@ function setListOfPlayersWithAchieveInTooltip(cellId, playersWhoHaveAchieve) {
     $(cellId).data("bs-toggle", "tooltip");
     $(cellId).attr("data-bs-html", "true");
     $(cellId).attr("title", tooltipText);
-    $(cellId).hover(function(){
+    $(cellId).hover(() => {
         $(this).tooltip('hide');
     })
     $(cellId).tooltip({trigger: "click"});

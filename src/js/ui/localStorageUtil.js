@@ -22,14 +22,14 @@ export function loadDataFromLocalStorage() {
     Object.keys(viewTableConfig).forEach(category => {
         const stored = readDataFromLocalStorage(category, false);
         if (stored) {
-            $("#dataInput_" + category).html(stored);
+            $(`#dataInput_${category}`).html(stored);
         }
     });
 }
 
 export function storeInputDataToLocalStorage() {
     Object.keys(viewTableConfig).forEach(category => {
-        const v = $("#dataInput_" + category).val();
+        const v = $(`#dataInput_${category}`).val();
         if (v) {
             // First write any existing data to the 'previous' key
             const currentLocalStorageVal = readDataFromLocalStorage(category, false);
