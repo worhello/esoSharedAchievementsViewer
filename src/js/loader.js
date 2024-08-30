@@ -113,11 +113,4 @@ $(document).ready(function() {
     $("#navbarTitleLink").attr("href", getBaseUrl());
 
     DataLoader.loadData();
-
-    $(function () {
-        $('#resetLocalStorageButton').hover(function(){
-            $(this).tooltip('hide');
-        })
-        $('#resetLocalStorageButton').tooltip()
-    })
 });
