@@ -165,13 +165,17 @@ function setListOfPlayersWithAchieveInTooltip(cellId, playersWhoHaveAchieve) {
 
     tooltipText += `<h5>${achievementPoints}</h5>`;
 
-    $(cellId).data("bs-toggle", "tooltip");
+    $(cellId).attr("data-bs-toggle", "tooltip");
+    $(cellId).attr("data-trigger", "click");
     $(cellId).attr("data-bs-html", "true");
     $(cellId).attr("title", tooltipText);
-    $(cellId).hover(() => {
-        $(this).tooltip('hide');
-    })
+
     $(cellId).tooltip({trigger: "click"});
+    $(cellId).on('show.bs.tooltip', function() {
+        $(cellId).on('mouseleave', function() {
+            $(cellId).tooltip('hide');
+        });
+    });
 }
 
 function generateDataSetsForGraph(allDungeonsAchievementsSummary, numPlayers) {
