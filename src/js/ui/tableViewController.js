@@ -28,6 +28,9 @@ function createMainViewCell(c, parentElementId) {
         cell.setAttribute("achievementText", achievementInfos[c].name);
         cell.setAttribute("achievementDescription", achievementInfos[c].description);
         cell.setAttribute("achievementPoints", achievementInfos[c].points);
+        if (achievementInfos[c].playerTitle) {
+            cell.setAttribute("achievementPlayerTitle", achievementInfos[c].playerTitle);
+        }
     }
     return cell;
 }
@@ -143,6 +146,7 @@ function setListOfPlayersWithAchieveInTooltip(cellId, playersWhoHaveAchieve) {
     const achievementTitle = $(cellId).attr("achievementText");
     const achievementDescription = $(cellId).attr("achievementDescription");
     const achievementPoints = $(cellId).attr("achievementPoints");
+    const achievementPlayerTitle = $(cellId).attr("achievementPlayerTitle") ?? null;
 
     let playersSection = "";
     for (let i = 0; i < playersWhoHaveAchieve.length; i++) {
@@ -154,7 +158,12 @@ function setListOfPlayersWithAchieveInTooltip(cellId, playersWhoHaveAchieve) {
     let tooltipText = `<h2>${achievementTitle}</h2><br>`;
     tooltipText += `<p>${achievementDescription}</p><br>`;
     tooltipText += `${playersSection}`;
-    tooltipText += `<h4>${achievementPoints}</h4>`;
+
+    if (achievementPlayerTitle) {
+        tooltipText += `<h4>${achievementPlayerTitle}</h4>`;
+    }
+
+    tooltipText += `<h5>${achievementPoints}</h5>`;
 
     $(cellId).data("bs-toggle", "tooltip");
     $(cellId).attr("data-bs-html", "true");
