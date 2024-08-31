@@ -65,7 +65,8 @@ function buildTableModelWithoutStoringModel(schemaData, players) {
 
             cellModel.completedPercent = Math.trunc((totalCountForCell / numPlayers) * 100);
             cellModel.completedNumber = totalCountForCell;
-            cellModel.cellText = `${cellModel.completedNumber}/${numPlayers}`;
+            const achievementHasTitle = achievementInfos[code].playerTitle ? "*" : "";
+            cellModel.cellText = `${cellModel.completedNumber}/${numPlayers}${achievementHasTitle}`;
 
             tableModel.achievementsList.push(cellModel);
 
