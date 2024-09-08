@@ -4,6 +4,18 @@ import { achievementInfos } from "../data/achievementInfos.js";
 
 const categoryModels = new Map();
 
+class LayoutAchievementInfo {
+    constructor(code) {
+        this.code = code;
+        this.isAchievement = true;
+        this.name = "";
+        this.description = "";
+        this.points = 0;
+        this.hasPlayer = false;
+        this.playerTitle = "";
+    }
+}
+
 class AchievementCompletedModel {
     constructor() {
         this.code = 0;
@@ -17,10 +29,65 @@ class AchievementCompletedModel {
 
 class TableModel {
     constructor() {
-        this.achievementsList = []; // list of AchievementCompletedModel
+        this.achievementsList = []; // AchievementCompletedModel[]
         this.allDungeonsAchievementsSummary = new Map();
         this.headerText = "";
+        this.dungeonMainViewCells = new Map();
     }
+}
+
+export function buildLayoutData(schemaData, mainViewCellOrder) {
+    for(let dungeonSchemaData of schemaData) {
+        dungeonSchemaData["DUNGEONNAME"] = achievementInfos[dungeonSchemaData["CODES"][0]].dungeon;
+
+        let allCells = [];
+        let mainViewCellsUnsorted = {};
+        for (let code of dungeonSchemaData["CODES"]) {
+            if (code === "NIL") {
+                allCells.push(buildNilLayoutAchievementInfo());
+                continue;
+            }
+
+            let fullAchievementInfo = achievementInfos[code];
+            let layoutAchievementInfo = new LayoutAchievementInfo(code);
+            layoutAchievementInfo.name = fullAchievementInfo.name;
+            layoutAchievementInfo.description = fullAchievementInfo.description;
+            layoutAchievementInfo.points = fullAchievementInfo.points;
+            if (fullAchievementInfo.playerTitle) {
+                layoutAchievementInfo.hasPlayer = true;
+                layoutAchievementInfo.playerTitle = fullAchievementInfo.playerTitle;
+            }
+
+            allCells.push(layoutAchievementInfo);
+            if (fullAchievementInfo.category) {
+                mainViewCellsUnsorted[fullAchievementInfo.category] = layoutAchievementInfo;
+            }
+        }
+
+        dungeonSchemaData["EXTRAVIEWLAYOUT"] = allCells;
+        dungeonSchemaData["MAINVIEWLAYOUT"] = sortMainViewCells(mainViewCellsUnsorted, mainViewCellOrder);
+    }
+    return schemaData;
+}
+
+function buildNilLayoutAchievementInfo() {
+    let nilLayoutAchievementInfo = new LayoutAchievementInfo("NIL");
+    nilLayoutAchievementInfo.isAchievement = false;
+    return nilLayoutAchievementInfo;
+}
+
+function sortMainViewCells(mainViewCellsUnsorted, mainViewCellOrder) {
+    let mainViewCellsSorted = [];
+
+    for (let category of mainViewCellOrder) {
+        if (mainViewCellsUnsorted[category]) {
+            mainViewCellsSorted.push(mainViewCellsUnsorted[category]);
+        } else {
+            mainViewCellsSorted.push(buildNilLayoutAchievementInfo())
+        }
+    }
+
+    return mainViewCellsSorted;
 }
 
 export function buildTableModel(dataType, schemaData, players, storeModel) {
@@ -36,41 +103,21 @@ export function buildTableModel(dataType, schemaData, players, storeModel) {
 function buildTableModelWithoutStoringModel(schemaData, players) {
     const tableModel = new TableModel();
 
-    const numPlayers = players.length;
-
     let currentAchievementIndex = -1; // start on -1 so first index checked is 0, caused by the early continue
     for (let row = 0; row < schemaData.length; row++) {
         const dungeonAchievementSummary = new Map();
         let dungeonName = "";
 
         for (const code of schemaData[row]["CODES"]){
-            const cellModel = new AchievementCompletedModel();
-            cellModel.code = code;
             currentAchievementIndex++;
 
-            if (cellModel.code == "NIL") {
-                cellModel.isAchievement = false;
-                cellModel.completedPercent = -1.0;
-                tableModel.achievementsList.push(cellModel);
-                continue;
-            }
-
-            let totalCountForCell = 0;
-            cellModel.playersWhoHaveAchieve = [];
-            for (const player of players) {
-                let val = parseInt(player.binaryCode[currentAchievementIndex])
-                totalCountForCell += val;
-                cellModel.playersWhoHaveAchieve.push({ "name": player.name, "hasAchieve": val == 1 });
-            }
-
-            cellModel.completedPercent = Math.trunc((totalCountForCell / numPlayers) * 100);
-            cellModel.completedNumber = totalCountForCell;
-            cellModel.cellText = `${cellModel.completedNumber}/${numPlayers}`;
-
+            const cellModel = buildCellModel(code, players, currentAchievementIndex);
             tableModel.achievementsList.push(cellModel);
-
-            dungeonName = achievementInfos[code].dungeon;
-            dungeonAchievementSummary.set(code, totalCountForCell);
+            
+            if (cellModel.isAchievement) {
+                dungeonName = achievementInfos[code].dungeon;
+                dungeonAchievementSummary.set(code, cellModel.completedNumber);
+            }
         }
 
         tableModel.allDungeonsAchievementsSummary.set(dungeonName, dungeonAchievementSummary);
@@ -80,6 +127,37 @@ function buildTableModelWithoutStoringModel(schemaData, players) {
 
     return tableModel;
 }
+
+function buildCellModel(code, players, currentAchievementIndex) {
+    if (code == "NIL") {
+        return buildNilCellModel();
+    }
+
+    const cellModel = new AchievementCompletedModel();
+    cellModel.code = code;
+
+    let totalCountForCell = 0;
+    cellModel.playersWhoHaveAchieve = [];
+    for (const player of players) {
+        let val = parseInt(player.binaryCode[currentAchievementIndex])
+        totalCountForCell += val;
+        cellModel.playersWhoHaveAchieve.push({ "name": player.name, "hasAchieve": val == 1 });
+    }
+
+    cellModel.completedPercent = Math.trunc((totalCountForCell / players.length) * 100);
+    cellModel.completedNumber = totalCountForCell;
+    cellModel.cellText = `${cellModel.completedNumber}/${players.length}`;
+    return cellModel;
+}
+
+function buildNilCellModel() {
+    const cellModel = new AchievementCompletedModel();
+    cellModel.code = "NIL";
+    cellModel.isAchievement = false;
+    cellModel.completedPercent = -1.0;
+    return cellModel;
+}
+
 
 export function generateModelForNewAchievements(dataType, previousData) {
     

@@ -1,7 +1,6 @@
 "use strict";
 
-import { achievementInfos } from "../data/achievementInfos.js";
-import { viewTableConfig } from "../data/viewTableConfig.js";
+import { viewTableConfig, achievementCategoryHeaderText } from "../data/viewTableConfig.js";
 import * as TableService from "../services/tableService.js";
 import * as ModalUtil from "./modalUtil.js";
 import * as Schemas from "../data/schemas.js";
@@ -9,52 +8,53 @@ import * as SummaryGraph from "./summaryGraph.js";
 
 
 // TODO investigate replacing this manual HTML creation with HTMl Templates
-function createNameCell(c, parentElementId) {
+function createNameCell(dungeonAbbv, dungeonName, parentElementId) {
     let cell = document.createElement("td");
-    cell.id = `${parentElementId}${c}name`;
+    cell.id = `${parentElementId}${dungeonAbbv}name`;
     cell.dataset.toggle = "tooltip";
-    cell.textContent = achievementInfos[c].dungeon;
+    cell.textContent = dungeonName;
     cell.setAttribute("scope", "row");
     cell.classList.add("dungeonNameCol");
     return cell;
 }
 
-function createMainViewCell(c, parentElementId) {
+function createMainViewCell(mainViewCell, parentElementId) {
+    const achievementCode = mainViewCell.code;
     let cell = document.createElement("td");
-    cell.id = `${parentElementId}${c}`;
+    cell.id = `${parentElementId}${achievementCode}`;
     cell.dataset.toggle = "tooltip";
-    if (c != "NIL") {
+    if (achievementCode != "NIL") {
         cell.classList.add("dataCell")
-        cell.setAttribute("achievementText", achievementInfos[c].name);
-        cell.setAttribute("achievementDescription", achievementInfos[c].description);
-        cell.setAttribute("achievementPoints", achievementInfos[c].points);
-        if (achievementInfos[c].playerTitle) {
-            cell.setAttribute("achievementPlayerTitle", achievementInfos[c].playerTitle);
+        cell.setAttribute("achievementText", mainViewCell.name);
+        cell.setAttribute("achievementDescription", mainViewCell.description);
+        cell.setAttribute("achievementPoints", mainViewCell.points);
+        if (mainViewCell.hasPlayerTitle) {
+            cell.setAttribute("achievementPlayerTitle", mainViewCell.playerTitle);
         }
     }
     return cell;
 }
 
-function populateExtraDataModalRow(c, parentElementId, dungeonAbbv) {
-    if (c == "NIL") {
+function populateExtraDataModalRow(cell, parentElementId, dungeonAbbv) {
+    if (cell.code == "NIL") {
         return;
     }
 
     let row = document.createElement("tr");
-    row.id = `rowId_${c}_extraData`;
+    row.id = `rowId_${cell.code}_extraData`;
     row.classList.add("extraDataModalDungeonInfoRow"); // used to hide all rows
     row.classList.add(`${dungeonAbbv}_extraData`);
     row.setAttribute("extraDataModalDungeonAbbv", dungeonAbbv); // used to show only this dungeon's rows
 
     let titleCell = document.createElement("td");
-    titleCell.innerHTML = achievementInfos[c].name;
+    titleCell.innerHTML = cell.name;
     row.appendChild(titleCell);
 
     let descriptionCell = document.createElement("td");
-    descriptionCell.innerHTML = achievementInfos[c].description;
+    descriptionCell.innerHTML = cell.description;
     row.appendChild(descriptionCell);
 
-    let completedByCell = createMainViewCell(c, parentElementId);
+    let completedByCell = createMainViewCell(cell, parentElementId);
     completedByCell.id = `${completedByCell.id}_extraData`;
     row.appendChild(completedByCell);
 
@@ -79,26 +79,21 @@ function setupExtraDataModalButton(dungeonName, dungeonAbbv, parentElementId) {
     return cell;
 }
 
-function createTableRow(dataRow, numDataColumnsInMainView, parentElementId, numberOfPlayers) {
+function createTableRow(dataRow, parentElementId, numberOfPlayers) {
     let row = document.createElement("tr");
-    let nameCellCreated = false;
-    const numMainViewColumnsWithData = numDataColumnsInMainView - 1;
-    for (let i  = 0; i < numMainViewColumnsWithData; i++) {
-        const c = dataRow["CODES"][i];
-        if (nameCellCreated == false) {
-            row.appendChild(createNameCell(c, parentElementId));
-            nameCellCreated = true;
-        }
+    const dungeonName = dataRow["DUNGEONNAME"];
+    const dungeonAbbv = dataRow["ABBV"];
 
-        row.appendChild(createMainViewCell(c, parentElementId));
+    row.appendChild(createNameCell(dungeonAbbv, dungeonName, parentElementId));
+
+    for (const mainViewCell of dataRow["MAINVIEWLAYOUT"]) {
+        row.appendChild(createMainViewCell(mainViewCell, parentElementId))
     }
 
-    const dungeonAbbv = dataRow["ABBV"];
-    const dungeonName = achievementInfos[dataRow["CODES"][0]].dungeon;
     row.appendChild(setupExtraDataModalButton(dungeonName, dungeonAbbv, parentElementId));
-    for (let j = 0; j < dataRow["CODES"].length; j++) {
-        const c = dataRow["CODES"][j];
-        populateExtraDataModalRow(c, parentElementId, dungeonAbbv);
+
+    for (const cell of dataRow["EXTRAVIEWLAYOUT"]) {
+        populateExtraDataModalRow(cell, parentElementId, dungeonAbbv);
     }
 
     $(`#${parentElementId}_summaryColHeader`).attr("colspan", numberOfPlayers + 1);
@@ -107,11 +102,10 @@ function createTableRow(dataRow, numDataColumnsInMainView, parentElementId, numb
 
 function createTableRows(data, dataType, numberOfPlayers) {
     const parentElementId = viewTableConfig[dataType].parentElementId;
-    const numDataColumnsInMainView = viewTableConfig[dataType].numDataColumnsInMainView;
 
     $(`#${parentElementId}`).empty();
     for (let dataPoint of data) {
-        $(`#${parentElementId}`).append(createTableRow(dataPoint, numDataColumnsInMainView, parentElementId, numberOfPlayers));
+        $(`#${parentElementId}`).append(createTableRow(dataPoint, parentElementId, numberOfPlayers));
     }
 }
 
@@ -233,9 +227,9 @@ function generateDataSetsForGraph(allDungeonsAchievementsSummary, numPlayers) {
 
 export function populateTable(parsedInputResults) {
     const dataType = parsedInputResults.category;
-    const { data, model } = getDataAndModel(parsedInputResults, true);
+    const { layoutData, model } = getDataAndModel(parsedInputResults, true);
 
-    createTableRows(data, dataType, parsedInputResults.players.length);
+    createTableRows(layoutData, dataType, parsedInputResults.players.length);
 
     const parentElementId = viewTableConfig[dataType].parentElementId;
     const numPlayers = parsedInputResults.players.length;
@@ -248,12 +242,15 @@ export function populateTable(parsedInputResults) {
     $("#playerNamesContainer").html(model.headerText);
 }
 
-function getDataAndModel(parsedInputResults, isForMainView) {
+function getDataAndModel(parsedInputResults, storeModel) {
     const dataType = parsedInputResults.category;
-    const data = Schemas.getData(parsedInputResults.schemaVersion, viewTableConfig[dataType].databaseEntriesType);
-    const model = TableService.buildTableModel(dataType, data, parsedInputResults.players, isForMainView);
 
-    return { data, model };
+    let schemaData = Schemas.getData(parsedInputResults.schemaVersion, viewTableConfig[dataType].databaseEntriesType);
+
+    const layoutData = TableService.buildLayoutData(schemaData, viewTableConfig[dataType].mainViewColumns);
+    const model = TableService.buildTableModel(dataType, schemaData, parsedInputResults.players, storeModel);
+
+    return { layoutData, model };
 }
 
 function populateTableFromModel(model, parentElementId) {
@@ -292,4 +289,26 @@ export function populateNewAchievementsIfApplicable(previousData) {
     for (const dataRow of newAchievementsModel.achievementsList) {
         $(`#rowId_${dataRow.code}_extraData`).addClass("newAchievement");
     }
+}
+
+export function populateTableHeaders() {
+    for (let category of Object.keys(viewTableConfig)) {
+        const categoryConfig = viewTableConfig[category];
+        $(`#${categoryConfig.headerParentElementId}`).append(buildNewTableHeaderRow(categoryConfig.firstColName, []));
+        for (let achievementCategory of categoryConfig.mainViewColumns) {
+            $(`#${categoryConfig.headerParentElementId}`).append(buildNewTableHeaderRow(achievementCategoryHeaderText[achievementCategory], ["fixedWidthCol"]));
+        }
+        $(`#${categoryConfig.headerParentElementId}`).append(buildNewTableHeaderRow("", ["extraDataCol"]));
+    }
+}
+
+function buildNewTableHeaderRow(columnText, styles) {
+    let cell = document.createElement("th");
+    cell.scope = "col";
+    cell.textContent = columnText;
+    for (let style of styles) {
+        cell.classList.add(style);
+    }
+
+    return cell;
 }

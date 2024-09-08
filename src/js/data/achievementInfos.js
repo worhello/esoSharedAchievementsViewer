@@ -4032,7 +4032,8 @@ export const achievementInfos = {
         "dungeon": "Stone Garden",
         "name": "Old Fashioned",
         "description": "Defeat Arkasis the Mad Alchemist after raising the challenge banner without deactivating the vitalizer flow controls or gaining the benefits of using Arkasis's alchemy equipment throughout the entire run of Veteran Stone Garden.",
-        "points": 50
+        "points": 50,
+        "category": "HM+"
     },
     "2825": {
         "id": 2825,
@@ -5842,7 +5843,8 @@ export const achievementInfos = {
         "dungeon": "Oathsworn Pit",
         "name": "Oathsworn Pit Conqueror",
         "description": "Defeat Packmaster Rethelros, Anthelmir and Anthelmir's Construct, as well as Aradros the Awakened in Veteran Oathsworn Pit.",
-        "points": 10
+        "points": 10,
+        "category": "VET"
     },
     "3812": {
         "id": 3812,
@@ -5850,28 +5852,32 @@ export const achievementInfos = {
         "name": "Scorched but Surviving",
         "description": "Defeat Aradros the Awakened after placing the Challenge Banner in Veteran Oathsworn Pit.",
         "points": 50,
-        "playerTitle": "Pitmaster"
+        "playerTitle": "Pitmaster",
+        "category": "HM"
     },
     "3813": {
         "id": 3813,
         "dungeon": "Oathsworn Pit",
         "name": "Malacath's Swift Revenge",
         "description": "Defeat all encounters in addition to Packmaster Rethelros, Anthelmir and Anthelmir's Construct, as well as Aradros the Awakened within 25 minutes of entering Veteran Oathsworn Pit. Your timer starts after engaging the first Recollection members.",
-        "points": 50
+        "points": 50,
+        "category": "SR"
     },
     "3814": {
         "id": 3814,
         "dungeon": "Oathsworn Pit",
         "name": "Enduring Retribution",
         "description": "Defeat all encounters in addition to Packmaster Rethelros, Anthelmir and Anthelmir's Construct, and Aradros the Awakened in Veteran Oathsworn Pit without suffering a group member death.",
-        "points": 50
+        "points": 50,
+        "category": "ND"
     },
     "3815": {
         "id": 3815,
         "dungeon": "Oathsworn Pit",
         "name": "Oathsworn Pit Challenger",
         "description": "Complete the listed achievements for Veteran Oathsworn Pit.",
-        "points": 50
+        "points": 50,
+        "category": "CHA"
     },
     "3816": {
         "id": 3816,
@@ -5879,7 +5885,8 @@ export const achievementInfos = {
         "name": "Lighting the Embers",
         "description": "Defeat all encounters in addition to Packmaster Rethelros, Anthelmir and Anthelmir's Construct, as well as Aradros the Awakened after placing the Challenge Banner in Veteran Oathsworn Pit within 25 minutes without suffering a group member death. Your timer starts upon engaging the first group of enemies.",
         "points": 50,
-        "playerTitle": "Oathsworn"
+        "playerTitle": "Oathsworn",
+        "category": "TRI"
     },
     "3817": {
         "id": 3817,
@@ -5977,7 +5984,8 @@ export const achievementInfos = {
         "dungeon": "Bedlam Veil",
         "name": "Bedlam Veil Conqueror",
         "description": "Defeat the Shattered Champion, Darkshard, and the Blind in Veteran Bedlam Veil.",
-        "points": 10
+        "points": 10,
+        "category": "VET"
     },
     "3853": {
         "id": 3853,
@@ -5985,28 +5993,32 @@ export const achievementInfos = {
         "name": "Lithe and Clever",
         "description": "Defeat the Blind after placing the Challenge Banner in Veteran Bedlam Veil.",
         "points": 50,
-        "playerTitle": "the Self-governing"
+        "playerTitle": "the Self-governing",
+        "category": "HM"
     },
     "3854": {
         "id": 3854,
         "dungeon": "Bedlam Veil",
         "name": "Following a Path",
         "description": "Defeat all encounters in addition to the Shattered Champion, Darkshard, and the Blind within 25 minutes of entering Veteran Bedlam Veil. Your timer starts upon engaging the first enemies.",
-        "points": 50
+        "points": 50,
+        "category": "SR"
     },
     "3855": {
         "id": 3855,
         "dungeon": "Bedlam Veil",
         "name": "Demiprince's Delight",
         "description": "Defeat all encounters in addition to the Shattered Champion, Darkshard, and the Blind in Veteran Bedlam Veil without suffering a group member death.",
-        "points": 50
+        "points": 50,
+        "category": "ND"
     },
     "3856": {
         "id": 3856,
         "dungeon": "Bedlam Veil",
         "name": "Bedlam Veil Challenger",
         "description": "Complete the listed achievements for Veteran Bedlam Veil.",
-        "points": 50
+        "points": 50,
+        "category": "CHA"
     },
     "3857": {
         "id": 3857,
@@ -6014,7 +6026,8 @@ export const achievementInfos = {
         "name": "Unshakeable Fervor",
         "description": "Defeat all encounters in addition to the Shattered Champion, Darkshard, and the Blind after placing the Challenge Banner in Veteran Bedlam Veil within 25 minutes without suffering a group member death.",
         "points": 50,
-        "playerTitle": "Bedlam's Disciple"
+        "playerTitle": "Bedlam's Disciple",
+        "category": "TRI"
     },
     "3858": {
         "id": 3858,
@@ -6123,7 +6136,8 @@ export const achievementInfos = {
         "name": "Lucent Citadel Conqueror",
         "description": "Defeat Count Ryelaz and Zilyesset, the Orphic Shattered Shard, and secure the arcane knot in Veteran Lucent Citadel.",
         "points": 10,
-        "playerTitle": "Crystal Sharp"
+        "playerTitle": "Crystal Sharp",
+        "category": "VET"
     },
     "4016": {
         "id": 4016,
@@ -6152,7 +6166,8 @@ export const achievementInfos = {
         "name": "Arcane Stabilizer",
         "description": "Defeat Count Ryelaz and Zilyesset, the Orphic Shattered Shard, and secure the arcane knot along with all the enemies within the citadel after raising the challenge banner for all of them, without suffering a group member death, within 30 minutes of entering in Veteran Lucent Citadel.",
         "points": 50,
-        "playerTitle": "the Unstoppable"
+        "playerTitle": "the Unstoppable",
+        "category": "TRI"
     },
     "4020": {
         "id": 4020,
@@ -6167,14 +6182,16 @@ export const achievementInfos = {
         "dungeon": "Lucent Citadel",
         "name": "Mirrored Cooperation",
         "description": "Defeat Count Ryelaz and Zilyesset after raising the challenge banner in Veteran Lucent Citadel.",
-        "points": 15
+        "points": 15,
+        "category": "PHM1"
     },
     "4022": {
         "id": 4022,
         "dungeon": "Lucent Citadel",
         "name": "Shredded Shard",
         "description": "Defeat the Orphic Shattered Shard after raising the challenge banner in Veteran Lucent Citadel.",
-        "points": 15
+        "points": 15,
+        "category": "PHM2"
     },
     "4023": {
         "id": 4023,
@@ -6182,7 +6199,8 @@ export const achievementInfos = {
         "name": "Retrieval Specialist",
         "description": "Defeat Count Ryelaz and Zilyesset, the Orphic Shattered Shard, and secure the arcane knot after raising the challenge banner in Veteran Lucent Citadel, in one run.",
         "points": 50,
-        "playerTitle": "the Unshattered"
+        "playerTitle": "the Unshattered",
+        "category": "HM"
     },
     "4024": {
         "id": 4024,
