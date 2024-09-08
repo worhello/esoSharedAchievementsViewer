@@ -147,7 +147,7 @@ function buildCellModel(code, players, currentAchievementIndex) {
     cellModel.completedPercent = Math.trunc((totalCountForCell / players.length) * 100);
     cellModel.completedNumber = totalCountForCell;
     const achievementHasTitle = achievementInfos[code].playerTitle ? "*" : "";
-    cellModel.cellText = `${cellModel.completedNumber}/${numPlayers}${achievementHasTitle}`;
+    cellModel.cellText = `${cellModel.completedNumber}/${players.length}${achievementHasTitle}`;
     return cellModel;
 }
 
