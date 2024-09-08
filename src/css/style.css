@@ -27,7 +27,7 @@ tr td{
 }
 
 .extraDataCol {
-    width: 13%;
+    width: 8%;
 }
 
 #metadataContainer {
@@ -38,6 +38,7 @@ tr td{
 
 .dungeonNameCol {
     text-align: left !important;
+    width: 14%;
 }
 
 .summaryCell {

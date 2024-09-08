@@ -112,5 +112,7 @@ $(document).ready(function() {
     // Doing this dynamically allows for different URLs when run locally
     $("#navbarTitleLink").attr("href", getBaseUrl());
 
+    TableViewController.populateTableHeaders();
+
     DataLoader.loadData();
 });
