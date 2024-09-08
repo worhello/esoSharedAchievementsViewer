@@ -4,7 +4,7 @@ export const viewTableConfig = {
     "dlcDungeons": {
         "parentElementId": "dlcDungeonsTableBody",
         "databaseEntriesType": "dungeon",
-        "mainViewColumns": ["VET", "HM", "SR", "ND", "CHA", "TRI"],
+        "mainViewColumns": ["VET", "HM", "SR", "ND", "CHA", "TRI", "HM+"],
         "headerParentElementId": "dicDungeonsTableHeader",
         "firstColName": "Dungeon"
     },

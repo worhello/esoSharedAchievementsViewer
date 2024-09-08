@@ -4948,7 +4948,8 @@ export const achievementInfos = {
         "name": "Sans Spirit Support",
         "description": "Defeat Foreman Bradiggan, Nazaray, and Captain Numirril after placing the challenge banner and without gaining the benefits of pacifying tormented spirits in Veteran Shipwright's Regret.",
         "points": 50,
-        "playerTitle": "Shipwright"
+        "playerTitle": "Shipwright",
+        "category": "HM+"
     },
     "3225": {
         "id": 3225,
@@ -4963,7 +4964,8 @@ export const achievementInfos = {
         "name": "Tentacless Triumph",
         "description": "Defeat Maligalig, Sarydil, and Varallion after placing the challenge banner and without gaining the benefits of any Covenants in Veteran Coral Aerie.",
         "points": 50,
-        "playerTitle": "Aerie Ascender"
+        "playerTitle": "Aerie Ascender",
+        "category": "HM+"
     },
     "3230": {
         "id": 3230,
@@ -5225,7 +5227,8 @@ export const achievementInfos = {
         "dungeon": "Earthen Root Enclave",
         "name": "Scourge of Archdruid Devyric",
         "description": "Defeat Archdruid Devyric after raising the Challenge Banner and without gaining any benefits from completing optional content in Veteran Earthen Root Enclave.",
-        "points": 50
+        "points": 50,
+        "category": "HM+"
     },
     "3392": {
         "id": 3392,
@@ -5359,7 +5362,8 @@ export const achievementInfos = {
         "dungeon": "Graven Deep",
         "name": "Pressure in the Deep",
         "description": "Defeat Zelvraak the Unbreathing after raising the Challenge Banner and without gaining any benefits from completing optional content in Veteran Graven Deep.",
-        "points": 50
+        "points": 50,
+        "category": "HM+"
     },
     "3425": {
         "id": 3425,
@@ -5507,7 +5511,8 @@ export const achievementInfos = {
         "dungeon": "Bal Sunnar",
         "name": "No Time to Waste",
         "description": "Defeat Kovan Giryon, Roksa the Warped, and Matriarch Lladi Telvanni after raising the challenge banner and without gaining the benefits from completing optional content in Veteran Bal Sunnar.",
-        "points": 50
+        "points": 50,
+        "category": "HM+"
     },
     "3525": {
         "id": 3525,
@@ -5956,7 +5961,8 @@ export const achievementInfos = {
         "dungeon": "Oathsworn Pit",
         "name": "Dogged Avenger",
         "description": "Defeat Aradros the Awakened after placing the Challenge Banner without completing any optional content in Veteran Oathsworn Pit.",
-        "points": 50
+        "points": 50,
+        "category": "HM+"
     },
     "3849": {
         "id": 3849,
@@ -6097,7 +6103,8 @@ export const achievementInfos = {
         "dungeon": "Bedlam Veil",
         "name": "Martial Gift",
         "description": "Defeat the Blind after placing the Challenge Banner without completing any optional content and having the aid of the buffs in Veteran Bedlam Veil.",
-        "points": 50
+        "points": 50,
+        "category": "HM+"
     },
     "4009": {
         "id": 4009,
