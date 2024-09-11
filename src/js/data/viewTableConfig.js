@@ -4,7 +4,7 @@ export const viewTableConfig = {
     "dlcDungeons": {
         "parentElementId": "dlcDungeonsTableBody",
         "databaseEntriesType": "dungeon",
-        "mainViewColumns": ["VET", "HM", "SR", "ND", "CHA", "TRI", "HM+"],
+        "mainViewColumns": ["VET", "HM", "SR", "ND", "CHA", "TRI", "EXT"],
         "headerParentElementId": "dicDungeonsTableHeader",
         "firstColName": "Dungeon"
     },
@@ -33,5 +33,5 @@ export const achievementCategoryHeaderText = {
     "TRI": "Trifecta",
     "PHM1": "Partial Hard Mode",
     "PHM2": "Partial Hard Mode",
-    "HM+": "HM (No Buffs)"
+    "EXT": "Extra"
 };

@@ -428,7 +428,8 @@ export const achievementInfos = {
         "dungeon": "Imperial City Prison",
         "name": "Out of Sight",
         "description": "In Imperial City Prison, defeat the Overfiend, Ibomez the Flesh Sculptor, the Gravelight Sentry, the Flesh Abomination, and Lord Warden Dusk without any group member being noticed by the Vigilant Watchers.",
-        "points": 50
+        "points": 50,
+        "category": "EXT"
     },
     "1136": {
         "id": 1136,
@@ -550,7 +551,8 @@ export const achievementInfos = {
         "dungeon": "White-Gold Tower",
         "name": "Out of the Frying Pan",
         "description": "In Veteran White-Gold Tower, become completely engulfed in flame by the Planar Inhibitor's Heat Stroke attack before it completes its Daedric Catastrophe attack. Then stay alive until the Planar Inhibitor is defeated.",
-        "points": 15
+        "points": 15,
+        "category": "EXT"
     },
     "1344": {
         "id": 1344,
@@ -767,7 +769,8 @@ export const achievementInfos = {
         "dungeon": "Ruins of Mazzatun",
         "name": "Obedience Training",
         "description": "Defeat Xal-Nur the Slaver in Veteran Ruins of Mazzatun without unleashing any Wamasu to assist you.",
-        "points": 10
+        "points": 10,
+        "category": "EXT"
     },
     "1517": {
         "id": 1517,
@@ -884,7 +887,8 @@ export const achievementInfos = {
         "dungeon": "Cradle of Shadows",
         "name": "Embrace the Shadow",
         "description": "Defeat Velidreth in Veteran Cradle of Shadows without using the Atronach's Light synergy.",
-        "points": 10
+        "points": 10,
+        "category": "EXT"
     },
     "1535": {
         "id": 1535,
@@ -1857,7 +1861,8 @@ export const achievementInfos = {
         "dungeon": "Bloodroot Forge",
         "name": "Wildlife Sanctuary",
         "description": "Defeat Caillaoife without allowing any Nirnblooded creatures to remain within her Nature's Preservation barrier for more than three seconds while in Veteran Bloodroot Forge.",
-        "points": 10
+        "points": 10,
+        "category": "EXT"
     },
     "1820": {
         "id": 1820,
@@ -2018,7 +2023,8 @@ export const achievementInfos = {
         "dungeon": "Falkreath Hold",
         "name": "Epic Undertaking",
         "description": "While fighting Deathlord Bjarfrud Skjoralmor in Veteran Falkreath Hold, have your group cleanse 15 corpses within the span of five seconds.",
-        "points": 5
+        "points": 5,
+        "category": "EXT"
     },
     "1949": {
         "id": 1949,
@@ -2109,7 +2115,8 @@ export const achievementInfos = {
         "dungeon": "Fang Lair",
         "name": "Minimal Animosity",
         "description": "Defeat Orryn the Black and Thurvokun while only destroying a maximum of one Animus Crystal before Orryn merges with Thurvokun in Veteran Fang Lair.",
-        "points": 10
+        "points": 10,
+        "category": "EXT"
     },
     "1968": {
         "id": 1968,
@@ -2271,7 +2278,8 @@ export const achievementInfos = {
         "dungeon": "Scalecaller Peak",
         "name": "Daedric Deflector",
         "description": "Defeat Zaan the Scalecaller without taking damage from her Pestilent Breath attack and without using the same avoidance method twice after reading Zaan's Ritual Scroll in Veteran Scalecaller Peak.",
-        "points": 10
+        "points": 10,
+        "category": "EXT"
     },
     "2075": {
         "id": 2075,
@@ -2817,7 +2825,8 @@ export const achievementInfos = {
         "dungeon": "Moon Hunter Keep",
         "name": "Strangling Cowardice",
         "description": "Defeat Vykosa the Ascendant after reading the Scroll of Glorious Battle, defeating 7 Stranglers, and never causing her pet wolves to cower in Veteran Moon Hunter Keep.",
-        "points": 5
+        "points": 5,
+        "category": "EXT"
     },
     "2302": {
         "id": 2302,
@@ -2845,7 +2854,8 @@ export const achievementInfos = {
         "dungeon": "March of Sacrifices",
         "name": "Mist Walker",
         "description": "Defeat Tarcyr without the indrik teleporting any group members during its Shrouding Mist ability in Veteran March of Sacrifices.",
-        "points": 5
+        "points": 5,
+        "category": "EXT"
     },
     "2306": {
         "id": 2306,
@@ -2979,7 +2989,8 @@ export const achievementInfos = {
         "dungeon": "Blackrose Prison",
         "name": "A Thrilling Trifecta",
         "description": "Defeat Battlemage Ennodius, Lady Minara, and Tames-the-Beast within 20 seconds of each other in Veteran Blackrose Prison.",
-        "points": 10
+        "points": 10,
+        "category": "EXT"
     },
     "2373": {
         "id": 2373,
@@ -3035,7 +3046,8 @@ export const achievementInfos = {
         "dungeon": "Frostvault",
         "name": "Cold Potato",
         "description": "Defeat Rizzuk and Avalanche in Frostvault with each party member having been affected by Avalanche's Glacial Prison ability at least once during the fight in Veteran Frostvault.",
-        "points": 10
+        "points": 10,
+        "category": "EXT"
     },
     "2385": {
         "id": 2385,
@@ -3112,7 +3124,8 @@ export const achievementInfos = {
         "dungeon": "Depths of Malatar",
         "name": "Lackluster",
         "description": "Defeat the Symphony of Blades in Veteran Depths of Malatar after reading the Dictate to the Lady of Light and destroying all of the colored orbs during the encounter.",
-        "points": 10
+        "points": 10,
+        "category": "EXT"
     },
     "2413": {
         "id": 2413,
@@ -3545,7 +3558,8 @@ export const achievementInfos = {
         "dungeon": "Moongrave Fane",
         "name": "Drop the Block",
         "description": "After using the Sangiin Hemo Helot, squash Ravenous Hoarvors with the Sliding Stone in Veteran Moongrave Fane.",
-        "points": 5
+        "points": 5,
+        "category": "EXT"
     },
     "2576": {
         "id": 2576,
@@ -3587,7 +3601,8 @@ export const achievementInfos = {
         "dungeon": "Lair of Maarselok",
         "name": "Shagrath's Shield",
         "description": "Defeat Maarselok on his perches without any of Shagrath's Host dying in Veteran Lair of Maarselok.",
-        "points": 5
+        "points": 5,
+        "category": "EXT"
     },
     "2582": {
         "id": 2582,
@@ -3657,7 +3672,8 @@ export const achievementInfos = {
         "dungeon": "Icereach",
         "name": "Prodigious Pacification",
         "description": "When fighting the Icereach Coven on Hard Mode in Veteran Icereach, let Gohlla's Giant deliver the final blow to each sister while in their enraged state.",
-        "points": 10
+        "points": 10,
+        "category": "EXT"
     },
     "2678": {
         "id": 2678,
@@ -3671,7 +3687,8 @@ export const achievementInfos = {
         "dungeon": "Unhallowed Grave",
         "name": "Relentless Dogcatcher",
         "description": "Defeat Hakgrym the Howler without defeating any of his Flesh Abominations in Veteran Unhallowed Grave.",
-        "points": 10
+        "points": 10,
+        "category": "EXT"
     },
     "2682": {
         "id": 2682,
@@ -4033,7 +4050,7 @@ export const achievementInfos = {
         "name": "Old Fashioned",
         "description": "Defeat Arkasis the Mad Alchemist after raising the challenge banner without deactivating the vitalizer flow controls or gaining the benefits of using Arkasis's alchemy equipment throughout the entire run of Veteran Stone Garden.",
         "points": 50,
-        "category": "HM+"
+        "category": "EXT"
     },
     "2825": {
         "id": 2825,
@@ -4061,7 +4078,8 @@ export const achievementInfos = {
         "dungeon": "Castle Thorn",
         "name": "Guardian Preserved",
         "description": "Defeat Lady Thorn after raising the challenge banner without killing the Blood Guardian in Veteran Castle Thorn.",
-        "points": 50
+        "points": 50,
+        "category": "EXT"
     },
     "2829": {
         "id": 2829,
@@ -4238,7 +4256,8 @@ export const achievementInfos = {
         "dungeon": "Black Drake Villa",
         "name": "Salley-oop",
         "description": "Defeat Pyroturge Encratis after killing at least ten Grotto Salamanders during the fight in Veteran Black Drake Villa.",
-        "points": 10
+        "points": 10,
+        "category": "EXT"
     },
     "2884": {
         "id": 2884,
@@ -4259,7 +4278,8 @@ export const achievementInfos = {
         "dungeon": "The Cauldron",
         "name": "Can't Catch Me!",
         "description": "Defeat Taskmaster Viccia without anyone in your group triggering a single trap in Veteran Cauldron.",
-        "points": 10
+        "points": 10,
+        "category": "EXT"
     },
     "2887": {
         "id": 2887,
@@ -4574,7 +4594,8 @@ export const achievementInfos = {
         "dungeon": "Red Petal Bastion",
         "name": "Sly Terror",
         "description": "Have a member of your group acquire 25 stacks of Buck Wild while fighting Rogerain the Sly in Veteran Red Petal Baston.",
-        "points": 10
+        "points": 10,
+        "category": "EXT"
     },
     "3036": {
         "id": 3036,
@@ -4623,7 +4644,8 @@ export const achievementInfos = {
         "dungeon": "Dread Cellar",
         "name": "Settling Scores",
         "description": "Have Scorions get struck 10 times by the Magma Incarnate's Unstable Blitz after placing the challenge banner in Veteran Dread Cellar.",
-        "points": 10
+        "points": 10,
+        "category": "EXT"
     },
     "3043": {
         "id": 3043,
@@ -4949,7 +4971,7 @@ export const achievementInfos = {
         "description": "Defeat Foreman Bradiggan, Nazaray, and Captain Numirril after placing the challenge banner and without gaining the benefits of pacifying tormented spirits in Veteran Shipwright's Regret.",
         "points": 50,
         "playerTitle": "Shipwright",
-        "category": "HM+"
+        "category": "EXT"
     },
     "3225": {
         "id": 3225,
@@ -4965,7 +4987,7 @@ export const achievementInfos = {
         "description": "Defeat Maligalig, Sarydil, and Varallion after placing the challenge banner and without gaining the benefits of any Covenants in Veteran Coral Aerie.",
         "points": 50,
         "playerTitle": "Aerie Ascender",
-        "category": "HM+"
+        "category": "EXT"
     },
     "3230": {
         "id": 3230,
@@ -5228,7 +5250,7 @@ export const achievementInfos = {
         "name": "Scourge of Archdruid Devyric",
         "description": "Defeat Archdruid Devyric after raising the Challenge Banner and without gaining any benefits from completing optional content in Veteran Earthen Root Enclave.",
         "points": 50,
-        "category": "HM+"
+        "category": "EXT"
     },
     "3392": {
         "id": 3392,
@@ -5363,7 +5385,7 @@ export const achievementInfos = {
         "name": "Pressure in the Deep",
         "description": "Defeat Zelvraak the Unbreathing after raising the Challenge Banner and without gaining any benefits from completing optional content in Veteran Graven Deep.",
         "points": 50,
-        "category": "HM+"
+        "category": "EXT"
     },
     "3425": {
         "id": 3425,
@@ -5512,7 +5534,7 @@ export const achievementInfos = {
         "name": "No Time to Waste",
         "description": "Defeat Kovan Giryon, Roksa the Warped, and Matriarch Lladi Telvanni after raising the challenge banner and without gaining the benefits from completing optional content in Veteran Bal Sunnar.",
         "points": 50,
-        "category": "HM+"
+        "category": "EXT"
     },
     "3525": {
         "id": 3525,
@@ -5620,7 +5642,8 @@ export const achievementInfos = {
         "dungeon": "Scrivener's Hall",
         "name": "Harsh Edit",
         "description": "Defeat Riftmaster Naqri after placing the challenge banner and burning Riftmaster Naqri's memoirs in Veteran Scrivener's Hall.",
-        "points": 10
+        "points": 10,
+        "category": "EXT"
     },
     "3539": {
         "id": 3539,
@@ -5962,7 +5985,7 @@ export const achievementInfos = {
         "name": "Dogged Avenger",
         "description": "Defeat Aradros the Awakened after placing the Challenge Banner without completing any optional content in Veteran Oathsworn Pit.",
         "points": 50,
-        "category": "HM+"
+        "category": "EXT"
     },
     "3849": {
         "id": 3849,
@@ -6104,7 +6127,7 @@ export const achievementInfos = {
         "name": "Martial Gift",
         "description": "Defeat the Blind after placing the Challenge Banner without completing any optional content and having the aid of the buffs in Veteran Bedlam Veil.",
         "points": 50,
-        "category": "HM+"
+        "category": "EXT"
     },
     "4009": {
         "id": 4009,
