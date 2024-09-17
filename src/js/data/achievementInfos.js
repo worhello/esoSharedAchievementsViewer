@@ -639,7 +639,8 @@ export const achievementInfos = {
         "name": "Maw of Lorkhaj: Moons' Champion",
         "description": "Complete all achievements related to defeating Rakkhat, Fang of Lorkhaj in Veteran Maw of Lorkhaj.",
         "points": 50,
-        "playerTitle": "Dro-m'Athra Destroyer"
+        "playerTitle": "Dro-m'Athra Destroyer",
+        "category": "EXT"
     },
     "1392": {
         "id": 1392,
@@ -1941,7 +1942,8 @@ export const achievementInfos = {
         "name": "Dynamo",
         "description": "Complete each of the following achievements related to defeating the Assembly General:",
         "points": 50,
-        "playerTitle": "The Dynamo"
+        "playerTitle": "The Dynamo",
+        "category": "EXT"
     },
     "1837": {
         "id": 1837,
@@ -2287,7 +2289,8 @@ export const achievementInfos = {
         "name": "Asylum Sanctorium Redeemer",
         "description": "Complete the listed achievements for Asylum Sanctorium.",
         "points": 50,
-        "playerTitle": "Immortal Redeemer"
+        "playerTitle": "Immortal Redeemer",
+        "category": "EXT"
     },
     "2077": {
         "id": 2077,
@@ -2452,7 +2455,8 @@ export const achievementInfos = {
         "name": "Cloudrest Savior",
         "description": "Complete the listed achievements for Cloudrest.",
         "points": 50,
-        "playerTitle": "Welkynar Liberator"
+        "playerTitle": "Welkynar Liberator",
+        "category": "EXT"
     },
     "2150": {
         "id": 2150,
@@ -3330,7 +3334,8 @@ export const achievementInfos = {
         "name": "Sunspire Dragonbreak",
         "description": "Complete the listed achievements for Sunspire.",
         "points": 50,
-        "playerTitle": "Hand of Alkosh"
+        "playerTitle": "Hand of Alkosh",
+        "category": "EXT"
     },
     "2469": {
         "id": 2469,
@@ -3942,7 +3947,8 @@ export const achievementInfos = {
         "name": "Kyne's Deliverance",
         "description": "Complete the listed achievements for Kyne's Aegis.",
         "points": 50,
-        "playerTitle": "Dawnbringer"
+        "playerTitle": "Dawnbringer",
+        "category": "EXT"
     },
     "2753": {
         "id": 2753,
@@ -4385,7 +4391,8 @@ export const achievementInfos = {
         "name": "Xalvakka's Bane",
         "description": "Complete the listed achievements for Rockgrove.",
         "points": 50,
-        "playerTitle": "Daedric Bane"
+        "playerTitle": "Daedric Bane",
+        "category": "EXT"
     },
     "3005": {
         "id": 3005,
@@ -5055,7 +5062,8 @@ export const achievementInfos = {
         "name": "Swashbuckler Supreme",
         "description": "Complete the listed achievements in Dreadsail Reef.",
         "points": 50,
-        "playerTitle": "Swashbuckler Supreme"
+        "playerTitle": "Swashbuckler Supreme",
+        "category": "EXT"
     },
     "3250": {
         "id": 3250,
@@ -5746,7 +5754,8 @@ export const achievementInfos = {
         "name": "Sane and Clearheaded",
         "description": "Complete all the listed achievements for Sanity's Edge.",
         "points": 50,
-        "playerTitle": "Mindmender"
+        "playerTitle": "Mindmender",
+        "category": "EXT"
     },
     "3566": {
         "id": 3566,
@@ -6197,7 +6206,8 @@ export const achievementInfos = {
         "description": "Defeat Count Ryelaz and Zilyesset, the Orphic Shattered Shard, and secure the arcane knot along with all the enemies within the citadel after raising the challenge banner for all of them, without suffering a group member death, within 30 minutes of entering in Veteran Lucent Citadel.",
         "points": 50,
         "playerTitle": "the Unstoppable",
-        "category": "TRI"
+        "category": "TRI",
+        "category": "EXT"
     },
     "4020": {
         "id": 4020,

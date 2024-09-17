@@ -18,7 +18,7 @@ export const viewTableConfig = {
     "trials": {
         "parentElementId": "trialsTableBody",
         "databaseEntriesType": "trial",
-        "mainViewColumns": ["VET", "PHM1", "PHM2", "HM", "TRI"],
+        "mainViewColumns": ["VET", "PHM1", "PHM2", "HM", "TRI", "EXT"],
         "headerParentElementId": "trialsTableHeader",
         "firstColName": "Trial"
     },
