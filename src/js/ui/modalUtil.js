@@ -1,40 +1,56 @@
 "use strict";
 
 export function showExtraDataModal(dungeonAbbv, dungeonName) {
-    $('#summaryGraphContainer').hide()
+    hideAllChildElements();
     $('#extraDataTable').show();
 
     $('.extraDataModalDungeonInfoRow').hide(); // hide all achievements
     $(`.${dungeonAbbv}_extraData`).show(); // show this dungeon's achievements
 
     $("#extraDataModalTitle").html(`Extra Achievements - ${dungeonName}`);
-    showModal();
 }
 
 export function showSummaryViewModal() {
+    hideAllChildElements();
     $('#summaryGraphContainer').show()
-    $('#extraDataTable').hide()
     $("#extraDataModalTitle").html(`Achievement Completion Summary`);
-
-    showModal();
 }
 
 export function showNewAchievementsViewModal() {
-    $('#summaryGraphContainer').hide()
+    hideAllChildElements();
     $('#extraDataTable').show();
 
     $('.extraDataModalDungeonInfoRow').hide(); // hide all achievements
     $('.newAchievement').show();
 
     $("#extraDataModalTitle").html(`New Achievements`);
-
-    showModal();
 }
 
-function showModal() {
-    const modalElement = document.querySelector('#extraDataModal');
-    // Because we're not using webpack we need to specifically disable the warning here...
-    // eslint-disable-next-line no-undef
-    const modal = bootstrap.Modal.getOrCreateInstance(modalElement)
-    modal.show();
+export function showCollectionsRewardsViewModal() {
+    hideAllChildElements();
+    $('#titlesMementosContainer').show();
+
+    handleRewardsFilterClicked("all");
+
+    $("#extraDataModalTitle").html(`Titles`);
+}
+
+export function handleRewardsFilterClicked(filter) {
+    $('.completed').hide();
+    $('.started').hide();
+    $('.notStarted').hide();
+
+    if (filter == "all") {
+        $('.completed').show();
+        $('.started').show();
+        $('.notStarted').show();
+    } else {
+        $(`.${filter}`).show();
+    }
+}
+
+function hideAllChildElements() {
+    $('#summaryGraphContainer').hide()
+    $('#extraDataTable').hide();
+    $('#titlesMementosContainer').hide();
 }

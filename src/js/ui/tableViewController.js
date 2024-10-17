@@ -71,6 +71,8 @@ function setupExtraDataModalButton(dungeonName, dungeonAbbv, parentElementId) {
     showModalButton.classList.add("btn");
     showModalButton.classList.add("btn-sm");
     showModalButton.classList.add("btn-primary");
+    showModalButton.setAttribute("data-bs-toggle", "modal");
+    showModalButton.setAttribute("data-bs-target", "#extraDataModal");
     showModalButton.onclick = () => {
         ModalUtil.showExtraDataModal(dungeonAbbv, dungeonName);
     }
@@ -79,7 +81,37 @@ function setupExtraDataModalButton(dungeonName, dungeonAbbv, parentElementId) {
     return cell;
 }
 
-function createTableRow(dataRow, parentElementId, numberOfPlayers) {
+function populateTitlesAndMementosModalRow(achievementInfo, parentElementId) {
+    if (!achievementInfo.playerTitle) {
+        return;
+    }
+
+    const reward = achievementInfo.playerTitle;
+    const context = "rewards";
+
+    let row = document.createElement("tr");
+    row.id = `rowId_${achievementInfo.code}_${context}`;
+
+    let titleCell = document.createElement("td");
+    titleCell.innerHTML = achievementInfo.name;
+    row.appendChild(titleCell);
+
+    let descriptionCell = document.createElement("td");
+    descriptionCell.innerHTML = achievementInfo.description;
+    row.appendChild(descriptionCell);
+
+    let rewardCell = document.createElement("td");
+    rewardCell.innerHTML = reward;
+    row.appendChild(rewardCell);
+    
+    let completedByCell = createMainViewCell(achievementInfo, parentElementId);
+    completedByCell.id = `${completedByCell.id}_${context}`;
+    row.appendChild(completedByCell);
+
+    $("#titlesMementosTable").append(row);
+}
+
+function createTableRow(dataRow, parentElementId) {
     let row = document.createElement("tr");
     const dungeonName = dataRow["DUNGEONNAME"];
     const dungeonAbbv = dataRow["ABBV"];
@@ -94,18 +126,19 @@ function createTableRow(dataRow, parentElementId, numberOfPlayers) {
 
     for (const cell of dataRow["EXTRAVIEWLAYOUT"]) {
         populateExtraDataModalRow(cell, parentElementId, dungeonAbbv);
+
+        populateTitlesAndMementosModalRow(cell, parentElementId);
     }
 
-    $(`#${parentElementId}_summaryColHeader`).attr("colspan", numberOfPlayers + 1);
     return row;
 }
 
-function createTableRows(data, dataType, numberOfPlayers) {
+function createTableRows(data, dataType) {
     const parentElementId = viewTableConfig[dataType].parentElementId;
 
     $(`#${parentElementId}`).empty();
     for (let dataPoint of data) {
-        $(`#${parentElementId}`).append(createTableRow(dataPoint, parentElementId, numberOfPlayers));
+        $(`#${parentElementId}`).append(createTableRow(dataPoint, parentElementId));
     }
 }
 
@@ -172,6 +205,16 @@ function setListOfPlayersWithAchieveInTooltip(cellId, playersWhoHaveAchieve) {
     });
 }
 
+function setProgressClassBasedOnPercentComplete(id, percentValue) {
+    let progressClass = "notStarted";
+    if (percentValue >= 100.0) {
+        progressClass = "completed";
+    } else if (percentValue > 0.0) {
+        progressClass = "started";
+    }
+    $(`#rowId_${id}_rewards`).addClass(progressClass);
+}
+
 function generateDataSetsForGraph(allDungeonsAchievementsSummary, numPlayers) {
     let transformedDataMap = new Map();
 
@@ -229,7 +272,7 @@ export function populateTable(parsedInputResults) {
     const dataType = parsedInputResults.category;
     const { layoutData, model } = getDataAndModel(parsedInputResults, true);
 
-    createTableRows(layoutData, dataType, parsedInputResults.players.length);
+    createTableRows(layoutData, dataType);
 
     const parentElementId = viewTableConfig[dataType].parentElementId;
     const numPlayers = parsedInputResults.players.length;
@@ -257,13 +300,13 @@ function populateTableFromModel(model, parentElementId) {
     for (let achievement of model.achievementsList) {
         let cellId = `#${parentElementId}${achievement.code}`;
 
-        setCellColorBasedOnPercentComplete(cellId, -1);
         if (!achievement.isAchievement) { //represents cells with no actual achievement, need to grey out the boxes
+            setCellColorBasedOnPercentComplete(cellId, -1);
             continue;
         }
 
         let cellsToUpdate = [
-            `${cellId}`, `${cellId}_extraData`
+            `${cellId}`, `${cellId}_extraData`, `${cellId}_rewards`
         ];
         for (let id of cellsToUpdate) {
             if ($(id).length) {
@@ -272,6 +315,8 @@ function populateTableFromModel(model, parentElementId) {
                 setCellColorBasedOnPercentComplete(id, achievement.completedPercent);
             }
         }
+
+        setProgressClassBasedOnPercentComplete(achievement.code, achievement.completedPercent);
     }
 }
 

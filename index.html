@@ -49,12 +49,17 @@
                     <div id="metadataContainer" style="display: none;" class="col">
                         <div>
                             <button type="button" class="btn btn-info" name="shareViewButton" id="shareViewButton" data-bs-toggle="modal" data-bs-target="#copyUrlModal">
-                                Share Current View
+                                Share
                             </button>
                         </div>
                         <div>
                             <button type="button" class="btn btn-info" name="showSummaryViewButton" id="showSummaryViewButton" data-bs-toggle="modal" data-bs-target="#extraDataModal">
-                                Achievement Completion Summary
+                                Overall Summary
+                            </button>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-info" name="showCollectionsRewardsViewButton" id="showCollectionsRewardsViewButton" data-bs-toggle="modal" data-bs-target="#extraDataModal">
+                                Titles
                             </button>
                         </div>
                         <div>
@@ -159,6 +164,28 @@
                                 <th>Completed</th>
                             </tr>
                         </table>
+                        <div id="titlesMementosContainer">
+                            <div class="col">
+                                <div class="btn-group btn-group-toggle col-sm" data-toggle="buttons">
+                                    <input type="radio" class="btn-check" name="rewardsCompletedByOptions" id="rewardsCompletedByOptions1" value="all" autocomplete="off" checked>
+                                    <label class="btn btn-primary" for="rewardsCompletedByOptions1">All</label>
+                                    <input type="radio" class="btn-check" name="rewardsCompletedByOptions" id="rewardsCompletedByOptions2" value="completed" autocomplete="off">
+                                    <label class="btn btn-primary" for="rewardsCompletedByOptions2">Completed</label>
+                                    <input type="radio" class="btn-check" name="rewardsCompletedByOptions" id="rewardsCompletedByOptions3" value="started" autocomplete="off">
+                                    <label class="btn btn-primary" for="rewardsCompletedByOptions3">Started</label>
+                                    <input type="radio" class="btn-check" name="rewardsCompletedByOptions" id="rewardsCompletedByOptions4" value="notStarted" autocomplete="off">
+                                    <label class="btn btn-primary" for="rewardsCompletedByOptions4">Not Started</label>
+                                </div>
+                            </div>
+                            <table class="table" id="titlesMementosTable">
+                                <tr id="titlesMementosHeaderRow">
+                                    <th>Achievement</th>
+                                    <th>Description</th>
+                                    <th>Reward</th>
+                                    <th>Completed</th>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
