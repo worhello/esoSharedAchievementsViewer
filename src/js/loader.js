@@ -99,6 +99,14 @@ $(document).ready(function() {
         ModalUtil.showNewAchievementsViewModal();
     });
 
+    $("button[name$='showCollectionsRewardsViewButton']").click(() => {
+        ModalUtil.showCollectionsRewardsViewModal();
+    });
+
+    $("input[name$='rewardsCompletedByOptions']").click(function() {
+        ModalUtil.handleRewardsFilterClicked($(this).val());
+    });
+
     $("#shareViewButton").click(() => {
         $("#copyUrlModalButton").text("Copy to clipboard");
     })
